@@ -43,5 +43,5 @@ Blacktop Capstone project is an upgraded versions of OOP oriented sandbox game w
 
 
 ## Links
-![Figma_Design](https://www.figma.com/file/uiwppLUE5HykidgDgCoDAz/Blacktop?node-id=0%3A1)
-![Trello_Board](https://trello.com/b/kcyDWugZ/blacktop)
+[Figma_Design](https://www.figma.com/file/uiwppLUE5HykidgDgCoDAz/Blacktop?node-id=0%3A1)
+[Trello_Board](https://trello.com/b/kcyDWugZ/blacktop)

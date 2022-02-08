@@ -15,14 +15,14 @@ class Game(models.Model):
     name = models.CharField(max_length=10,default="game_name")
     game_stats = models.JSONField(default=dict)
     winner = models.ForeignKey(
-        User, related_name='winner', null=True, default=None, on_delete=models.CASCADE, blank=True
+        User, related_name='winner', null=True, default=None, on_delete=models.SET_DEFAULT, blank=True
     )
     player_one_stats = models.JSONField(default=dict)
     player_two_stats = models.JSONField(default=dict)
     player_one_score = models.IntegerField(default=0)
     player_two_score = models.IntegerField(default=0)
-    player_one = models.ForeignKey(User, related_name='player_one', null=True, default=None, on_delete=models.CASCADE, blank=True)
-    player_two = models.ForeignKey(User, related_name='player_two', null=True, default=None, on_delete=models.CASCADE, blank=True)
+    player_one = models.ForeignKey(User, related_name='player_one', null=True, default=None, on_delete=models.SET_DEFAULT, blank=True)
+    player_two = models.ForeignKey(User, related_name='player_two', null=True, default=None, on_delete=models.SET_DEFAULT, blank=True)
     player_one_squad = models.JSONField(default=dict)
     player_two_squad = models.JSONField(default=dict)
     date = models.DateField(

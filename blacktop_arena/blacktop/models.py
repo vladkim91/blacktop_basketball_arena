@@ -12,10 +12,19 @@ class User(models.Model):
 
 
 class Game(models.Model):
-    stats = models.JSONField("stats")
+    name = models.CharField(max_length=10,default="game_name")
+    game_stats = models.JSONField(default=dict)
     winner = models.ForeignKey(
         User, related_name='winner', null=True, default=None, on_delete=models.CASCADE, blank=True
     )
+    player_one_stats = models.JSONField(default=dict)
+    player_two_stats = models.JSONField(default=dict)
+    player_one_score = models.IntegerField(default=0)
+    player_two_score = models.IntegerField(default=0)
+    player_one = models.ForeignKey(User, related_name='player_one', null=True, default=None, on_delete=models.PROTECT, blank=True)
+    player_two = models.ForeignKey(User, related_name='player_two', null=True, default=None, on_delete=models.PROTECT, blank=True)
+    player_one_squad = models.JSONField(default=dict)
+    player_two_squad = models.JSONField(default=dict)
     date = models.DateField(
         null=True,
         blank=True
@@ -34,15 +43,6 @@ class Player(models.Model):
     tendencies = models.JSONField("tendencies")
     avatar = models.CharField(max_length=200)
     description = models.CharField(max_length=300)
-    current_team = models.ForeignKey(
-        User, related_name='current_team', null=True, default=None, on_delete=models.PROTECT
-    )
-    user_team = models.ForeignKey(
-        Game, related_name='user_team', null=True, default=None, on_delete=models.PROTECT
-    )
-    cpu_team = models.ForeignKey(
-        Game, related_name='cpu_team', null=True, default=None, on_delete=models.PROTECT
-    )
 
     def __str__(self):
         return self.name

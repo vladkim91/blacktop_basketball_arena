@@ -1,15 +1,18 @@
 <template>
   <div id="nav">
     <router-link to="/signup">Sign Up</router-link> |
-    <router-link to="/login">Log In</router-link>
+    <router-link to="/login">Log In</router-link> |
+    <router-link to="/gameui">GameUI</router-link>
   </div>
   <router-view />
 </template>
 
 <script>
+
 import axios from 'axios';
 export default {
   name: 'App',
+
   beforeCreate() {
     this.$store.commit('initializeStore');
 

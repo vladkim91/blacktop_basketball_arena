@@ -3,7 +3,7 @@ from django.db import models
 
 class User(models.Model):
     username = models.CharField(max_length=100)
-    password = models.CharField(max_length=100)
+    # password = models.CharField(max_length=100)
     wins = models.IntegerField(default=0)
     losses = models.IntegerField(default=0)
 

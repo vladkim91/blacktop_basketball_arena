@@ -30,12 +30,15 @@ export default {
       axios
         .post('/api/v1/users/', formData)
         .then((response) => {
+    
           this.$router.push('/login');
           console.log(response);
         })
         .catch((error) => {
           console.log(error);
         });
+
+      axios.post()
     }
   }
 };

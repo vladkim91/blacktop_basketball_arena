@@ -4,6 +4,8 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('blacktop.urls')),
+    path('api/v1/', include('djoser.urls')),
+    path('api/v1/', include('djoser.urls.authtoken')),
     path('api-auth', include('rest_framework.urls', namespace='rest_framework')),
 
 ]

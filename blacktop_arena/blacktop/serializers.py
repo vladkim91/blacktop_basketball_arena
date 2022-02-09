@@ -14,6 +14,11 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('id', 'username', 'password', 'wins', 'losses')
 
 class GameSerializer(serializers.ModelSerializer):
+
+    winner_list = UserSerializer(
+        many=True,
+        read_only=True
+    )
     class Meta:
         model = Game
-        fields = ('id', 'game_stats', 'winner', 'player_one_stats', 'player_one_score','player_one','player_one_squad','player_two_stats', 'player_two_score','player_two','player_two_squad', 'date')
+        fields = ('id', 'game_stats', 'winner_list','winner', 'player_one_stats', 'player_one_score','player_one','player_one_squad','player_two_stats', 'player_two_score','player_two','player_two_squad', 'date')

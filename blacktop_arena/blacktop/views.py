@@ -24,7 +24,7 @@ class CreateUser(generics.ListCreateAPIView):
 
 
 
-class GetAllPlayers(generics.RetrieveUpdateDestroyAPIView):
+class GetAllPlayers(generics.ListCreateAPIView):
     queryset = Player.objects.all()
     serializer_class = PlayerSerializer
 

@@ -1,9 +1,11 @@
 import { createStore } from 'vuex';
+import players from '../players';
 
 export default createStore({
   state: {
     token: '',
-    isAuthenticated: false
+    isAuthenticated: false,
+    players: players
   },
   mutations: {
     initializeStore(state) {

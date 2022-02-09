@@ -2,7 +2,7 @@
   <div id="nav">
     <router-link to="/signup">Sign Up</router-link> |
     <router-link to="/login">Log In</router-link> |
-    <router-link to="/gameui">GameUI</router-link>
+    <router-link to="/game">Game</router-link>
   </div>
   <router-view />
 </template>

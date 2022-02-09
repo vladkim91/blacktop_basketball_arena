@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import SignUp from '../views/SignUp.vue';
 import Login from '../views/Login.vue';
-import GameUi from '../views/GameUi.vue';
+import Game from '../views/Game.vue';
 
 const routes = [
   {
@@ -15,9 +15,9 @@ const routes = [
     component: Login
   },
   {
-    path: '/gameui',
-    name: 'GameUi',
-    component: GameUi
+    path: '/game',
+    name: 'Game',
+    component: Game
   }
 ];
 

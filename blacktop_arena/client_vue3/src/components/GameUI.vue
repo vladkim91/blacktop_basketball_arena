@@ -1,11 +1,27 @@
 <template>
-  <div class="game-ui">GAME UI</div>
+  <div class="game-ui">
+    <h1>GAME UI</h1>
+    <h2>Team One</h2>
+    <div v-for="team in teams.teamOne" :key="team.id">
+      <div v-for="player in team" :key="player.id">
+        {{player.attributes}}
+      </div>
+    </div>
+    <h2>Team Two</h2>
+    <div v-for="team in teams.teamTwo" :key="team.id">
+      <div v-for="player in team" :key="player.id">
+        {{player}}
+      </div>
+    </div>
+
+    </div>
 </template>
 
 <script>
 export default {
   data() {
     return {
+      gameInProgress: false,
       gameStats: {},
       stats: {
         teamOne: {
@@ -36,6 +52,11 @@ export default {
         teamTwo: 0
       }
     };
+  },
+  computed: {
+    teams() {
+      return this.$store.state.teams;
+    }
   }
 };
 </script>

@@ -5,7 +5,8 @@ export default createStore({
   state: {
     token: '',
     isAuthenticated: false,
-    players: players
+    players: players,
+    teams: []
   },
   mutations: {
     initializeStore(state) {
@@ -23,6 +24,9 @@ export default createStore({
     removeToken(state) {
       state.token = '';
       state.isAuthenticated = false;
+    },
+    setTeams(state, teams) {
+      state.teams = teams;
     }
   },
   actions: {},

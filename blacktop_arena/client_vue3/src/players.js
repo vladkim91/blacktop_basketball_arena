@@ -94,5 +94,101 @@ export default [
         intercept: 60
       }
     }
+  },
+  {
+    name: 'Hakeem Olajuwon',
+    nickname: 'The Dream',
+    height: `6'10"`,
+    avatar: 'img/url',
+    description: `Michael Jordan personified greatness on the court, and redefined superstar athlete off it. His freshman season at UNC culminated with Jordan hitting the game-winning shot in the 1982 NCAA national title game. That shot put Michael on the map and a new era was born. Following his junior year, Jordan entered the NBA Draft and was selected third overall by the Chicago Bulls. The young superstar began stockpiling NBA hardware. The court was his and the world soon followed. His unmistakable style - the wagging tongue, the baggy shorts, the signature line of sneakers - helped make the 14-time All Star the most recognizable person on the planet. Still his resume lacked an NBA title. Then in 1991, the Jordan-led Bulls launched an all-out assault on the rest of the league winning three straight world championships. Michael won Olympic gold again in 1992 and then in 1993 abruptly retired from the Bulls to play minor league baseball. He returned to the NBA full-time in 1995 and the Bulls promptly won three consecutive titles. Jordan was named Finals MVP each time. In 2001, Jordan made a second improbable comeback and still averaged 20 points per game and appeared in the 2002 and 2003 All Star Games.`,
+    attributes: {
+      offense: {
+        layup: 95,
+        dunk: 99,
+        mid_range: 80,
+        three: 60,
+        handles: 70,
+        pass: 75,
+        off_rebound: 95,
+        post_shot: 99
+      },
+      defense: {
+        inside_defense: 99,
+        outside_defense: 70,
+        steal: 78,
+        block: 95,
+        def_rebound: 99,
+        post_defense: 99
+      },
+      physical: {
+        speed: 60,
+        vertical: 60,
+        strength: 99
+      }
+    },
+    tendencies: {
+      offense: {
+        attack_rim: 90,
+        shoot_mid: 50,
+        shoot_three: 20,
+        pass: 60,
+        set_screen: 90,
+        post_up: 90
+      },
+      defense: {
+        steal: 75,
+        block: 94,
+        hard_foul: 20,
+        intercept: 50
+      }
+    }
+  },
+  {
+    name: 'Allen Iverson',
+    nickname: 'The Answer',
+    height: `5'11"`,
+    avatar: 'img/url',
+    description: `Michael Jordan personified greatness on the court, and redefined superstar athlete off it. His freshman season at UNC culminated with Jordan hitting the game-winning shot in the 1982 NCAA national title game. That shot put Michael on the map and a new era was born. Following his junior year, Jordan entered the NBA Draft and was selected third overall by the Chicago Bulls. The young superstar began stockpiling NBA hardware. The court was his and the world soon followed. His unmistakable style - the wagging tongue, the baggy shorts, the signature line of sneakers - helped make the 14-time All Star the most recognizable person on the planet. Still his resume lacked an NBA title. Then in 1991, the Jordan-led Bulls launched an all-out assault on the rest of the league winning three straight world championships. Michael won Olympic gold again in 1992 and then in 1993 abruptly retired from the Bulls to play minor league baseball. He returned to the NBA full-time in 1995 and the Bulls promptly won three consecutive titles. Jordan was named Finals MVP each time. In 2001, Jordan made a second improbable comeback and still averaged 20 points per game and appeared in the 2002 and 2003 All Star Games.`,
+    attributes: {
+      offense: {
+        layup: 95,
+        dunk: 70,
+        mid_range: 96,
+        three: 83,
+        handles: 99,
+        pass: 80,
+        off_rebound: 30,
+        post_shot: 60
+      },
+      defense: {
+        inside_defense: 56,
+        outside_defense: 80,
+        steal: 90,
+        block: 66,
+        def_rebound: 30,
+        post_defense: 45
+      },
+      physical: {
+        speed: 99,
+        vertical: 85,
+        strength: 60
+      }
+    },
+    tendencies: {
+      offense: {
+        attack_rim: 80,
+        shoot_mid: 93,
+        shoot_three: 75,
+        pass: 45,
+        set_screen: 30,
+        post_up: 20
+      },
+      defense: {
+        steal: 90,
+        block: 30,
+        hard_foul: 40,
+        intercept: 87
+      }
+    }
   }
 ];

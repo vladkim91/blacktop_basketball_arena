@@ -38,7 +38,6 @@ export default {
           console.log(error);
         });
 
-      axios.post()
     }
   }
 };

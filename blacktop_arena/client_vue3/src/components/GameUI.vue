@@ -217,7 +217,6 @@ export default {
       const defaultPercentages = [0.45, 0.35, 0.3, 0.4];
       // const chance = Math.random().toFixed(2);
 
-      console.log('current', player.name, type);
       let defensiveTendencies = matchup.tendencies.defense;
       let defensiveAttributes = matchup.attributes.defense;
       let defensivePhysicalAttributes = matchup.attributes.physical;
@@ -225,6 +224,7 @@ export default {
       let defensiveContest;
       let layupOrDunk = '';
       let percentage;
+   
 
       switch (type) {
         case 'attack_rim':
@@ -238,13 +238,15 @@ export default {
             player.attributes.offense.dunk,
             defensiveContest
           );
+// 
+        
+         
           percentage = this.calcAttackRim(
             defensiveContest,
             player.attributes.offense[layupOrDunk],
             defaultPercentages[0]
           );
-          
-          percentage
+          percentage;
 
           break;
         case 'shoot_mid':
@@ -253,8 +255,13 @@ export default {
               defensiveAttributes.outside_defense +
               defensivePhysicalAttributes.vertical) /
             3;
-          console.log(defensiveContest);
-
+          percentage = this.calcShotPercentage(
+            defensiveContest,
+            player.attributes.offense['mid_range'],
+            defaultPercentages[1]
+          );
+          percentage;
+          //
           break;
         case 'shoot_three':
           defensiveContest =
@@ -262,33 +269,32 @@ export default {
               defensiveAttributes.outside_defense +
               defensivePhysicalAttributes.vertical) /
             3;
-          console.log(defensiveContest);
-
+          percentage = this.calcShotPercentage(
+            defensiveContest,
+            player.attributes.offense['three'],
+            defaultPercentages[2]
+          );
+          percentage;
           break;
         case 'post_up':
           defensiveContest =
             (defensiveTendencies.block +
-              defensiveAttributes.outside_defense +
+              defensiveAttributes.post_defense +
               defensiveAttributes.inside_defense +
               defensivePhysicalAttributes.vertical +
               defensivePhysicalAttributes.strength) /
             5;
-          console.log(defensiveContest);
+
+          percentage = this.calcAttackRim(
+            defensiveContest,
+            player.attributes.offense['post_shot'],
+            defaultPercentages[3]
+          );
+          percentage;
 
           break;
       }
-      console.log(type, percentage);
-
-      console.log(
-        'matchup',
-        matchup.name,
-        defensiveTendencies,
-        defensiveAttributes,
-        defensivePhysicalAttributes
-      );
-      // if (matchup.tendencies.defense) {
-      //   console.log(first)
-      // }
+      console.log(player.name, type, percentage);
     },
     layupOrDunk(dunk, defensiveRating) {
       const dunkPenalty = parseFloat(
@@ -300,12 +306,19 @@ export default {
       return chance < layupChance ? 'layup' : 'dunk';
     },
     calcAttackRim(defense, offense, defaultPercentage) {
-      console.log(defense, offense, defaultPercentage);
       const multiplier = parseFloat(
         (offense / (defense + offense) / defaultPercentage).toFixed(2)
-      );
+      ) - .10;
+    
+      return parseFloat((defaultPercentage * multiplier).toFixed(2));
+    },
+    calcShotPercentage(defense, offense, defaultPercentage) {
+      const multiplier = parseFloat(
+        (offense / (defense + offense) / defaultPercentage).toFixed(2)
+      ) - .1;
       return parseFloat((defaultPercentage * multiplier).toFixed(2));
     }
   }
 };
+
 </script>

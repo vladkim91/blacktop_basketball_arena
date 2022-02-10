@@ -214,7 +214,7 @@ export default {
       }
     },
     shootBall(player, type, matchup) {
-      // const defaultPercentages = [0.5, 0.45, 0.4, 0.5];
+      const defaultPercentages = [0.45, 0.35, 0.3, 0.4];
       // const chance = Math.random().toFixed(2);
 
       console.log('current', player.name, type);
@@ -223,6 +223,9 @@ export default {
       let defensivePhysicalAttributes = matchup.attributes.physical;
       // let contested = false;
       let defensiveContest;
+      let layupOrDunk = '';
+      let percentage;
+
       switch (type) {
         case 'attack_rim':
           defensiveContest =
@@ -231,9 +234,18 @@ export default {
               defensivePhysicalAttributes.vertical +
               defensivePhysicalAttributes.strength) /
             4;
+          layupOrDunk += this.layupOrDunk(
+            player.attributes.offense.dunk,
+            defensiveContest
+          );
+          percentage = this.calcAttackRim(
+            defensiveContest,
+            player.attributes.offense[layupOrDunk],
+            defaultPercentages[0]
+          );
+          
+          percentage
 
-          console.log(defensiveContest);
-          this.layupOrDunk(player.attributes.offense.layup,player.attributes.offense.layup,defensiveContest)
           break;
         case 'shoot_mid':
           defensiveContest =
@@ -265,7 +277,7 @@ export default {
 
           break;
       }
-      console.log();
+      console.log(type, percentage);
 
       console.log(
         'matchup',
@@ -278,22 +290,21 @@ export default {
       //   console.log(first)
       // }
     },
-    layupOrDunk(layup, dunk, defensiveRating) {
-      const dunkPenalty = parseFloat((dunk / (dunk + defensiveRating)).toFixed(2))
-      const layupChance = 1 - dunkPenalty + .15;
+    layupOrDunk(dunk, defensiveRating) {
+      const dunkPenalty = parseFloat(
+        (dunk / (dunk + defensiveRating)).toFixed(2)
+      );
+      const layupChance = 1 - dunkPenalty + 0.15;
       const chance = Math.random().toFixed(2);
-      if (chance < layupChance) {
-        console.log('.')
-        console.log(chance)
-        console.log('dunkPenalty:',dunkPenalty,'layupChance:',layupChance)
-        console.log('layup')
-      } else {
-        console.log(chance)
-        console.log('dunkPenalty:',dunkPenalty,'layupChance:',layupChance)
-      
-        console.log('dunk')
-      }
+
       return chance < layupChance ? 'layup' : 'dunk';
+    },
+    calcAttackRim(defense, offense, defaultPercentage) {
+      console.log(defense, offense, defaultPercentage);
+      const multiplier = parseFloat(
+        (offense / (defense + offense) / defaultPercentage).toFixed(2)
+      );
+      return parseFloat((defaultPercentage * multiplier).toFixed(2));
     }
   }
 };

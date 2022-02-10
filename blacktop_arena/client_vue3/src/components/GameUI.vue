@@ -74,11 +74,13 @@ export default {
     },
     getPlayerOverall() {},
     startGame() {
- 
-      while (this.gameScore.teamOne < 21 && this.gameScore.teamTwo < 21) {
-         if (!this.possession) {
-          this.jumpBall()
+      while (this.gameScore.teamOne < 1 && this.gameScore.teamTwo < 1) {
+        if (!this.possession) {
+          this.jumpBall();
         }
+        this.possession
+          ? this.checkShootPass(this.teams.teamTwo)
+          : this.checkShootPass(this.teams.teamOne);
 
         this.gameScore.teamOne++;
 
@@ -86,25 +88,24 @@ export default {
       }
     },
     jumpBall() {
-          const [playerOne, playerTwo] = this.getTallest();
-          const p1v = playerOne.height * playerOne.attributes.physical.vertical;
-          const p2v = playerTwo.height * playerTwo.attributes.physical.vertical;
-          const percentage = [
-            parseFloat((p1v / (p1v + p2v)).toFixed(2)),
-            parseFloat((p2v / (p1v + p2v)).toFixed(2))
-          ];
-          if (parseFloat(Math.random().toFixed(2)) < percentage[0]) {
-            this.possession = 0;
-            this.gameLog.push(`${playerOne.name} won the tip! `)
-            console.log(this.gameLog)
-          } else {
-            this.possession = 1;
-            this.gameLog.push(`${playerTwo.name} won the tip! `)
-            console.log(this.gameLog)
-          }
-        
+      const [playerOne, playerTwo] = this.getTallest();
+      const p1v = playerOne.height * playerOne.attributes.physical.vertical;
+      const p2v = playerTwo.height * playerTwo.attributes.physical.vertical;
+      const percentage = [
+        parseFloat((p1v / (p1v + p2v)).toFixed(2)),
+        parseFloat((p2v / (p1v + p2v)).toFixed(2))
+      ];
+      if (parseFloat(Math.random().toFixed(2)) < percentage[0]) {
+        this.possession = 0;
+        this.gameLog.push(`${playerOne.name} won the tip! `);
+        console.log(this.gameLog);
+      } else {
+        this.possession = 1;
+        this.gameLog.push(`${playerTwo.name} won the tip! `);
+        console.log(this.gameLog);
+      }
     },
-    
+
     getTallest() {
       const tallestOne = this.teams.teamOne.sort((a, b) => {
         return b.height - a.height;
@@ -114,6 +115,50 @@ export default {
       })[0];
 
       return [tallestOne, tallestTwo];
+    },
+    checkShootPass(team) {
+      const currentTeam = team;
+      console.log(currentTeam);
+      let player1 = 0;
+      let player2 = 0;
+      let player3 = 0;
+      team.forEach((e, i) => {
+        const offensiveTendencies = e.tendencies.offense;
+        for (const property in offensiveTendencies) {
+          if (i === 0) {
+            player1 += parseInt(offensiveTendencies[property]);
+          } else if ( i === 1 ) {
+            player2 += parseInt(offensiveTendencies[property]);
+          } else {
+            player3 += parseInt(offensiveTendencies[property]);
+          }
+        }
+      });
+       this.calcShotTendencies(player1, player2, player3)
+         
+
+
+    },
+    calcShotTendencies(p1, p2, p3) {
+      const p1ST = parseFloat((p1 / (p1 + p2 + p3)).toFixed(2))
+      console.log(p1, p1ST)
+      const p2ST = parseFloat((p2 / (p1 + p2 + p3)).toFixed(2))
+      console.log(p2, p2ST)
+      const p3ST = parseFloat((p3 / (p1 + p2 + p3)).toFixed(2))
+      console.log(p3, p3ST)
+      const chance = Math.random().toFixed(2)
+      console.log(chance)
+      if (chance <= p1ST) {
+        console.log('player1')
+        return 0
+      } else if (chance > p1ST && chance <= (p1ST + p2ST)) {
+        console.log('player2')
+        return 1
+      } else {
+        console.log('player3')
+        return 2
+      }
+      
     }
   }
 };

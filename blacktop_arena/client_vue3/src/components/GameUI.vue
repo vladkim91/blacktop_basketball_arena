@@ -21,6 +21,7 @@ export default {
 
   data() {
     return {
+      gameLog: [],
       possession: null,
       gameInProgress: false,
       gameStats: {},
@@ -61,7 +62,7 @@ export default {
   },
   methods: {
     countdown() {
-      this.startGame()
+      this.startGame();
       // let audio = new Audio(require('../assets/whistle.mp3'));
       // setTimeout(() => console.log(3), 2000);
       // setTimeout(() => console.log(2), 3000);
@@ -70,34 +71,49 @@ export default {
       // setTimeout(() => {
       //   // audio.play();
       // }, 4500);
-      
     },
-    getPlayerOverall() {
-
-    },
+    getPlayerOverall() {},
     startGame() {
+ 
       while (this.gameScore.teamOne < 21 && this.gameScore.teamTwo < 21) {
-        if (!this.possession) {
-          this.getTallest()
+         if (!this.possession) {
+          this.jumpBall()
         }
-        console.log(this.gameScore.teamOne)
-        this.gameScore.teamOne++
-        console.log(this.gameScore.teamOne)
-        
+
+        this.gameScore.teamOne++;
 
         // console.log(this.gameScore)
       }
     },
-    getTallest(){
-      const tallestOne = this.teams.teamOne.sort((a,b) => {
-        return b.height - a.height
-      })
-      const tallestTwo = this.teams.teamTwo.sort((a,b) => {
-        return b.height - a.height
-      })
-      console.log(tallestOne[0], tallestTwo[0])
-      return tallestOne, tallestTwo
-  
+    jumpBall() {
+          const [playerOne, playerTwo] = this.getTallest();
+          const p1v = playerOne.height * playerOne.attributes.physical.vertical;
+          const p2v = playerTwo.height * playerTwo.attributes.physical.vertical;
+          const percentage = [
+            parseFloat((p1v / (p1v + p2v)).toFixed(2)),
+            parseFloat((p2v / (p1v + p2v)).toFixed(2))
+          ];
+          if (parseFloat(Math.random().toFixed(2)) < percentage[0]) {
+            this.possession = 0;
+            this.gameLog.push(`${playerOne.name} won the tip! `)
+            console.log(this.gameLog)
+          } else {
+            this.possession = 1;
+            this.gameLog.push(`${playerTwo.name} won the tip! `)
+            console.log(this.gameLog)
+          }
+        
+    },
+    
+    getTallest() {
+      const tallestOne = this.teams.teamOne.sort((a, b) => {
+        return b.height - a.height;
+      })[0];
+      const tallestTwo = this.teams.teamTwo.sort((a, b) => {
+        return b.height - a.height;
+      })[0];
+
+      return [tallestOne, tallestTwo];
     }
   }
 };

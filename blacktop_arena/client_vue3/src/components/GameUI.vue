@@ -224,7 +224,6 @@ export default {
       let defensiveContest;
       let layupOrDunk = '';
       let percentage;
-   
 
       switch (type) {
         case 'attack_rim':
@@ -238,9 +237,8 @@ export default {
             player.attributes.offense.dunk,
             defensiveContest
           );
-// 
-        
-         
+          //
+
           percentage = this.calcAttackRim(
             defensiveContest,
             player.attributes.offense[layupOrDunk],
@@ -284,17 +282,28 @@ export default {
               defensivePhysicalAttributes.vertical +
               defensivePhysicalAttributes.strength) /
             5;
-
           percentage = this.calcAttackRim(
             defensiveContest,
             player.attributes.offense['post_shot'],
             defaultPercentages[3]
           );
           percentage;
-
           break;
       }
-      console.log(player.name, type, percentage);
+      const [name, makeOrMiss] = this.shoot(player, percentage);
+
+      if (makeOrMiss === 'make' && type === 'three') {
+        console.log(`${name} made a ${type} point shot ${this.gameScore}`);
+        console.log(this.possession);
+      } else if (makeOrMiss === 'make') {
+        console.log(`${name} made a ${type}`);
+      } else if (makeOrMiss === 'miss' && type === 'three') {
+        console.log(`${name} missed a ${type} pointer`)
+      } else {
+        console.log(`${name} missed ${type}`)
+      }
+
+      // console.log(name, makeOrMiss)
     },
     layupOrDunk(dunk, defensiveRating) {
       const dunkPenalty = parseFloat(
@@ -306,19 +315,28 @@ export default {
       return chance < layupChance ? 'layup' : 'dunk';
     },
     calcAttackRim(defense, offense, defaultPercentage) {
-      const multiplier = parseFloat(
-        (offense / (defense + offense) / defaultPercentage).toFixed(2)
-      ) - .10;
-    
+      const multiplier =
+        parseFloat(
+          (offense / (defense + offense) / defaultPercentage).toFixed(2)
+        ) - 0.1;
+
       return parseFloat((defaultPercentage * multiplier).toFixed(2));
     },
     calcShotPercentage(defense, offense, defaultPercentage) {
-      const multiplier = parseFloat(
-        (offense / (defense + offense) / defaultPercentage).toFixed(2)
-      ) - .1;
+      const multiplier =
+        parseFloat(
+          (offense / (defense + offense) / defaultPercentage).toFixed(2)
+        ) - 0.1;
       return parseFloat((defaultPercentage * multiplier).toFixed(2));
+    },
+    shoot(player, percentage) {
+      const chance = Math.random().toFixed(2);
+      if (chance < percentage) {
+        return [player.name, 'make'];
+      } else {
+        return [player.name, 'miss'];
+      }
     }
   }
 };
-
 </script>

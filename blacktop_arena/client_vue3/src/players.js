@@ -2,7 +2,8 @@ export default [
   {
     name: 'Michael Jordan',
     nickname: 'Air Jordan',
-    height: `6'6"`,
+    position: 'SG',
+    height: 78,
     avatar: 'img/url',
     description: `Michael Jordan personified greatness on the court, and redefined superstar athlete off it. His freshman season at UNC culminated with Jordan hitting the game-winning shot in the 1982 NCAA national title game. That shot put Michael on the map and a new era was born. Following his junior year, Jordan entered the NBA Draft and was selected third overall by the Chicago Bulls. The young superstar began stockpiling NBA hardware. The court was his and the world soon followed. His unmistakable style - the wagging tongue, the baggy shorts, the signature line of sneakers - helped make the 14-time All Star the most recognizable person on the planet. Still his resume lacked an NBA title. Then in 1991, the Jordan-led Bulls launched an all-out assault on the rest of the league winning three straight world championships. Michael won Olympic gold again in 1992 and then in 1993 abruptly retired from the Bulls to play minor league baseball. He returned to the NBA full-time in 1995 and the Bulls promptly won three consecutive titles. Jordan was named Finals MVP each time. In 2001, Jordan made a second improbable comeback and still averaged 20 points per game and appeared in the 2002 and 2003 All Star Games.`,
     attributes: {
@@ -50,7 +51,8 @@ export default [
   {
     name: 'Tim Duncan',
     nickname: 'Big Fundamental',
-    height: `6'11"`,
+    position: 'PF',
+    height: 83,
     avatar: 'img/url',
     description: `Timothy Theodore Duncan is an American former professional basketball player and coach. Nicknamed "the Big Fundamental", he is widely regarded as the greatest power forward of all time and one of the greatest players in NBA history. He spent his entire 19-year playing career with the San Antonio Spurs.`,
     attributes: {
@@ -98,7 +100,8 @@ export default [
   {
     name: 'Hakeem Olajuwon',
     nickname: 'The Dream',
-    height: `6'10"`,
+    position: 'PF',
+    height: 82,
     avatar: 'img/url',
     description: `Michael Jordan personified greatness on the court, and redefined superstar athlete off it. His freshman season at UNC culminated with Jordan hitting the game-winning shot in the 1982 NCAA national title game. That shot put Michael on the map and a new era was born. Following his junior year, Jordan entered the NBA Draft and was selected third overall by the Chicago Bulls. The young superstar began stockpiling NBA hardware. The court was his and the world soon followed. His unmistakable style - the wagging tongue, the baggy shorts, the signature line of sneakers - helped make the 14-time All Star the most recognizable person on the planet. Still his resume lacked an NBA title. Then in 1991, the Jordan-led Bulls launched an all-out assault on the rest of the league winning three straight world championships. Michael won Olympic gold again in 1992 and then in 1993 abruptly retired from the Bulls to play minor league baseball. He returned to the NBA full-time in 1995 and the Bulls promptly won three consecutive titles. Jordan was named Finals MVP each time. In 2001, Jordan made a second improbable comeback and still averaged 20 points per game and appeared in the 2002 and 2003 All Star Games.`,
     attributes: {
@@ -146,7 +149,8 @@ export default [
   {
     name: 'Allen Iverson',
     nickname: 'The Answer',
-    height: `5'11"`,
+    position: 'SG',
+    height: 71,
     avatar: 'img/url',
     description: `Michael Jordan personified greatness on the court, and redefined superstar athlete off it. His freshman season at UNC culminated with Jordan hitting the game-winning shot in the 1982 NCAA national title game. That shot put Michael on the map and a new era was born. Following his junior year, Jordan entered the NBA Draft and was selected third overall by the Chicago Bulls. The young superstar began stockpiling NBA hardware. The court was his and the world soon followed. His unmistakable style - the wagging tongue, the baggy shorts, the signature line of sneakers - helped make the 14-time All Star the most recognizable person on the planet. Still his resume lacked an NBA title. Then in 1991, the Jordan-led Bulls launched an all-out assault on the rest of the league winning three straight world championships. Michael won Olympic gold again in 1992 and then in 1993 abruptly retired from the Bulls to play minor league baseball. He returned to the NBA full-time in 1995 and the Bulls promptly won three consecutive titles. Jordan was named Finals MVP each time. In 2001, Jordan made a second improbable comeback and still averaged 20 points per game and appeared in the 2002 and 2003 All Star Games.`,
     attributes: {
@@ -188,6 +192,104 @@ export default [
         block: 30,
         hard_foul: 40,
         intercept: 87
+      }
+    }
+  },
+  {
+    name: 'Ray Allen',
+    nickname: 'Jesus Shuttlesworth',
+    position: 'SG',
+    height: 77,
+    avatar: 'img/url',
+    description: `Michael Jordan personified greatness on the court, and redefined superstar athlete off it. His freshman season at UNC culminated with Jordan hitting the game-winning shot in the 1982 NCAA national title game. That shot put Michael on the map and a new era was born. Following his junior year, Jordan entered the NBA Draft and was selected third overall by the Chicago Bulls. The young superstar began stockpiling NBA hardware. The court was his and the world soon followed. His unmistakable style - the wagging tongue, the baggy shorts, the signature line of sneakers - helped make the 14-time All Star the most recognizable person on the planet. Still his resume lacked an NBA title. Then in 1991, the Jordan-led Bulls launched an all-out assault on the rest of the league winning three straight world championships. Michael won Olympic gold again in 1992 and then in 1993 abruptly retired from the Bulls to play minor league baseball. He returned to the NBA full-time in 1995 and the Bulls promptly won three consecutive titles. Jordan was named Finals MVP each time. In 2001, Jordan made a second improbable comeback and still averaged 20 points per game and appeared in the 2002 and 2003 All Star Games.`,
+    attributes: {
+      offense: {
+        layup: 80,
+        dunk: 70,
+        mid_range: 96,
+        three: 99,
+        handles: 70,
+        pass: 60,
+        off_rebound: 30,
+        post_shot: 40
+      },
+      defense: {
+        inside_defense: 60,
+        outside_defense: 70,
+        steal: 70,
+        block: 75,
+        def_rebound: 50,
+        post_defense: 60
+      },
+      physical: {
+        speed: 75,
+        vertical: 65,
+        strength: 67
+      }
+    },
+    tendencies: {
+      offense: {
+        attack_rim: 70,
+        shoot_mid: 90,
+        shoot_three: 95,
+        pass: 45,
+        set_screen: 20,
+        post_up: 50
+      },
+      defense: {
+        steal: 70,
+        block: 40,
+        hard_foul: 30,
+        intercept: 75
+      }
+    }
+  },
+  {
+    name: 'Donovan Mitchell',
+    nickname: 'The Spider',
+    position: 'SG',
+    height: 78,
+    avatar: 'img/url',
+    description: `Michael Jordan personified greatness on the court, and redefined superstar athlete off it. His freshman season at UNC culminated with Jordan hitting the game-winning shot in the 1982 NCAA national title game. That shot put Michael on the map and a new era was born. Following his junior year, Jordan entered the NBA Draft and was selected third overall by the Chicago Bulls. The young superstar began stockpiling NBA hardware. The court was his and the world soon followed. His unmistakable style - the wagging tongue, the baggy shorts, the signature line of sneakers - helped make the 14-time All Star the most recognizable person on the planet. Still his resume lacked an NBA title. Then in 1991, the Jordan-led Bulls launched an all-out assault on the rest of the league winning three straight world championships. Michael won Olympic gold again in 1992 and then in 1993 abruptly retired from the Bulls to play minor league baseball. He returned to the NBA full-time in 1995 and the Bulls promptly won three consecutive titles. Jordan was named Finals MVP each time. In 2001, Jordan made a second improbable comeback and still averaged 20 points per game and appeared in the 2002 and 2003 All Star Games.`,
+    attributes: {
+      offense: {
+        layup: 92,
+        dunk: 80,
+        mid_range: 90,
+        three: 70,
+        handles: 87,
+        pass: 79,
+        off_rebound: 65,
+        post_shot: 60
+      },
+      defense: {
+        inside_defense: 83,
+        outside_defense: 80,
+        steal: 87,
+        block: 60,
+        def_rebound: 50,
+        post_defense: 60
+      },
+      physical: {
+        speed: 90,
+        vertical: 80,
+        strength: 62
+      }
+    },
+    tendencies: {
+      offense: {
+        attack_rim: 80,
+        shoot_mid: 80,
+        shoot_three: 85,
+        pass: 60,
+        set_screen: 30,
+        post_up: 50
+      },
+      defense: {
+        steal: 85,
+        block: 65,
+        hard_foul: 23,
+        intercept: 70
       }
     }
   }

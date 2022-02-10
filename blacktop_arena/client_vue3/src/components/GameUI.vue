@@ -9,6 +9,7 @@
     <div v-for="player in teams.teamTwo" :key="player.id">
       {{ player.name }}
     </div>
+    <button @click="countdown">run</button>
   </div>
 </template>
 
@@ -77,14 +78,32 @@ export default {
       while (this.gameScore.teamOne < 1 && this.gameScore.teamTwo < 1) {
         if (!this.possession) {
           this.jumpBall();
+          console.log(this.gameLog);
         }
-        this.possession
-          ? this.checkShootPass(this.teams.teamTwo)
-          : this.checkShootPass(this.teams.teamOne);
 
-        this.gameScore.teamOne++;
+        let currentPlayer;
+        let shotType;
+        let matchup;
+        if (this.possession === 1) {
+          const currentPlayerIndex = this.checkShootPass(this.teams.teamTwo);
+          shotType = this.pickTypeOfShot(
+            this.teams.teamTwo[currentPlayerIndex]
+          );
+          currentPlayer = this.teams.teamTwo[currentPlayerIndex];
+          matchup = this.teams.teamOne[currentPlayerIndex];
+        } else {
+          const currentPlayerIndex = this.checkShootPass(this.teams.teamOne);
+          shotType = this.pickTypeOfShot(
+            this.teams.teamOne[currentPlayerIndex]
+          );
+          currentPlayer = this.teams.teamOne[currentPlayerIndex];
+          matchup = this.teams.teamTwo[currentPlayerIndex];
+        }
 
-        // console.log(this.gameScore)
+        // this.shootBall(currentPlayer, 'attack_rim', matchup);
+        this.shootBall(currentPlayer, shotType, matchup);
+
+        this.gameScore.teamOne += 2;
       }
     },
     jumpBall() {
@@ -98,11 +117,9 @@ export default {
       if (parseFloat(Math.random().toFixed(2)) < percentage[0]) {
         this.possession = 0;
         this.gameLog.push(`${playerOne.name} won the tip! `);
-        console.log(this.gameLog);
       } else {
         this.possession = 1;
         this.gameLog.push(`${playerTwo.name} won the tip! `);
-        console.log(this.gameLog);
       }
     },
 
@@ -116,49 +133,167 @@ export default {
 
       return [tallestOne, tallestTwo];
     },
+
     checkShootPass(team) {
       const currentTeam = team;
-      console.log(currentTeam);
+
       let player1 = 0;
       let player2 = 0;
       let player3 = 0;
-      team.forEach((e, i) => {
+
+      currentTeam.forEach((e, i) => {
         const offensiveTendencies = e.tendencies.offense;
         for (const property in offensiveTendencies) {
           if (i === 0) {
+            if (property === 'pass' || property === 'set_screen') continue;
+
             player1 += parseInt(offensiveTendencies[property]);
-          } else if ( i === 1 ) {
+          } else if (i === 1) {
+            if (property === 'pass' || property === 'set_screen') continue;
+
             player2 += parseInt(offensiveTendencies[property]);
           } else {
+            if (property === 'pass' || property === 'set_screen') continue;
+
             player3 += parseInt(offensiveTendencies[property]);
           }
         }
       });
-       this.calcShotTendencies(player1, player2, player3)
-         
 
-
+      return this.calcShotTendencies(player1, player2, player3);
     },
+
     calcShotTendencies(p1, p2, p3) {
-      const p1ST = parseFloat((p1 / (p1 + p2 + p3)).toFixed(2))
-      console.log(p1, p1ST)
-      const p2ST = parseFloat((p2 / (p1 + p2 + p3)).toFixed(2))
-      console.log(p2, p2ST)
-      const p3ST = parseFloat((p3 / (p1 + p2 + p3)).toFixed(2))
-      console.log(p3, p3ST)
-      const chance = Math.random().toFixed(2)
-      console.log(chance)
-      if (chance <= p1ST) {
-        console.log('player1')
-        return 0
-      } else if (chance > p1ST && chance <= (p1ST + p2ST)) {
-        console.log('player2')
-        return 1
-      } else {
-        console.log('player3')
-        return 2
+      const p1ST = parseFloat((p1 / (p1 + p2 + p3)).toFixed(2));
+      const p2ST = parseFloat((p2 / (p1 + p2 + p3)).toFixed(2));
+      const chance = Math.random().toFixed(2);
+      return chance <= p1ST
+        ? 0
+        : chance > p1ST && chance <= p1ST + p2ST
+        ? 1
+        : 2;
+    },
+    pickTypeOfShot(player) {
+      let rim = 0;
+      let mid = 0;
+      let three = 0;
+      let post = 0;
+      for (const property in player.tendencies.offense) {
+        if (property === 'pass' || property === 'set_screen') {
+          continue;
+        } else if (property == 'attack_rim') {
+          rim += player.tendencies.offense[property];
+        } else if (property == 'shoot_mid') {
+          mid += player.tendencies.offense[property];
+        } else if (property == 'shoot_three') {
+          three += player.tendencies.offense[property];
+        } else {
+          post += player.tendencies.offense[property];
+        }
       }
+      // console.log(rim, mid, three, post);
+
+      return this.calcChanceShotType(rim, mid, three, post);
+    },
+    calcChanceShotType(shot1, shot2, shot3, shot4) {
+      const sum = shot1 + shot2 + shot3 + shot4;
+      const rim = parseFloat((shot1 / sum).toFixed(2));
+      const mid = parseFloat((shot2 / sum).toFixed(2));
+      const three = parseFloat((shot3 / sum).toFixed(2));
+      const post = parseFloat((shot4 / sum).toFixed(2));
+      const chance = Math.random().toFixed(2);
+
+      if (chance < rim) {
+        return 'attack_rim';
+      } else if (chance >= rim && chance < rim + mid) {
+        return 'shoot_mid';
+      } else if (chance >= rim + mid && chance < rim + mid + three) {
+        return 'shoot_three';
+      } else if (chance >= 1 - post) {
+        return 'post_up';
+      }
+    },
+    shootBall(player, type, matchup) {
+      // const defaultPercentages = [0.5, 0.45, 0.4, 0.5];
+      // const chance = Math.random().toFixed(2);
+
+      console.log('current', player.name, type);
+      let defensiveTendencies = matchup.tendencies.defense;
+      let defensiveAttributes = matchup.attributes.defense;
+      let defensivePhysicalAttributes = matchup.attributes.physical;
+      // let contested = false;
+      let defensiveContest;
+      switch (type) {
+        case 'attack_rim':
+          defensiveContest =
+            (defensiveTendencies.block +
+              defensiveAttributes.inside_defense +
+              defensivePhysicalAttributes.vertical +
+              defensivePhysicalAttributes.strength) /
+            4;
+
+          console.log(defensiveContest);
+          this.layupOrDunk(player.attributes.offense.layup,player.attributes.offense.layup,defensiveContest)
+          break;
+        case 'shoot_mid':
+          defensiveContest =
+            (defensiveTendencies.block +
+              defensiveAttributes.outside_defense +
+              defensivePhysicalAttributes.vertical) /
+            3;
+          console.log(defensiveContest);
+
+          break;
+        case 'shoot_three':
+          defensiveContest =
+            (defensiveTendencies.block +
+              defensiveAttributes.outside_defense +
+              defensivePhysicalAttributes.vertical) /
+            3;
+          console.log(defensiveContest);
+
+          break;
+        case 'post_up':
+          defensiveContest =
+            (defensiveTendencies.block +
+              defensiveAttributes.outside_defense +
+              defensiveAttributes.inside_defense +
+              defensivePhysicalAttributes.vertical +
+              defensivePhysicalAttributes.strength) /
+            5;
+          console.log(defensiveContest);
+
+          break;
+      }
+      console.log();
+
+      console.log(
+        'matchup',
+        matchup.name,
+        defensiveTendencies,
+        defensiveAttributes,
+        defensivePhysicalAttributes
+      );
+      // if (matchup.tendencies.defense) {
+      //   console.log(first)
+      // }
+    },
+    layupOrDunk(layup, dunk, defensiveRating) {
+      const dunkPenalty = parseFloat((dunk / (dunk + defensiveRating)).toFixed(2))
+      const layupChance = 1 - dunkPenalty + .15;
+      const chance = Math.random().toFixed(2);
+      if (chance < layupChance) {
+        console.log('.')
+        console.log(chance)
+        console.log('dunkPenalty:',dunkPenalty,'layupChance:',layupChance)
+        console.log('layup')
+      } else {
+        console.log(chance)
+        console.log('dunkPenalty:',dunkPenalty,'layupChance:',layupChance)
       
+        console.log('dunk')
+      }
+      return chance < layupChance ? 'layup' : 'dunk';
     }
   }
 };

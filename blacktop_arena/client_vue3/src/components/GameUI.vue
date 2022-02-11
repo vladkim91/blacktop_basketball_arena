@@ -10,7 +10,9 @@
       {{ player.name }}
     </div>
     <div class="log">
-      <div class="line" v-for="line in gameLog" :key="line.id">{{ line }}</div>
+      <div class="line" v-for="line in gameLog.reverse()" :key="line.id">
+        {{ line }}
+      </div>
     </div>
   </div>
 </template>
@@ -388,6 +390,7 @@ export default {
 
         // MISSES
       } else {
+        this.rebound(this.teams.teamOne, this.teams.teamTwo);
         if (type === 'attack_rim') {
           const messageVariation = [];
           const chance = Math.random().toFixed(2);
@@ -463,7 +466,7 @@ export default {
               ...[
                 `${matchup.name} stuffs ${player.name}'s jump hook. `,
                 `${matchup.name} sends ${player.name}'s weak layup under the rim the stands`,
-                `${player.name} is blocked at the rim by ${matchup.block}`
+                `${player.name} is blocked at the rim by ${matchup.name}. `
               ]
             );
             logMiss(messageVariation);
@@ -503,6 +506,42 @@ export default {
         return 'make';
       } else if (chance > percentage) {
         return 'miss';
+      }
+    },
+    rebound(team1, team2) {
+      // Team 1
+      const calcRebound = (team) => {
+        let def = 0;
+        let off = 0;
+        team.forEach((e) => {
+          def += e.attributes.defense.def_rebound;
+          off += e.attributes.offense.off_rebound;
+        });
+        let teamDefRebound = parseFloat((def / 300).toFixed(2));
+        let teamOffRebound = parseFloat((off / 300).toFixed(2));
+        return [teamDefRebound, teamOffRebound];
+      };
+
+      const [t1DefRebound, t1OffRebound] = calcRebound(team1);
+      const [t2DefRebound, t2OffRebound] = calcRebound(team2);
+
+      const chance = Math.random().toFixed(2);
+      if (this.possession === 0) {
+        const offReboundChance = parseFloat(
+          (t1OffRebound / (t1OffRebound + t2DefRebound) - 0.25).toFixed(2)
+        );
+        if (chance > offReboundChance) {
+          // const messageVariation = [
+          // ]
+        }
+      } else {
+        const offReboundChance = parseFloat(
+          (t2OffRebound / (t2OffRebound + t1DefRebound) - 0.25).toFixed(2)
+        );
+        if (chance > offReboundChance) {
+          // const messageVariation = [
+          // ]
+        }
       }
     }
   }

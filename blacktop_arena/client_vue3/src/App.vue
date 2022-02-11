@@ -4,7 +4,7 @@
     <router-link to="/login">Log In</router-link> |
     <router-link to="/game">Game</router-link>
   </div>
-  <router-view />
+  <router-view/>
 </template>
 
 <script>
@@ -15,9 +15,7 @@ export default {
 
   beforeCreate() {
     this.$store.commit('initializeStore');
-
     const token = this.$store.state.token;
-
     if (token) {
       axios.defaults.headers.common['Authorization'] = 'Token ' + token;
     } else {

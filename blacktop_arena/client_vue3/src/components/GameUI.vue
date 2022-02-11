@@ -9,16 +9,24 @@
     <div v-for="player in teams.teamTwo" :key="player.id">
       {{ player.name }}
     </div>
-    <button @click="countdown">run</button>
+    <div class="log">
+       <div class="line" v-for="line in gameLog" :key="line.id">{{line}}</div>
+    </div>
+
   </div>
 </template>
 
 <script>
+
 export default {
   mounted() {
     this.countdown();
     // setTimeout(this.startGame(), 5000)
   },
+  components: {
+
+  }
+  ,
 
   data() {
     return {
@@ -64,6 +72,7 @@ export default {
   methods: {
     countdown() {
       this.startGame();
+      console.log(this.gameLog);
       // let audio = new Audio(require('../assets/whistle.mp3'));
       // setTimeout(() => console.log(3), 2000);
       // setTimeout(() => console.log(2), 3000);
@@ -75,12 +84,10 @@ export default {
     },
     getPlayerOverall() {},
     startGame() {
-      while (this.gameScore.teamOne < 1 && this.gameScore.teamTwo < 1) {
-        if (!this.possession) {
+      while (this.gameScore.teamOne < 21 && this.gameScore.teamTwo < 21) {
+        if (this.possession === null) {
           this.jumpBall();
-          console.log(this.gameLog);
         }
-
         let currentPlayer;
         let shotType;
         let matchup;
@@ -100,10 +107,7 @@ export default {
           matchup = this.teams.teamTwo[currentPlayerIndex];
         }
 
-        // this.shootBall(currentPlayer, 'attack_rim', matchup);
         this.shootBall(currentPlayer, shotType, matchup);
-
-        this.gameScore.teamOne += 2;
       }
     },
     jumpBall() {
@@ -222,7 +226,7 @@ export default {
       let defensivePhysicalAttributes = matchup.attributes.physical;
       // let contested = false;
       let defensiveContest;
-      let layupOrDunk = '';
+      let layupDunk = '';
       let percentage;
 
       switch (type) {
@@ -233,15 +237,16 @@ export default {
               defensivePhysicalAttributes.vertical +
               defensivePhysicalAttributes.strength) /
             4;
-          layupOrDunk += this.layupOrDunk(
+          layupDunk += this.layupOrDunk(
             player.attributes.offense.dunk,
             defensiveContest
           );
+
           //
 
           percentage = this.calcAttackRim(
             defensiveContest,
-            player.attributes.offense[layupOrDunk],
+            player.attributes.offense[layupDunk],
             defaultPercentages[0]
           );
           percentage;
@@ -290,17 +295,95 @@ export default {
           percentage;
           break;
       }
-      const [name, makeOrMiss] = this.shoot(player, percentage);
+      const makeOrMiss = this.shoot(player, percentage);
+      // MAKES
 
-      if (makeOrMiss === 'make' && type === 'three') {
-        console.log(`${name} made a ${type} point shot ${this.gameScore}`);
-        console.log(this.possession);
-      } else if (makeOrMiss === 'make') {
-        console.log(`${name} made a ${type}`);
-      } else if (makeOrMiss === 'miss' && type === 'three') {
-        console.log(`${name} missed a ${type} pointer`)
-      } else {
-        console.log(`${name} missed ${type}`)
+      const log = (string) => {
+        // TEAM 1
+
+        if (type !== 'shoot_three') {
+          if (this.possession === 0) {
+            this.gameScore.teamOne += 2;
+            this.possession++;
+            this.gameLog.push(
+              string[Math.floor(Math.random() * string.length)] +
+                `${this.gameScore.teamOne}:${this.gameScore.teamTwo}`
+            );
+          } else {
+            // TEAM 2
+            this.gameScore.teamTwo += 2;
+            this.possession--;
+            this.gameLog.push(
+              string[Math.floor(Math.random() * string.length)] +
+                `${this.gameScore.teamOne}:${this.gameScore.teamTwo}`
+            );
+          }
+        } else {
+          if (this.possession === 0) {
+            this.gameScore.teamOne += 3;
+            this.possession++;
+            this.gameLog.push(
+              string[Math.floor(Math.random() * string.length)] +
+                `${this.gameScore.teamOne}:${this.gameScore.teamTwo}`
+            );
+          } else {
+            // TEAM 2
+            this.gameScore.teamTwo += 3;
+            this.possession--;
+            this.gameLog.push(
+              string[Math.floor(Math.random() * string.length)] +
+                `${this.gameScore.teamOne}:${this.gameScore.teamTwo}`
+            );
+          }
+        }
+      };
+      if (makeOrMiss === 'make') {
+        // MAKE LAYUP & DUNK
+        if (type === 'attack_rim') {
+          const messageVariation = [
+            `${player.name} drove to the rim and finished strong with a ${
+              layupDunk === 'layup' ? 'layup' : 'dunk'
+            }. `,
+            `${player.name} scores with a ${
+              layupDunk === 'layup' ? 'layup' : 'dunk'
+            } at the rim. `,
+            `${player.name} drives baseline and scores 2 with a reverse ${
+              layupDunk === 'layup' ? 'layup' : 'dunk'
+            }. `
+          ];
+          log(messageVariation);
+        } else if (type === 'shoot_mid') {
+          // MAKE MID
+          const messageVariation = [
+            `${player.name} hits a pull up midrange jumper from ${Math.floor(
+              Math.random() * (19 - 10) + 10
+            )} feet. `,
+            `${player.name} nails a contested midrange jumper. `,
+            `${player.name} with a leaning fadeaway. `
+          ];
+          log(messageVariation);
+        } else if (type === 'shoot_three') {
+          // MAKE THREE
+          const messageVariation = [
+            `${player.name} hits a spot up corner 3 pointer. `,
+            `${matchup.name}'s defensive effort is not enough! ${player.name} makes a heavely contested 3 from deep. `,
+            `${player.name} drains a three pointer from downtown. `
+          ];
+          log(messageVariation);
+        } else if (type === 'post_up') {
+          const messageVariation = [
+            `${player.name} makes a jump hook over ${matchup.name}. `,
+            `${player.name} hits an wrong shoulder fadeway in ${matchup.name}'s face. `,
+            `${player.name} used drop step to get a easy bucket under the rim `
+          ];
+          log(messageVariation);
+        }
+
+        // MISSES
+      } else if (makeOrMiss === 'miss') {
+        if (type === 'attack_rim') {
+          console.log(layupDunk);
+        }
       }
 
       // console.log(name, makeOrMiss)
@@ -329,12 +412,12 @@ export default {
         ) - 0.1;
       return parseFloat((defaultPercentage * multiplier).toFixed(2));
     },
-    shoot(player, percentage) {
+    shoot(percentage) {
       const chance = Math.random().toFixed(2);
       if (chance < percentage) {
-        return [player.name, 'make'];
+        return 'make';
       } else {
-        return [player.name, 'miss'];
+        return 'miss';
       }
     }
   }

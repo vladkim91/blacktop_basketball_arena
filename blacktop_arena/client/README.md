@@ -1,4 +1,4 @@
-# blacktop_arena
+# client_vue3
 
 ## Project setup
 ```

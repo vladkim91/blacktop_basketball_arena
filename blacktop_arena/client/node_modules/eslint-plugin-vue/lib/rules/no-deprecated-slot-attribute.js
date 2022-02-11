@@ -12,7 +12,7 @@ module.exports = {
     type: 'suggestion',
     docs: {
       description: 'disallow deprecated `slot` attribute (in Vue.js 2.6.0+)',
-      category: undefined,
+      categories: ['vue3-essential'],
       url: 'https://eslint.vuejs.org/rules/no-deprecated-slot-attribute.html'
     },
     fixable: 'code',
@@ -21,7 +21,8 @@ module.exports = {
       forbiddenSlotAttribute: '`slot` attributes are deprecated.'
     }
   },
-  create (context) {
+  /** @param {RuleContext} context */
+  create(context) {
     const templateBodyVisitor = slotAttribute.createTemplateBodyVisitor(context)
     return utils.defineTemplateBodyVisitor(context, templateBodyVisitor)
   }

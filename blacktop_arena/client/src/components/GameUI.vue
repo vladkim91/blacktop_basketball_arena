@@ -30,7 +30,85 @@ export default {
       possession: null,
       gameInProgress: false,
       gameStats: {},
-      stats: {
+      playerStats: {
+        teamOne: {
+          p1: {
+            points: 0,
+            rebounds: 0,
+            assists: 0,
+            steals: 0,
+            blocks: 0,
+            turnovers: 0,
+            fgm: 0,
+            fga: 0,
+            threeA: 0,
+            threeM: 0
+          },
+          p2: {
+            points: 0,
+            rebounds: 0,
+            assists: 0,
+            steals: 0,
+            blocks: 0,
+            turnovers: 0,
+            fgm: 0,
+            fga: 0,
+            threeA: 0,
+            threeM: 0
+          },
+          p3: {
+            points: 0,
+            rebounds: 0,
+            assists: 0,
+            steals: 0,
+            blocks: 0,
+            turnovers: 0,
+            fgm: 0,
+            fga: 0,
+            threeA: 0,
+            threeM: 0
+          }
+        },
+        teamTwo: {
+          p1: {
+            points: 0,
+            rebounds: 0,
+            assists: 0,
+            steals: 0,
+            blocks: 0,
+            turnovers: 0,
+            fgm: 0,
+            fga: 0,
+            threeA: 0,
+            threeM: 0
+          },
+          p2: {
+            points: 0,
+            rebounds: 0,
+            assists: 0,
+            steals: 0,
+            blocks: 0,
+            turnovers: 0,
+            fgm: 0,
+            fga: 0,
+            threeA: 0,
+            threeM: 0
+          },
+          p3: {
+            points: 0,
+            rebounds: 0,
+            assists: 0,
+            steals: 0,
+            blocks: 0,
+            turnovers: 0,
+            fgm: 0,
+            fga: 0,
+            threeA: 0,
+            threeM: 0
+          }
+        }
+      },
+      teamStats: {
         teamOne: {
           points: 0,
           rebounds: 0,
@@ -40,7 +118,8 @@ export default {
           turnovers: 0,
           fgm: 0,
           fga: 0,
-          threes: 0
+          threeA: 0,
+          threeM: 0
         },
         teamTwo: {
           points: 0,
@@ -51,7 +130,8 @@ export default {
           turnovers: 0,
           fgm: 0,
           fga: 0,
-          threes: 0
+          threeA: 0,
+          threeM: 0
         }
       },
       gameScore: {
@@ -67,6 +147,7 @@ export default {
   },
   methods: {
     countdown() {
+      console.log(this.assignToTeams(this.teams.teamOne, this.teams.teamTwo))
       this.startGame();
 
       // let audio = new Audio(require('../assets/whistle.mp3'));
@@ -84,6 +165,7 @@ export default {
         if (this.possession === null) {
           this.jumpBall();
         }
+
         let currentPlayer;
         let shotType;
         let matchup;
@@ -309,54 +391,57 @@ export default {
           // TEAM 1
           if (this.possession === 0) {
             assistingPlayer = this.calcAssist(this.teams.teamOne, player);
-            if (chance < .35) {
+            if (chance < 0.35) {
               message += `Assisted by ${assistingPlayer.name}. `;
             }
-
+            
             this.gameScore.teamOne += 2;
             this.possession++;
             this.gameLog.push(
-              string[Math.floor(Math.random() * string.length)] + `${message}` +
+              string[Math.floor(Math.random() * string.length)] +
+                `${message}` +
                 `${this.gameScore.teamOne}:${this.gameScore.teamTwo}`
             );
           } else {
             // TEAM 2
             assistingPlayer = this.calcAssist(this.teams.teamTwo, player);
-            if (chance < .35) {
+            if (chance < 0.35) {
               message += `Assisted by ${assistingPlayer.name}. `;
             }
             this.gameScore.teamTwo += 2;
             this.possession--;
             this.gameLog.push(
-              string[Math.floor(Math.random() * string.length)] + `${message}` +
+              string[Math.floor(Math.random() * string.length)] +
+                `${message}` +
                 `${this.gameScore.teamOne}:${this.gameScore.teamTwo}`
             );
           }
-          
         } else {
           // TEAM 1
           if (this.possession === 0) {
             assistingPlayer = this.calcAssist(this.teams.teamOne, player);
-            if (chance < .3) {
+            if (chance < 0.3) {
               message += `Assisted by ${assistingPlayer.name}. `;
             }
 
             this.gameScore.teamOne += 3;
             this.possession++;
             this.gameLog.push(
-              string[Math.floor(Math.random() * string.length)] +`${message}` +
+              string[Math.floor(Math.random() * string.length)] +
+                `${message}` +
                 `${this.gameScore.teamOne}:${this.gameScore.teamTwo}`
             );
           } else {
             // TEAM 2
             assistingPlayer = this.calcAssist(this.teams.teamTwo, player);
-            if (chance < .3) {
+            if (chance < 0.3) {
               message += `Assisted by ${assistingPlayer.name}. `;
             }
             this.gameScore.teamTwo += 3;
             this.possession--;
             this.gameLog.push(
-              string[Math.floor(Math.random() * string.length)] +`${message}` +
+              string[Math.floor(Math.random() * string.length)] +
+                `${message}` +
                 `${this.gameScore.teamOne}:${this.gameScore.teamTwo}`
             );
           }
@@ -721,11 +806,21 @@ export default {
       if (chance < p1AssistChance) {
         return excludePlayer[0];
       } else {
-        return excludePlayer[1]
+        return excludePlayer[1];
       }
-
-  
+    },
+    assignToTeams(team1,team2) {
+      let teamOne = {}
+      let teamTwo = {}
+      team1.forEach((e,i) => {
+        teamOne[`${e.name}`] = `p${i + 1}`
+      })
+      team2.forEach((e,i) => {
+        teamTwo[`${e.name}`] = `p${i + 1}`
+      })
+      return [teamOne, teamTwo]
     }
   }
 };
+
 </script>

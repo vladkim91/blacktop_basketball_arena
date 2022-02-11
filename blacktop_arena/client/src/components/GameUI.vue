@@ -68,7 +68,7 @@ export default {
   methods: {
     countdown() {
       this.startGame();
-      console.log(this.gameLog);
+
       // let audio = new Audio(require('../assets/whistle.mp3'));
       // setTimeout(() => console.log(3), 2000);
       // setTimeout(() => console.log(2), 3000);
@@ -87,6 +87,7 @@ export default {
         let currentPlayer;
         let shotType;
         let matchup;
+        let steal;
         if (this.possession === 1) {
           const currentPlayerIndex = this.checkShootPass(this.teams.teamTwo);
           shotType = this.pickTypeOfShot(
@@ -94,6 +95,10 @@ export default {
           );
           currentPlayer = this.teams.teamTwo[currentPlayerIndex];
           matchup = this.teams.teamOne[currentPlayerIndex];
+          steal = this.calcSteal(this.teams.teamTwo, this.teams.teamOne);
+          if (steal === true) {
+            this.logSteal(currentPlayer, matchup);
+          }
         } else {
           const currentPlayerIndex = this.checkShootPass(this.teams.teamOne);
           shotType = this.pickTypeOfShot(
@@ -101,6 +106,10 @@ export default {
           );
           currentPlayer = this.teams.teamOne[currentPlayerIndex];
           matchup = this.teams.teamTwo[currentPlayerIndex];
+          steal = this.calcSteal(this.teams.teamOne, this.teams.teamTwo);
+          if (steal === true) {
+            this.logSteal(currentPlayer, matchup);
+          }
         }
 
         this.shootBall(currentPlayer, shotType, matchup);
@@ -291,42 +300,63 @@ export default {
           break;
       }
       const makeOrMiss = this.shoot(percentage);
-      // MAKES
 
       const log = (string) => {
+        let assistingPlayer;
+        let message = '';
+        const chance = Math.random().toFixed(2);
         if (type !== 'shoot_three') {
           // TEAM 1
           if (this.possession === 0) {
+            assistingPlayer = this.calcAssist(this.teams.teamOne, player);
+            if (chance < .35) {
+              message += `Assisted by ${assistingPlayer.name}. `;
+            }
+
             this.gameScore.teamOne += 2;
             this.possession++;
             this.gameLog.push(
-              string[Math.floor(Math.random() * string.length)] +
+              string[Math.floor(Math.random() * string.length)] + `${message}` +
                 `${this.gameScore.teamOne}:${this.gameScore.teamTwo}`
             );
           } else {
             // TEAM 2
+            assistingPlayer = this.calcAssist(this.teams.teamTwo, player);
+            if (chance < .35) {
+              message += `Assisted by ${assistingPlayer.name}. `;
+            }
             this.gameScore.teamTwo += 2;
             this.possession--;
             this.gameLog.push(
-              string[Math.floor(Math.random() * string.length)] +
+              string[Math.floor(Math.random() * string.length)] + `${message}` +
                 `${this.gameScore.teamOne}:${this.gameScore.teamTwo}`
             );
           }
+          
         } else {
           // TEAM 1
           if (this.possession === 0) {
+            assistingPlayer = this.calcAssist(this.teams.teamOne, player);
+            if (chance < .3) {
+              message += `Assisted by ${assistingPlayer.name}. `;
+            }
+
             this.gameScore.teamOne += 3;
             this.possession++;
             this.gameLog.push(
-              string[Math.floor(Math.random() * string.length)] +
+              string[Math.floor(Math.random() * string.length)] +`${message}` +
                 `${this.gameScore.teamOne}:${this.gameScore.teamTwo}`
             );
           } else {
             // TEAM 2
+            assistingPlayer = this.calcAssist(this.teams.teamTwo, player);
+            if (chance < .3) {
+              message += `Assisted by ${assistingPlayer.name}. `;
+            }
             this.gameScore.teamTwo += 3;
             this.possession--;
             this.gameLog.push(
-              string[Math.floor(Math.random() * string.length)] +
+              string[Math.floor(Math.random() * string.length)] +`${message}` +
                 `${this.gameScore.teamOne}:${this.gameScore.teamTwo}`
             );
           }
@@ -390,7 +420,6 @@ export default {
 
         // MISSES
       } else {
-        this.rebound(this.teams.teamOne, this.teams.teamTwo);
         if (type === 'attack_rim') {
           const messageVariation = [];
           const chance = Math.random().toFixed(2);
@@ -472,9 +501,8 @@ export default {
             logMiss(messageVariation);
           }
         }
+        this.rebound(this.teams.teamOne, this.teams.teamTwo);
       }
-
-      // console.log(name, makeOrMiss)
     },
     layupOrDunk(dunk, defensiveRating) {
       const dunkPenalty = parseFloat(
@@ -500,6 +528,7 @@ export default {
         ) - 0.1;
       return parseFloat((defaultPercentage * multiplier).toFixed(2));
     },
+
     shoot(percentage) {
       const chance = Math.random().toFixed(2);
       if (chance < percentage) {
@@ -530,19 +559,172 @@ export default {
         const offReboundChance = parseFloat(
           (t1OffRebound / (t1OffRebound + t2DefRebound) - 0.25).toFixed(2)
         );
+        let rebounder;
         if (chance > offReboundChance) {
-          // const messageVariation = [
-          // ]
+          rebounder = this.calcRebounder(team2);
+
+          const messageVariation = [
+            `${rebounder.name} grabs defensive rebound. `,
+            `${rebounder.name} boxes out offensive players and succesfully grabs the rebound. `,
+            `${rebounder.name} snatches devensive rebound. `
+          ];
+          this.possession++;
+          this.logRebounds(messageVariation);
+        } else {
+          rebounder = rebounder = this.calcRebounder(team1);
+          const messageVariation = [
+            `${rebounder.name} uses his strengh to grab offensive rebound. `,
+            `${rebounder.name} outhustles opposing to team and get offensive board. `
+          ];
+          this.logRebounds(messageVariation);
         }
       } else {
         const offReboundChance = parseFloat(
           (t2OffRebound / (t2OffRebound + t1DefRebound) - 0.25).toFixed(2)
         );
+        let rebounder;
         if (chance > offReboundChance) {
-          // const messageVariation = [
-          // ]
+          rebounder = this.calcRebounder(team1);
+
+          const messageVariation = [
+            `${rebounder.name} grabs defensive rebound. `,
+            `${rebounder.name} boxes out offensive players and succesfully grabs the rebound. `,
+            `${rebounder.name} snatches devensive rebound. `
+          ];
+          this.possession--;
+          this.logRebounds(messageVariation);
+        } else {
+          rebounder = this.calcRebounder(team2);
+          const messageVariation = [
+            `${rebounder.name} uses his strengh to grab offensive rebound. `,
+            `${rebounder.name} outhustles opposing to team and get offensive board. `
+          ];
+          this.logRebounds(messageVariation);
         }
       }
+    },
+    calcRebounder(team) {
+      let rebounder;
+      let player1 = 0,
+        player2 = 0,
+        player3 = 0;
+      team.forEach((e, i) => {
+        if (i === 0) {
+          player1 += e.attributes.defense.def_rebound;
+          player1 += e.attributes.offense.off_rebound;
+        } else if (i === 1) {
+          player2 += e.attributes.defense.def_rebound;
+          player2 += e.attributes.offense.off_rebound;
+        } else {
+          player3 += e.attributes.defense.def_rebound;
+          player3 += e.attributes.offense.off_rebound;
+        }
+      });
+      const p1Chance = parseFloat(
+        (player1 / (player1 + player2 + player3)).toFixed(2)
+      );
+      const p2Chance = parseFloat(
+        (player2 / (player1 + player2 + player3)).toFixed(2)
+      );
+
+      const chance = Math.random().toFixed(2);
+
+      if (chance < p1Chance) {
+        rebounder = team[0];
+      } else if (chance > p1Chance && chance < p1Chance + p2Chance) {
+        rebounder = team[1];
+      } else {
+        rebounder = team[2];
+      }
+
+      return rebounder;
+    },
+    logRebounds(string) {
+      this.gameLog.push(
+        string[Math.floor(Math.random() * string.length)] +
+          `${this.gameScore.teamOne}:${this.gameScore.teamTwo}`
+      );
+    },
+    calcSteal(offTeam, defTeam) {
+      const chance = Math.random().toFixed(2);
+      const teamPassingIq = this.calcPassing(offTeam);
+      const teamPerimeterDefense = this.calcPerimeterDefense(defTeam);
+      const stealChance = parseFloat(
+        (
+          teamPerimeterDefense / (teamPassingIq + teamPerimeterDefense) -
+          0.4
+        ).toFixed(2)
+      );
+
+      if (chance > stealChance) {
+        return false;
+      } else {
+        return true;
+      }
+    },
+    calcPassing(team) {
+      let teamPassing = 0;
+      team.forEach((e) => {
+        teamPassing +=
+          (e.attributes.offense.handles + e.attributes.offense.pass) / 6;
+      });
+
+      return parseFloat(teamPassing.toFixed(2));
+    },
+    calcPerimeterDefense(team) {
+      let teamDefense = 0;
+      team.forEach((e) => {
+        teamDefense +=
+          (e.attributes.defense.outside_defense +
+            e.attributes.defense.steal +
+            e.tendencies.defense.steal +
+            e.tendencies.defense.intercept) /
+          12;
+      });
+      return parseFloat(teamDefense.toFixed(2));
+    },
+    logSteal(stealPlayer, turnoverPlayer) {
+      const messageVariation = [
+        `${stealPlayer.name} stole the ball from ${turnoverPlayer.name}. `,
+        `${stealPlayer.name} intercepts a sloppy entry pass by ${turnoverPlayer.name}. `,
+        `${turnoverPlayer.name} with a turnover. ${stealPlayer.name} with a steal. `
+      ];
+      this.gameLog.push(
+        messageVariation[Math.floor(Math.random() * messageVariation.length)] +
+          `${this.gameScore.teamOne}:${this.gameScore.teamTwo}`
+      );
+    },
+    calcAssist(team, player) {
+      let player1 = 0,
+        player2 = 0;
+
+      const excludePlayer = team.filter((e) => {
+        if (e.name !== player.name) {
+          return e;
+        }
+      });
+      excludePlayer.forEach((e, i) => {
+        if (i === 0) {
+          player1 += e.attributes.offense.handles;
+          player1 += e.attributes.offense.pass;
+          player1 += e.tendencies.offense.pass;
+        } else {
+          player2 += e.attributes.offense.handles;
+          player2 += e.attributes.offense.pass;
+          player2 += e.tendencies.offense.pass;
+        }
+      });
+
+      const chance = Math.random().toFixed(2);
+      const p1AssistChance = player1 / (player1 + player2);
+
+      if (chance < p1AssistChance) {
+        return excludePlayer[0];
+      } else {
+        return excludePlayer[1]
+      }
+
+  
     }
   }
 };

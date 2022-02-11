@@ -88,6 +88,7 @@ export default {
         let currentPlayer;
         let shotType;
         let matchup;
+        let steal;
         if (this.possession === 1) {
           const currentPlayerIndex = this.checkShootPass(this.teams.teamTwo);
           shotType = this.pickTypeOfShot(
@@ -95,6 +96,10 @@ export default {
           );
           currentPlayer = this.teams.teamTwo[currentPlayerIndex];
           matchup = this.teams.teamOne[currentPlayerIndex];
+          steal = this.calcSteal(this.teams.teamTwo, this.teams.teamOne);
+          if (steal === true) {
+            this.logSteal(currentPlayer, matchup);
+          }
         } else {
           const currentPlayerIndex = this.checkShootPass(this.teams.teamOne);
           shotType = this.pickTypeOfShot(
@@ -102,6 +107,10 @@ export default {
           );
           currentPlayer = this.teams.teamOne[currentPlayerIndex];
           matchup = this.teams.teamTwo[currentPlayerIndex];
+          steal = this.calcSteal(this.teams.teamOne, this.teams.teamTwo);
+          if (steal === true) {
+            this.logSteal(currentPlayer, matchup);
+          }
         }
 
         this.shootBall(currentPlayer, shotType, matchup);
@@ -499,7 +508,7 @@ export default {
         ) - 0.1;
       return parseFloat((defaultPercentage * multiplier).toFixed(2));
     },
-    
+
     shoot(percentage) {
       const chance = Math.random().toFixed(2);
       if (chance < percentage) {
@@ -539,13 +548,13 @@ export default {
             `${rebounder.name} boxes out offensive players and succesfully grabs the rebound. `,
             `${rebounder.name} snatches devensive rebound. `
           ];
-          this.possession++
+          this.possession++;
           this.logRebounds(messageVariation);
         } else {
           rebounder = rebounder = this.calcRebounder(team1);
           const messageVariation = [
             `${rebounder.name} uses his strengh to grab offensive rebound. `,
-            `${rebounder.name} outhustles opposing to team and get offensive board`
+            `${rebounder.name} outhustles opposing to team and get offensive board. `
           ];
           this.logRebounds(messageVariation);
         }
@@ -562,13 +571,13 @@ export default {
             `${rebounder.name} boxes out offensive players and succesfully grabs the rebound. `,
             `${rebounder.name} snatches devensive rebound. `
           ];
-          this.possession--
+          this.possession--;
           this.logRebounds(messageVariation);
         } else {
           rebounder = this.calcRebounder(team2);
           const messageVariation = [
             `${rebounder.name} uses his strengh to grab offensive rebound. `,
-            `${rebounder.name} outhustles opposing to team and get offensive board`
+            `${rebounder.name} outhustles opposing to team and get offensive board. `
           ];
           this.logRebounds(messageVariation);
         }
@@ -615,11 +624,57 @@ export default {
         string[Math.floor(Math.random() * string.length)] +
           `${this.gameScore.teamOne}:${this.gameScore.teamTwo}`
       );
+    },
+    calcSteal(offTeam, defTeam) {
+      const chance = Math.random().toFixed(2);
+      const teamPassingIq = this.calcPassing(offTeam);
+      const teamPerimeterDefense = this.calcPerimeterDefense(defTeam);
+      const stealChance = parseFloat(
+        (
+          teamPerimeterDefense / (teamPassingIq + teamPerimeterDefense) -
+          0.4
+        ).toFixed(2)
+      );
+
+      if (chance > stealChance) {
+        return false;
+      } else {
+        return true;
+      }
+    },
+    calcPassing(team) {
+      let teamPassing = 0;
+      team.forEach((e) => {
+        teamPassing +=
+          (e.attributes.offense.handles + e.attributes.offense.pass) / 6;
+      });
+
+      return parseFloat(teamPassing.toFixed(2));
+    },
+    calcPerimeterDefense(team) {
+      let teamDefense = 0;
+      team.forEach((e) => {
+        teamDefense +=
+          (e.attributes.defense.outside_defense +
+            e.attributes.defense.steal +
+            e.tendencies.defense.steal +
+            e.tendencies.defense.intercept) /
+          12;
+      });
+      return parseFloat(teamDefense.toFixed(2));
+    },
+    logSteal(stealPlayer, turnoverPlayer) {
+      const messageVariation = [
+        `${stealPlayer.name} stole the ball from ${turnoverPlayer.name}. `,
+        `${stealPlayer.name} intercepts a sloppy entry pass by ${turnoverPlayer.name}. `,
+        `${turnoverPlayer.name} with a turnover. ${stealPlayer.name} with a steal. `
+      ]
+      this.gameLog.push(
+        messageVariation[Math.floor(Math.random() * messageVariation.length)] +
+          `${this.gameScore.teamOne}:${this.gameScore.teamTwo}`
+      );
+
     }
-
-    // calcRebounder(team) {
-
-    // }
   }
 };
 </script>

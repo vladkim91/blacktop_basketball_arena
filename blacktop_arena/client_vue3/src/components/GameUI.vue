@@ -10,24 +10,18 @@
       {{ player.name }}
     </div>
     <div class="log">
-       <div class="line" v-for="line in gameLog" :key="line.id">{{line}}</div>
+      <div class="line" v-for="line in gameLog" :key="line.id">{{ line }}</div>
     </div>
-
   </div>
 </template>
 
 <script>
-
 export default {
   mounted() {
     this.countdown();
     // setTimeout(this.startGame(), 5000)
   },
-  components: {
-
-  }
-  ,
-
+  components: {},
   data() {
     return {
       gameLog: [],
@@ -195,7 +189,6 @@ export default {
           post += player.tendencies.offense[property];
         }
       }
-      // console.log(rim, mid, three, post);
 
       return this.calcChanceShotType(rim, mid, three, post);
     },
@@ -295,13 +288,12 @@ export default {
           percentage;
           break;
       }
-      const makeOrMiss = this.shoot(player, percentage);
+      const makeOrMiss = this.shoot(percentage);
       // MAKES
 
       const log = (string) => {
-        // TEAM 1
-
         if (type !== 'shoot_three') {
+          // TEAM 1
           if (this.possession === 0) {
             this.gameScore.teamOne += 2;
             this.possession++;
@@ -319,6 +311,7 @@ export default {
             );
           }
         } else {
+          // TEAM 1
           if (this.possession === 0) {
             this.gameScore.teamOne += 3;
             this.possession++;
@@ -335,6 +328,20 @@ export default {
                 `${this.gameScore.teamOne}:${this.gameScore.teamTwo}`
             );
           }
+        }
+      };
+      const logMiss = (string) => {
+        // TEAM 1
+        if (this.possession === 0) {
+          this.gameLog.push(
+            string[Math.floor(Math.random() * string.length)] +
+              `${this.gameScore.teamOne}:${this.gameScore.teamTwo}`
+          );
+        } else {
+          this.gameLog.push(
+            string[Math.floor(Math.random() * string.length)] +
+              `${this.gameScore.teamOne}:${this.gameScore.teamTwo}`
+          );
         }
       };
       if (makeOrMiss === 'make') {
@@ -380,9 +387,87 @@ export default {
         }
 
         // MISSES
-      } else if (makeOrMiss === 'miss') {
+      } else {
         if (type === 'attack_rim') {
-          console.log(layupDunk);
+          const messageVariation = [];
+          const chance = Math.random().toFixed(2);
+          if (layupDunk === 'layup') {
+            //
+            if (chance > 0.3) {
+              messageVariation.push(
+                ...[
+                  `${player.name} missed an acrobatic layup. `,
+                  `${player.name}'s finger roll layup is short. `,
+                  `${player.name}'s shot at the rim was contested by ${matchup.name}. ${player.name} missed the shot. `
+                ]
+              );
+              logMiss(messageVariation);
+            } else {
+              messageVariation.push(
+                ...[
+                  `${player.name}'s layup attempted was sent to the bleachers by ${matchup.name} `,
+                  `${player.name} was blocked by ${matchup.name} `
+                ]
+              );
+              logMiss(messageVariation);
+            }
+          } else if (layupDunk === 'dunk') {
+            if (chance > 0.15) {
+              messageVariation.push(
+                ...[
+                  `${player.name}'s dunk attempt was unsuccessful. `,
+                  `${player.name} attempts a dunk in traffic. ${matchup.name}'s contest is too perfect. `,
+                  `${player.name} think he has an open lane for a slam, but ${matchup.name} is there to contest. ${player.name} misses the dunk attempt. `
+                ]
+              );
+              logMiss(messageVariation);
+            } else {
+              messageVariation.push(
+                ...[
+                  `${player.name} get's stuffed at the rim by ${matchup.name}. `,
+                  `${player.name} is blocked at the rim by ${matchup.name}. `
+                ]
+              );
+              logMiss(messageVariation);
+            }
+            //
+          }
+        } else if (type === 'shoot_mid') {
+          const messageVariation = [
+            `${player.name} misses elbow jumper. `,
+            `${player.name} was contested by ${matchup.name} and missed a midrange jumper. `,
+            `${player.name} misses a contested midrange pullup. `
+          ];
+          logMiss(messageVariation);
+        } else if (type === 'shoot_three') {
+          const messageVariation = [
+            `${player.name} misses a wide open three. `,
+            `${matchup.name} contested ${player.name}'s 3 point shot. ${player.name} misses. `,
+            `${player.name} airballs a logo 3. `
+          ];
+          logMiss(messageVariation);
+        } else if (type === 'post_up') {
+          const chance = Math.random().toFixed(2);
+          const messageVariation = [];
+          if (chance > 0.2) {
+            messageVariation.push(
+              ...[
+                `${player.name} misses a jump hook. `,
+                `${player.name} attempts a skyhook and misses. `,
+                `${matchup.name} nearly blocks ${player.name}'s post fadeaway. Shot bounces off the rim`
+              ]
+            );
+            logMiss(messageVariation);
+          } else {
+            messageVariation.push(
+              ...[
+                `${matchup.name} stuffs ${player.name}'s jump hook. `,
+                `${matchup.name} sends ${player.name}'s weak layup under the rim the stands`,
+                `${player.name} is blocked at the rim by ${matchup.block}`
+              ]
+            );
+            logMiss(messageVariation);
+          }
         }
       }
 
@@ -416,7 +501,7 @@ export default {
       const chance = Math.random().toFixed(2);
       if (chance < percentage) {
         return 'make';
-      } else {
+      } else if (chance > percentage) {
         return 'miss';
       }
     }

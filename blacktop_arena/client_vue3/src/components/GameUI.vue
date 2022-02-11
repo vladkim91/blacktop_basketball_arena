@@ -69,6 +69,7 @@ export default {
     countdown() {
       this.startGame();
       console.log(this.gameLog);
+
       // let audio = new Audio(require('../assets/whistle.mp3'));
       // setTimeout(() => console.log(3), 2000);
       // setTimeout(() => console.log(2), 3000);
@@ -390,7 +391,6 @@ export default {
 
         // MISSES
       } else {
-        this.rebound(this.teams.teamOne, this.teams.teamTwo);
         if (type === 'attack_rim') {
           const messageVariation = [];
           const chance = Math.random().toFixed(2);
@@ -472,9 +472,8 @@ export default {
             logMiss(messageVariation);
           }
         }
+        this.rebound(this.teams.teamOne, this.teams.teamTwo);
       }
-
-      // console.log(name, makeOrMiss)
     },
     layupOrDunk(dunk, defensiveRating) {
       const dunkPenalty = parseFloat(
@@ -500,6 +499,7 @@ export default {
         ) - 0.1;
       return parseFloat((defaultPercentage * multiplier).toFixed(2));
     },
+    
     shoot(percentage) {
       const chance = Math.random().toFixed(2);
       if (chance < percentage) {
@@ -530,20 +530,96 @@ export default {
         const offReboundChance = parseFloat(
           (t1OffRebound / (t1OffRebound + t2DefRebound) - 0.25).toFixed(2)
         );
+        let rebounder;
         if (chance > offReboundChance) {
-          // const messageVariation = [
-          // ]
+          rebounder = this.calcRebounder(team2);
+
+          const messageVariation = [
+            `${rebounder.name} grabs defensive rebound. `,
+            `${rebounder.name} boxes out offensive players and succesfully grabs the rebound. `,
+            `${rebounder.name} snatches devensive rebound. `
+          ];
+          this.possession++
+          this.logRebounds(messageVariation);
+        } else {
+          rebounder = rebounder = this.calcRebounder(team1);
+          const messageVariation = [
+            `${rebounder.name} uses his strengh to grab offensive rebound. `,
+            `${rebounder.name} outhustles opposing to team and get offensive board`
+          ];
+          this.logRebounds(messageVariation);
         }
       } else {
         const offReboundChance = parseFloat(
           (t2OffRebound / (t2OffRebound + t1DefRebound) - 0.25).toFixed(2)
         );
+        let rebounder;
         if (chance > offReboundChance) {
-          // const messageVariation = [
-          // ]
+          rebounder = this.calcRebounder(team1);
+
+          const messageVariation = [
+            `${rebounder.name} grabs defensive rebound. `,
+            `${rebounder.name} boxes out offensive players and succesfully grabs the rebound. `,
+            `${rebounder.name} snatches devensive rebound. `
+          ];
+          this.possession--
+          this.logRebounds(messageVariation);
+        } else {
+          rebounder = this.calcRebounder(team2);
+          const messageVariation = [
+            `${rebounder.name} uses his strengh to grab offensive rebound. `,
+            `${rebounder.name} outhustles opposing to team and get offensive board`
+          ];
+          this.logRebounds(messageVariation);
         }
       }
+    },
+    calcRebounder(team) {
+      let rebounder;
+      let player1 = 0,
+        player2 = 0,
+        player3 = 0;
+      team.forEach((e, i) => {
+        if (i === 0) {
+          player1 += e.attributes.defense.def_rebound;
+          player1 += e.attributes.offense.off_rebound;
+        } else if (i === 1) {
+          player2 += e.attributes.defense.def_rebound;
+          player2 += e.attributes.offense.off_rebound;
+        } else {
+          player3 += e.attributes.defense.def_rebound;
+          player3 += e.attributes.offense.off_rebound;
+        }
+      });
+      const p1Chance = parseFloat(
+        (player1 / (player1 + player2 + player3)).toFixed(2)
+      );
+      const p2Chance = parseFloat(
+        (player2 / (player1 + player2 + player3)).toFixed(2)
+      );
+
+      const chance = Math.random().toFixed(2);
+
+      if (chance < p1Chance) {
+        rebounder = team[0];
+      } else if (chance > p1Chance && chance < p1Chance + p2Chance) {
+        rebounder = team[1];
+      } else {
+        rebounder = team[2];
+      }
+
+      return rebounder;
+    },
+    logRebounds(string) {
+      this.gameLog.push(
+        string[Math.floor(Math.random() * string.length)] +
+          `${this.gameScore.teamOne}:${this.gameScore.teamTwo}`
+      );
     }
+
+    // calcRebounder(team) {
+
+    // }
   }
 };
 </script>

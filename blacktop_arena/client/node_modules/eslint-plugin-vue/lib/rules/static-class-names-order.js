@@ -1,7 +1,7 @@
 /**
-* @fileoverview Alphabetizes static class names.
-* @author Maciej Chmurski
-*/
+ * @fileoverview Alphabetizes static class names.
+ * @author Maciej Chmurski
+ */
 'use strict'
 
 // ------------------------------------------------------------------------------
@@ -19,15 +19,21 @@ module.exports = {
     docs: {
       url: 'https://eslint.vuejs.org/rules/static-class-names-order.html',
       description: 'enforce static class names order',
-      category: undefined
+      categories: undefined
     },
     fixable: 'code',
     schema: []
   },
-  create: context => {
+  /** @param {RuleContext} context */
+  create: (context) => {
     return defineTemplateBodyVisitor(context, {
-      "VAttribute[directive=false][key.name='class']" (node) {
-        const classList = node.value.value
+      /** @param {VAttribute} node */
+      "VAttribute[directive=false][key.name='class']"(node) {
+        const value = node.value
+        if (!value) {
+          return
+        }
+        const classList = value.value
         const classListWithWhitespace = classList.split(/(\s+)/)
 
         // Detect and reuse any type of whitespace.
@@ -36,7 +42,9 @@ module.exports = {
           divider = classListWithWhitespace[1]
         }
 
-        const classListNoWhitespace = classListWithWhitespace.filter(className => className.trim() !== '')
+        const classListNoWhitespace = classListWithWhitespace.filter(
+          (className) => className.trim() !== ''
+        )
         const classListSorted = classListNoWhitespace.sort().join(divider)
 
         if (classList !== classListSorted) {
@@ -44,9 +52,7 @@ module.exports = {
             node,
             loc: node.loc,
             message: 'Classes should be ordered alphabetically.',
-            fix: (fixer) => fixer.replaceTextRange(
-              [node.value.range[0], node.value.range[1]], `"${classListSorted}"`
-            )
+            fix: (fixer) => fixer.replaceText(value, `"${classListSorted}"`)
           })
         }
       }

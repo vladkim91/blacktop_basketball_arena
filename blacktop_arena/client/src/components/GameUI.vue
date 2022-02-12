@@ -2,15 +2,23 @@
   <div class="game-ui">
     <h1>GAME UI</h1>
     <h2>Team One</h2>
-    <div v-for="player in teams.teamOne" :key="player.id">
-      {{ player.name }}
+    <div
+      class="team-2-players"
+      v-for="player in teams.teamOne"
+      :key="player.id"
+    >
+      <div class="p1-container">{{ player.name }}</div>
     </div>
     <h2>Team Two</h2>
-    <div v-for="player in teams.teamTwo" :key="player.id">
-      {{ player.name }}
+    <div
+      class="team-2-players"
+      v-for="player in teams.teamTwo"
+      :key="player.id"
+    >
+      <div class="p2-container">{{ player.name }}</div>
     </div>
     <div class="log">
-      <div class="line" v-for="line in gameLog.reverse()" :key="line.id">
+      <div class="line" v-for="line in gameLog" :key="line.id">
         {{ line }}
       </div>
     </div>
@@ -29,8 +37,8 @@ export default {
       gameLog: [],
       possession: null,
       gameInProgress: false,
-      gameStats: {},
-      stats: {
+
+      teamStats: {
         teamOne: {
           points: 0,
           rebounds: 0,
@@ -40,7 +48,8 @@ export default {
           turnovers: 0,
           fgm: 0,
           fga: 0,
-          threes: 0
+          threeA: 0,
+          threeM: 0
         },
         teamTwo: {
           points: 0,
@@ -51,7 +60,8 @@ export default {
           turnovers: 0,
           fgm: 0,
           fga: 0,
-          threes: 0
+          threeA: 0,
+          threeM: 0
         }
       },
       gameScore: {
@@ -63,6 +73,9 @@ export default {
   computed: {
     teams() {
       return this.$store.state.teams;
+    },
+    playerStatTemplate() {
+      return this.assignToTeams(this.teams.teamOne, this.teams.teamTwo);
     }
   },
   methods: {
@@ -80,40 +93,8 @@ export default {
     },
     getPlayerOverall() {},
     startGame() {
-      while (this.gameScore.teamOne < 21 && this.gameScore.teamTwo < 21) {
-        if (this.possession === null) {
-          this.jumpBall();
-        }
-        let currentPlayer;
-        let shotType;
-        let matchup;
-        let steal;
-        if (this.possession === 1) {
-          const currentPlayerIndex = this.checkShootPass(this.teams.teamTwo);
-          shotType = this.pickTypeOfShot(
-            this.teams.teamTwo[currentPlayerIndex]
-          );
-          currentPlayer = this.teams.teamTwo[currentPlayerIndex];
-          matchup = this.teams.teamOne[currentPlayerIndex];
-          steal = this.calcSteal(this.teams.teamTwo, this.teams.teamOne);
-          if (steal === true) {
-            this.logSteal(currentPlayer, matchup);
-          }
-        } else {
-          const currentPlayerIndex = this.checkShootPass(this.teams.teamOne);
-          shotType = this.pickTypeOfShot(
-            this.teams.teamOne[currentPlayerIndex]
-          );
-          currentPlayer = this.teams.teamOne[currentPlayerIndex];
-          matchup = this.teams.teamTwo[currentPlayerIndex];
-          steal = this.calcSteal(this.teams.teamOne, this.teams.teamTwo);
-          if (steal === true) {
-            this.logSteal(currentPlayer, matchup);
-          }
-        }
-
-        this.shootBall(currentPlayer, shotType, matchup);
-      }
+      this.gameInProgress = true;
+      this.gameCycle();
     },
     jumpBall() {
       const [playerOne, playerTwo] = this.getTallest();
@@ -125,13 +106,13 @@ export default {
       ];
       if (parseFloat(Math.random().toFixed(2)) < percentage[0]) {
         this.possession = 0;
-        this.gameLog.push(`${playerOne.name} won the tip! `);
+        this.gameLog.unshift(`${playerOne.name} won the tip! `);
       } else {
         this.possession = 1;
-        this.gameLog.push(`${playerTwo.name} won the tip! `);
+        this.gameLog.unshift(`${playerTwo.name} won the tip! `);
       }
     },
-
+  
     getTallest() {
       const tallestOne = this.teams.teamOne.sort((a, b) => {
         return b.height - a.height;
@@ -309,26 +290,43 @@ export default {
           // TEAM 1
           if (this.possession === 0) {
             assistingPlayer = this.calcAssist(this.teams.teamOne, player);
-            if (chance < .35) {
+            if (chance < 0.45) {
               message += `Assisted by ${assistingPlayer.name}. `;
+              this.teamStats.teamOne.assists++;
+              this.playerStatTemplate.teamOne[`${player.name}`].assists++;
             }
-
+            this.teamStats.teamOne.fga++;
+            this.teamStats.teamOne.fgm++;
+            this.teamStats.teamOne.points += 2;
+            this.playerStatTemplate.teamOne[`${player.name}`].fga++;
+            this.playerStatTemplate.teamOne[`${player.name}`].fgm++;
+            this.playerStatTemplate.teamOne[`${player.name}`].points += 2;
             this.gameScore.teamOne += 2;
             this.possession++;
-            this.gameLog.push(
-              string[Math.floor(Math.random() * string.length)] + `${message}` +
+            this.gameLog.unshift(
+              string[Math.floor(Math.random() * string.length)] +
+                `${message}` +
                 `${this.gameScore.teamOne}:${this.gameScore.teamTwo}`
             );
           } else {
             // TEAM 2
             assistingPlayer = this.calcAssist(this.teams.teamTwo, player);
-            if (chance < .35) {
+            if (chance < 0.45) {
               message += `Assisted by ${assistingPlayer.name}. `;
+              this.teamStats.teamTwo.assists++;
+              this.playerStatTemplate.teamTwo[`${player.name}`].assists++;
             }
+            this.teamStats.teamTwo.fga++;
+            this.teamStats.teamTwo.fgm++;
+            this.teamStats.teamTwo.points += 2;
+            this.playerStatTemplate.teamTwo[`${player.name}`].fga++;
+            this.playerStatTemplate.teamTwo[`${player.name}`].fgm++;
+            this.playerStatTemplate.teamTwo[`${player.name}`].points += 2;
             this.gameScore.teamTwo += 2;
             this.possession--;
-            this.gameLog.push(
-              string[Math.floor(Math.random() * string.length)] + `${message}` +
+            this.gameLog.unshift(
+              string[Math.floor(Math.random() * string.length)] +
+                `${message}` +
                 `${this.gameScore.teamOne}:${this.gameScore.teamTwo}`
             );
           }
@@ -337,40 +335,84 @@ export default {
           // TEAM 1
           if (this.possession === 0) {
             assistingPlayer = this.calcAssist(this.teams.teamOne, player);
-            if (chance < .3) {
+            if (chance < 0.3) {
               message += `Assisted by ${assistingPlayer.name}. `;
+              this.teamStats.teamOne.assists++;
+              this.playerStatTemplate.teamOne[`${player.name}`].assists++;
             }
+            this.teamStats.teamOne.fga++;
+            this.teamStats.teamOne.fgm++;
+            this.teamStats.teamOne.points += 3;
+            this.teamStats.teamOne.threeA++;
+            this.teamStats.teamOne.threeM++;
+            this.playerStatTemplate.teamOne[`${player.name}`].fga++;
+            this.playerStatTemplate.teamOne[`${player.name}`].fgm++;
+            this.playerStatTemplate.teamOne[`${player.name}`].points += 3;
+            this.playerStatTemplate.teamOne[`${player.name}`].threeA++;
+            this.playerStatTemplate.teamOne[`${player.name}`].threeM++;
 
             this.gameScore.teamOne += 3;
             this.possession++;
-            this.gameLog.push(
-              string[Math.floor(Math.random() * string.length)] +`${message}` +
+            this.gameLog.unshift(
+              string[Math.floor(Math.random() * string.length)] +
+                `${message}` +
                 `${this.gameScore.teamOne}:${this.gameScore.teamTwo}`
             );
           } else {
             // TEAM 2
             assistingPlayer = this.calcAssist(this.teams.teamTwo, player);
-            if (chance < .3) {
+            if (chance < 0.3) {
               message += `Assisted by ${assistingPlayer.name}. `;
+              this.teamStats.teamTwo.assists++;
+              this.playerStatTemplate.teamTwo[`${player.name}`].assists++;
             }
+            this.teamStats.teamTwo.fga++;
+            this.teamStats.teamTwo.fgm++;
+            this.teamStats.teamTwo.points += 3;
+            this.teamStats.teamTwo.threeA++;
+            this.teamStats.teamTwo.threeM++;
+            this.playerStatTemplate.teamTwo[`${player.name}`].fga++;
+            this.playerStatTemplate.teamTwo[`${player.name}`].fgm++;
+            this.playerStatTemplate.teamTwo[`${player.name}`].points += 3;
+            this.playerStatTemplate.teamTwo[`${player.name}`].threeA++;
+            this.playerStatTemplate.teamTwo[`${player.name}`].threeM++;
             this.gameScore.teamTwo += 3;
             this.possession--;
-            this.gameLog.push(
-              string[Math.floor(Math.random() * string.length)] +`${message}` +
+            this.gameLog.unshift(
+              string[Math.floor(Math.random() * string.length)] +
+                `${message}` +
                 `${this.gameScore.teamOne}:${this.gameScore.teamTwo}`
             );
           }
         }
       };
-      const logMiss = (string) => {
+      const logMiss = (string, type) => {
         // TEAM 1
         if (this.possession === 0) {
-          this.gameLog.push(
+          if (type === '3') {
+            this.teamStats.teamOne.threeA++;
+            this.teamStats.teamOne.fga++;
+            this.playerStatTemplate.teamOne[`${player.name}`].threeA++;
+            this.playerStatTemplate.teamOne[`${player.name}`].fga++;
+          } else {
+            this.playerStatTemplate.teamOne[`${player.name}`].fga++;
+            this.teamStats.teamOne.fga++;
+          }
+          this.gameLog.unshift(
             string[Math.floor(Math.random() * string.length)] +
               `${this.gameScore.teamOne}:${this.gameScore.teamTwo}`
           );
         } else {
-          this.gameLog.push(
+          if (type === '3') {
+            this.teamStats.teamTwo.threeA++;
+            this.teamStats.teamTwo.fga++;
+            this.playerStatTemplate.teamTwo[`${player.name}`].threeA++;
+            this.playerStatTemplate.teamTwo[`${player.name}`].fga++;
+          } else {
+            this.playerStatTemplate.teamTwo[`${player.name}`].fga++;
+            this.teamStats.teamTwo.fga++;
+          }
+          this.gameLog.unshift(
             string[Math.floor(Math.random() * string.length)] +
               `${this.gameScore.teamOne}:${this.gameScore.teamTwo}`
           );
@@ -424,9 +466,8 @@ export default {
           const messageVariation = [];
           const chance = Math.random().toFixed(2);
           if (layupDunk === 'layup') {
-            //
             if (chance > 0.3) {
-              messageVariation.push(
+              messageVariation.unshift(
                 ...[
                   `${player.name} missed an acrobatic layup. `,
                   `${player.name}'s finger roll layup is short. `,
@@ -435,7 +476,15 @@ export default {
               );
               logMiss(messageVariation);
             } else {
-              messageVariation.push(
+              if (this.possession === 0) {
+                this.playerStatTemplate.teamTwo[`${matchup.name}`].blocks++;
+                this.teamStats.teamTwo.blocks++;
+              } else {
+                this.playerStatTemplate.teamOne[`${matchup.name}`].blocks++;
+                this.teamStats.teamOne.blocks++;
+              }
+
+              messageVariation.unshift(
                 ...[
                   `${player.name}'s layup attempted was sent to the bleachers by ${matchup.name} `,
                   `${player.name} was blocked by ${matchup.name} `
@@ -445,7 +494,7 @@ export default {
             }
           } else if (layupDunk === 'dunk') {
             if (chance > 0.15) {
-              messageVariation.push(
+              messageVariation.unshift(
                 ...[
                   `${player.name}'s dunk attempt was unsuccessful. `,
                   `${player.name} attempts a dunk in traffic. ${matchup.name}'s contest is too perfect. `,
@@ -454,7 +503,15 @@ export default {
               );
               logMiss(messageVariation);
             } else {
-              messageVariation.push(
+              if (this.possession === 0) {
+                this.playerStatTemplate.teamTwo[`${matchup.name}`].blocks++;
+                this.teamStats.teamTwo.blocks++;
+              } else {
+                this.playerStatTemplate.teamOne[`${matchup.name}`].blocks++;
+                this.teamStats.teamOne.blocks++;
+              }
+
+              messageVariation.unshift(
                 ...[
                   `${player.name} get's stuffed at the rim by ${matchup.name}. `,
                   `${player.name} is blocked at the rim by ${matchup.name}. `
@@ -477,24 +534,32 @@ export default {
             `${matchup.name} contested ${player.name}'s 3 point shot. ${player.name} misses. `,
             `${player.name} airballs a logo 3. `
           ];
-          logMiss(messageVariation);
+          logMiss(messageVariation, '3');
         } else if (type === 'post_up') {
           const chance = Math.random().toFixed(2);
           const messageVariation = [];
           if (chance > 0.2) {
-            messageVariation.push(
+            messageVariation.unshift(
               ...[
                 `${player.name} misses a jump hook. `,
                 `${player.name} attempts a skyhook and misses. `,
-                `${matchup.name} nearly blocks ${player.name}'s post fadeaway. Shot bounces off the rim`
+                `${matchup.name} nearly blocks ${player.name}'s post fadeaway. Shot bounces off the rim. `
               ]
             );
             logMiss(messageVariation);
           } else {
-            messageVariation.push(
+            if (this.possession === 0) {
+              this.playerStatTemplate.teamTwo[`${matchup.name}`].blocks++;
+              this.teamStats.teamTwo.blocks++;
+            } else {
+              this.playerStatTemplate.teamOne[`${matchup.name}`].blocks++;
+              this.teamStats.teamOne.blocks++;
+            }
+            //
+            messageVariation.unshift(
               ...[
                 `${matchup.name} stuffs ${player.name}'s jump hook. `,
-                `${matchup.name} sends ${player.name}'s weak layup under the rim the stands`,
+                `${matchup.name} sends ${player.name}'s weak layup under the rim the stands. `,
                 `${player.name} is blocked at the rim by ${matchup.name}. `
               ]
             );
@@ -562,7 +627,8 @@ export default {
         let rebounder;
         if (chance > offReboundChance) {
           rebounder = this.calcRebounder(team2);
-
+          this.playerStatTemplate.teamTwo[`${rebounder.name}`].rebounds++;
+          this.teamStats.teamTwo.rebounds++;
           const messageVariation = [
             `${rebounder.name} grabs defensive rebound. `,
             `${rebounder.name} boxes out offensive players and succesfully grabs the rebound. `,
@@ -572,6 +638,8 @@ export default {
           this.logRebounds(messageVariation);
         } else {
           rebounder = rebounder = this.calcRebounder(team1);
+          this.playerStatTemplate.teamOne[`${rebounder.name}`].rebounds++;
+          this.teamStats.teamOne.rebounds++;
           const messageVariation = [
             `${rebounder.name} uses his strengh to grab offensive rebound. `,
             `${rebounder.name} outhustles opposing to team and get offensive board. `
@@ -585,7 +653,8 @@ export default {
         let rebounder;
         if (chance > offReboundChance) {
           rebounder = this.calcRebounder(team1);
-
+          this.playerStatTemplate.teamOne[`${rebounder.name}`].rebounds++;
+          this.teamStats.teamOne.rebounds++;
           const messageVariation = [
             `${rebounder.name} grabs defensive rebound. `,
             `${rebounder.name} boxes out offensive players and succesfully grabs the rebound. `,
@@ -595,6 +664,8 @@ export default {
           this.logRebounds(messageVariation);
         } else {
           rebounder = this.calcRebounder(team2);
+          this.playerStatTemplate.teamTwo[`${rebounder.name}`].rebounds++;
+          this.teamStats.teamTwo.rebounds++;
           const messageVariation = [
             `${rebounder.name} uses his strengh to grab offensive rebound. `,
             `${rebounder.name} outhustles opposing to team and get offensive board. `
@@ -640,7 +711,7 @@ export default {
       return rebounder;
     },
     logRebounds(string) {
-      this.gameLog.push(
+      this.gameLog.unshift(
         string[Math.floor(Math.random() * string.length)] +
           `${this.gameScore.teamOne}:${this.gameScore.teamTwo}`
       );
@@ -689,7 +760,7 @@ export default {
         `${stealPlayer.name} intercepts a sloppy entry pass by ${turnoverPlayer.name}. `,
         `${turnoverPlayer.name} with a turnover. ${stealPlayer.name} with a steal. `
       ];
-      this.gameLog.push(
+      this.gameLog.unshift(
         messageVariation[Math.floor(Math.random() * messageVariation.length)] +
           `${this.gameScore.teamOne}:${this.gameScore.teamTwo}`
       );
@@ -721,11 +792,86 @@ export default {
       if (chance < p1AssistChance) {
         return excludePlayer[0];
       } else {
-        return excludePlayer[1]
+        return excludePlayer[1];
+      }
+    },
+
+    assignToTeams(team1, team2) {
+      let teamOne = {};
+      let teamTwo = {};
+      team1.forEach((e) => {
+        teamOne[`${e.name}`] = {
+          points: 0,
+          rebounds: 0,
+          assists: 0,
+          steals: 0,
+          blocks: 0,
+          turnovers: 0,
+          fgm: 0,
+          fga: 0,
+          threeA: 0,
+          threeM: 0
+        };
+      });
+      team2.forEach((e) => {
+        teamTwo[`${e.name}`] = {
+          points: 0,
+          rebounds: 0,
+          assists: 0,
+          steals: 0,
+          blocks: 0,
+          turnovers: 0,
+          fgm: 0,
+          fga: 0,
+          threeA: 0,
+          threeM: 0
+        };
+      });
+      return { teamOne, teamTwo };
+    },
+    gameCycle() {
+      if (this.possession === null) {
+        this.jumpBall();
       }
 
-      // return
-      // Bool and assisting player
+      let currentPlayer;
+      let shotType;
+      let matchup;
+      let steal;
+      if (this.possession === 1) {
+        const currentPlayerIndex = this.checkShootPass(this.teams.teamTwo);
+        shotType = this.pickTypeOfShot(this.teams.teamTwo[currentPlayerIndex]);
+        currentPlayer = this.teams.teamTwo[currentPlayerIndex];
+        matchup = this.teams.teamOne[currentPlayerIndex];
+        steal = this.calcSteal(this.teams.teamTwo, this.teams.teamOne);
+        if (steal === true) {
+          this.logSteal(currentPlayer, matchup);
+          this.playerStatTemplate.teamTwo[`${currentPlayer.name}`].steals++;
+          this.teamStats.teamTwo.steals++;
+          this.playerStatTemplate.teamOne[`${matchup.name}`].turnovers++;
+          this.teamStats.teamOne.turnovers++;
+        }
+      } else {
+        const currentPlayerIndex = this.checkShootPass(this.teams.teamOne);
+        shotType = this.pickTypeOfShot(this.teams.teamOne[currentPlayerIndex]);
+        currentPlayer = this.teams.teamOne[currentPlayerIndex];
+        matchup = this.teams.teamTwo[currentPlayerIndex];
+        steal = this.calcSteal(this.teams.teamOne, this.teams.teamTwo);
+        if (steal === true) {
+          this.logSteal(currentPlayer, matchup);
+          this.playerStatTemplate.teamOne[`${currentPlayer.name}`].steals++;
+          this.teamStats.teamOne.steals++;
+          this.playerStatTemplate.teamTwo[`${matchup.name}`].turnovers++;
+          this.teamStats.teamTwo.turnovers++;
+        }
+      }
+
+      this.shootBall(currentPlayer, shotType, matchup);
+      if (this.gameScore.teamOne < 21 && this.gameScore.teamTwo < 21) {
+        setTimeout(this.gameCycle, 1000);
+        return;
+      }
+      this.gameInProgress = false;
     }
   }
 };

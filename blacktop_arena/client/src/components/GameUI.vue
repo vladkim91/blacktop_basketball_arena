@@ -29,85 +29,7 @@ export default {
       gameLog: [],
       possession: null,
       gameInProgress: false,
-      gameStats: {},
-      playerStats: {
-        teamOne: {
-          p1: {
-            points: 0,
-            rebounds: 0,
-            assists: 0,
-            steals: 0,
-            blocks: 0,
-            turnovers: 0,
-            fgm: 0,
-            fga: 0,
-            threeA: 0,
-            threeM: 0
-          },
-          p2: {
-            points: 0,
-            rebounds: 0,
-            assists: 0,
-            steals: 0,
-            blocks: 0,
-            turnovers: 0,
-            fgm: 0,
-            fga: 0,
-            threeA: 0,
-            threeM: 0
-          },
-          p3: {
-            points: 0,
-            rebounds: 0,
-            assists: 0,
-            steals: 0,
-            blocks: 0,
-            turnovers: 0,
-            fgm: 0,
-            fga: 0,
-            threeA: 0,
-            threeM: 0
-          }
-        },
-        teamTwo: {
-          p1: {
-            points: 0,
-            rebounds: 0,
-            assists: 0,
-            steals: 0,
-            blocks: 0,
-            turnovers: 0,
-            fgm: 0,
-            fga: 0,
-            threeA: 0,
-            threeM: 0
-          },
-          p2: {
-            points: 0,
-            rebounds: 0,
-            assists: 0,
-            steals: 0,
-            blocks: 0,
-            turnovers: 0,
-            fgm: 0,
-            fga: 0,
-            threeA: 0,
-            threeM: 0
-          },
-          p3: {
-            points: 0,
-            rebounds: 0,
-            assists: 0,
-            steals: 0,
-            blocks: 0,
-            turnovers: 0,
-            fgm: 0,
-            fga: 0,
-            threeA: 0,
-            threeM: 0
-          }
-        }
-      },
+
       teamStats: {
         teamOne: {
           points: 0,
@@ -144,7 +66,7 @@ export default {
     teams() {
       return this.$store.state.teams;
     },
-    playerStateTemplate() {
+    playerStatTemplate() {
       return this.assignToTeams(this.teams.teamOne, this.teams.teamTwo);
     }
   },
@@ -183,8 +105,9 @@ export default {
           steal = this.calcSteal(this.teams.teamTwo, this.teams.teamOne);
           if (steal === true) {
             this.logSteal(currentPlayer, matchup);
-
+            this.playerStatTemplate.teamTwo[`${currentPlayer.name}`].steals++;
             this.teamStats.teamTwo.steals++;
+            this.playerStatTemplate.teamOne[`${matchup.name}`].turnovers++;
             this.teamStats.teamOne.turnovers++;
           }
         } else {
@@ -197,8 +120,9 @@ export default {
           steal = this.calcSteal(this.teams.teamOne, this.teams.teamTwo);
           if (steal === true) {
             this.logSteal(currentPlayer, matchup);
-
+            this.playerStatTemplate.teamOne[`${currentPlayer.name}`].steals++;
             this.teamStats.teamOne.steals++;
+            this.playerStatTemplate.teamTwo[`${matchup.name}`].turnovers++;
             this.teamStats.teamTwo.turnovers++;
           }
         }
@@ -404,10 +328,14 @@ export default {
             if (chance < 0.45) {
               message += `Assisted by ${assistingPlayer.name}. `;
               this.teamStats.teamOne.assists++;
+              this.playerStatTemplate.teamOne[`${player.name}`].assists++;
             }
             this.teamStats.teamOne.fga++;
             this.teamStats.teamOne.fgm++;
             this.teamStats.teamOne.points += 2;
+            this.playerStatTemplate.teamOne[`${player.name}`].fga++;
+            this.playerStatTemplate.teamOne[`${player.name}`].fgm++;
+            this.playerStatTemplate.teamOne[`${player.name}`].points += 2;
             this.gameScore.teamOne += 2;
             this.possession++;
             this.gameLog.push(
@@ -421,10 +349,14 @@ export default {
             if (chance < 0.45) {
               message += `Assisted by ${assistingPlayer.name}. `;
               this.teamStats.teamTwo.assists++;
+              this.playerStatTemplate.teamTwo[`${player.name}`].assists++;
             }
             this.teamStats.teamTwo.fga++;
             this.teamStats.teamTwo.fgm++;
             this.teamStats.teamTwo.points += 2;
+            this.playerStatTemplate.teamTwo[`${player.name}`].fga++;
+            this.playerStatTemplate.teamTwo[`${player.name}`].fgm++;
+            this.playerStatTemplate.teamTwo[`${player.name}`].points += 2;
             this.gameScore.teamTwo += 2;
             this.possession--;
             this.gameLog.push(
@@ -440,12 +372,18 @@ export default {
             if (chance < 0.3) {
               message += `Assisted by ${assistingPlayer.name}. `;
               this.teamStats.teamOne.assists++;
+              this.playerStatTemplate.teamOne[`${player.name}`].assists++;
             }
             this.teamStats.teamOne.fga++;
             this.teamStats.teamOne.fgm++;
             this.teamStats.teamOne.points += 3;
             this.teamStats.teamOne.threeA++;
             this.teamStats.teamOne.threeM++;
+            this.playerStatTemplate.teamOne[`${player.name}`].fga++;
+            this.playerStatTemplate.teamOne[`${player.name}`].fgm++;
+            this.playerStatTemplate.teamOne[`${player.name}`].points += 3;
+            this.playerStatTemplate.teamOne[`${player.name}`].threeA++;
+            this.playerStatTemplate.teamOne[`${player.name}`].threeM++;
 
             this.gameScore.teamOne += 3;
             this.possession++;
@@ -460,12 +398,18 @@ export default {
             if (chance < 0.3) {
               message += `Assisted by ${assistingPlayer.name}. `;
               this.teamStats.teamTwo.assists++;
+              this.playerStatTemplate.teamTwo[`${player.name}`].assists++;
             }
             this.teamStats.teamTwo.fga++;
             this.teamStats.teamTwo.fgm++;
             this.teamStats.teamTwo.points += 3;
             this.teamStats.teamTwo.threeA++;
             this.teamStats.teamTwo.threeM++;
+            this.playerStatTemplate.teamTwo[`${player.name}`].fga++;
+            this.playerStatTemplate.teamTwo[`${player.name}`].fgm++;
+            this.playerStatTemplate.teamTwo[`${player.name}`].points += 3;
+            this.playerStatTemplate.teamTwo[`${player.name}`].threeA++;
+            this.playerStatTemplate.teamTwo[`${player.name}`].threeM++;
             this.gameScore.teamTwo += 3;
             this.possession--;
             this.gameLog.push(
@@ -482,7 +426,10 @@ export default {
           if (type === '3') {
             this.teamStats.teamOne.threeA++;
             this.teamStats.teamOne.fga++;
+            this.playerStatTemplate.teamOne[`${player.name}`].threeA++;
+            this.playerStatTemplate.teamOne[`${player.name}`].fga++;
           } else {
+            this.playerStatTemplate.teamOne[`${player.name}`].fga++;
             this.teamStats.teamOne.fga++;
           }
           this.gameLog.push(
@@ -493,7 +440,10 @@ export default {
           if (type === '3') {
             this.teamStats.teamTwo.threeA++;
             this.teamStats.teamTwo.fga++;
+            this.playerStatTemplate.teamTwo[`${player.name}`].threeA++;
+            this.playerStatTemplate.teamTwo[`${player.name}`].fga++;
           } else {
+            this.playerStatTemplate.teamTwo[`${player.name}`].fga++;
             this.teamStats.teamTwo.fga++;
           }
           this.gameLog.push(
@@ -561,11 +511,13 @@ export default {
               logMiss(messageVariation);
             } else {
               if (this.possession === 0) {
+                this.playerStatTemplate.teamTwo[`${matchup.name}`].blocks++;
                 this.teamStats.teamTwo.blocks++;
               } else {
+                this.playerStatTemplate.teamOne[`${matchup.name}`].blocks++;
                 this.teamStats.teamOne.blocks++;
               }
-              //
+
               messageVariation.push(
                 ...[
                   `${player.name}'s layup attempted was sent to the bleachers by ${matchup.name} `,
@@ -586,8 +538,10 @@ export default {
               logMiss(messageVariation);
             } else {
               if (this.possession === 0) {
+                this.playerStatTemplate.teamTwo[`${matchup.name}`].blocks++;
                 this.teamStats.teamTwo.blocks++;
               } else {
+                this.playerStatTemplate.teamOne[`${matchup.name}`].blocks++;
                 this.teamStats.teamOne.blocks++;
               }
 
@@ -629,8 +583,10 @@ export default {
             logMiss(messageVariation);
           } else {
             if (this.possession === 0) {
+              this.playerStatTemplate.teamTwo[`${matchup.name}`].blocks++;
               this.teamStats.teamTwo.blocks++;
             } else {
+              this.playerStatTemplate.teamOne[`${matchup.name}`].blocks++;
               this.teamStats.teamOne.blocks++;
             }
             //
@@ -705,6 +661,7 @@ export default {
         let rebounder;
         if (chance > offReboundChance) {
           rebounder = this.calcRebounder(team2);
+          this.playerStatTemplate.teamTwo[`${rebounder.name}`].rebounds++;
           this.teamStats.teamTwo.rebounds++;
           const messageVariation = [
             `${rebounder.name} grabs defensive rebound. `,
@@ -715,6 +672,7 @@ export default {
           this.logRebounds(messageVariation);
         } else {
           rebounder = rebounder = this.calcRebounder(team1);
+          this.playerStatTemplate.teamOne[`${rebounder.name}`].rebounds++;
           this.teamStats.teamOne.rebounds++;
           const messageVariation = [
             `${rebounder.name} uses his strengh to grab offensive rebound. `,
@@ -729,6 +687,7 @@ export default {
         let rebounder;
         if (chance > offReboundChance) {
           rebounder = this.calcRebounder(team1);
+          this.playerStatTemplate.teamOne[`${rebounder.name}`].rebounds++;
           this.teamStats.teamOne.rebounds++;
           const messageVariation = [
             `${rebounder.name} grabs defensive rebound. `,
@@ -739,6 +698,7 @@ export default {
           this.logRebounds(messageVariation);
         } else {
           rebounder = this.calcRebounder(team2);
+          this.playerStatTemplate.teamTwo[`${rebounder.name}`].rebounds++;
           this.teamStats.teamTwo.rebounds++;
           const messageVariation = [
             `${rebounder.name} uses his strengh to grab offensive rebound. `,
@@ -869,16 +829,39 @@ export default {
         return excludePlayer[1];
       }
     },
+
     assignToTeams(team1, team2) {
       let teamOne = {};
       let teamTwo = {};
-      team1.forEach((e, i) => {
-        teamOne[`${e.name}`] = `p${i + 1}`;
+      team1.forEach((e) => {
+        teamOne[`${e.name}`] = {
+          points: 0,
+          rebounds: 0,
+          assists: 0,
+          steals: 0,
+          blocks: 0,
+          turnovers: 0,
+          fgm: 0,
+          fga: 0,
+          threeA: 0,
+          threeM: 0
+        };
       });
-      team2.forEach((e, i) => {
-        teamTwo[`${e.name}`] = `p${i + 1}`;
+      team2.forEach((e) => {
+        teamTwo[`${e.name}`] = {
+          points: 0,
+          rebounds: 0,
+          assists: 0,
+          steals: 0,
+          blocks: 0,
+          turnovers: 0,
+          fgm: 0,
+          fga: 0,
+          threeA: 0,
+          threeM: 0
+        };
       });
-      return [teamOne, teamTwo];
+      return { teamOne, teamTwo };
     }
   }
 };

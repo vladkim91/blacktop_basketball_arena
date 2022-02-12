@@ -3,11 +3,1364 @@
 from django.db import migrations
 
 
-class Migration(migrations.Migration):
+def seed(apps, schema_editor):
+    Player = apps.get_model('blacktop', 'Player')
+    Player(name="Michael Jordan",
+           nickname="Air Jordan",
+           height=78,
+           attributes={
+               'offense': {
+                   'layup': 98,
+                   'post_shot': 70,
+                   'mid_range': 99,
+                   'three': 78,
+                   'handles': 88,
+                   'passing': 82,
+                   'off_rebound': 58,
+                   'dunk': 97
+               },
+               'defense': {
+                   'def_rebound': 63,
+                   'inside_defense': 70,
+                   'outside_defense': 98,
+                   'steal': 91,
+                   'block': 59,
+                   'post_defense': 70
+               },
+               'physical': {
+                   'speed': 86,
+                   'vertical': 96,
+                   'strength': 68
+               }
+           }, tendencies={
+               'offense': {
+                   'shoot_mid': 77,
+                   'shoot_three': 47,
+                   'passing': 72,
+                   'attack_rim': 94,
+                   'post_up': 95
+               },
+               'defense': {
+                   'steal': 65,
+                   'block': 70,
+                   'intercept': 70
+               }
+           }, avatar="https://www.gannett-cdn.com/presto/2020/04/18/USAT/f5e5f735-2eff-426c-a783-baca6d2872ab-05.JPG?crop=984,1012,x0,y0&width=1588",
+           description="Michael Jordan is a former professional American basketball player, Olympic athlete, businessperson and actor. Considered one of the best basketball players ever, he dominated the sport from the mid-1980s to the late 1990s",
+           image="https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F20%2F2020%2F04%2F21%2Fmichael-jordan-3-1.jpg",
+           tier=1).save()
+    Player(name="Lebron James",
+           nickname="King",
+           height=81,
+           attributes={
+                'offense': {
+                    'layup': 98,
+                    'post_shot': 88,
+                    'mid_range': 81,
+                    'three': 76,
+                    'handles': 86,
+                    'passing': 87,
+                    'off_rebound': 75,
+                    'dunk': 95
+                },
+               'defense': {
+                    'def_rebound': 79,
+                    'inside_defense': 80,
+                    'outside_defense': 96,
+                    'steal': 62,
+                    'block': 52,
+                    'post_defense': 79
+                },
+               'physical': {
+                    'speed': 89,
+                    'vertical': 84,
+                    'strength': 92
+                }
+           }, tendencies={
+               'offense': {
+                   'shoot_mid': 47,
+                   'shoot_three': 57,
+                   'passing': 65,
+                   'attack_rim': 81,
+                   'post_up': 55
+               },
+               'defense': {
+                   'steal': 31,
+                   'block': 70,
+                   'intercept': 69
+               }
+           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
+           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
+           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           tier=1).save()
+    Player(name="Tim Duncan",
+           nickname="Big Fundamental",
+           height=83,
+           attributes={
+                'offense': {
+                    'layup': 79,
+                    'post_shot': 93,
+                    'mid_range': 95,
+                    'three': 76,
+                    'handles': 59,
+                    'passing': 82,
+                    'off_rebound': 94,
+                    'dunk': 85
+                },
+               'defense': {
+                    'def_rebound': 95,
+                    'inside_defense': 99,
+                    'outside_defense': 69,
+                    'steal': 79,
+                    'block': 96,
+                    'post_defense': 95
+                },
+               'physical': {
+                    'speed': 68,
+                    'vertical': 80,
+                    'strength': 96
+                }
+           }, tendencies={
+               'offense': {
+                   'shoot_mid': 67,
+                   'shoot_three': 37,
+                   'passing': 65,
+                   'attack_rim': 90,
+                   'post_up': 99
+               },
+               'defense': {
+                   'steal': 40,
+                   'block': 80,
+                   'intercept': 75
+               }
+           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
+           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
+           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           tier=1).save()
+    Player(name="Giannis Antetokounmpo",
+           nickname="Greak Freak",
+           height=83,
+           attributes={
+                'offense': {
+                    'layup': 98,
+                    'post_shot': 79,
+                    'mid_range': 79,
+                    'three': 70,
+                    'handles': 87,
+                    'passing': 84,
+                    'off_rebound': 58,
+                    'dunk': 91
+                },
+               'defense': {
+                    'def_rebound': 92,
+                    'inside_defense': 91,
+                    'outside_defense': 95,
+                    'steal': 59,
+                    'block': 82,
+                    'post_defense': 92
+                },
+               'physical': {
+                    'speed': 90,
+                    'vertical': 85,
+                    'strength': 94
+                }
+           }, tendencies={
+               'offense': {
+                   'shoot_mid': 67,
+                   'shoot_three': 47,
+                   'passing': 70,
+                   'attack_rim': 95,
+                   'post_up': 84
+               },
+               'defense': {
+                   'steal': 50,
+                   'block': 90,
+                   'intercept': 69
+               }
+           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
+           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
+           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           tier=1).save()
 
+    Player(name="Larry Bird",
+           nickname="Legend",
+           height=81,
+           attributes={
+                'offense': {
+                    'layup': 72,
+                    'post_shot': 94,
+                    'mid_range': 96,
+                    'three': 96,
+                    'handles': 79,
+                    'passing': 94,
+                    'off_rebound': 61,
+                    'dunk': 45
+                },
+               'defense': {
+                    'def_rebound': 77,
+                    'inside_defense': 85,
+                    'outside_defense': 88,
+                    'steal': 75,
+                    'post_defense': 85,
+                    'block': 47
+                },
+               'physical': {
+                    'speed': 90,
+                    'vertical': 85,
+                    'strength': 94
+                }
+           }, tendencies={
+               'offense': {
+                   'shoot_mid': 84,
+                   'shoot_three': 84,
+                   'passing': 75,
+                   'attack_rim': 70,
+                   'post_up': 84
+               },
+               'defense': {
+                   'steal': 65,
+                   'block': 40,
+                   'intercept': 69
+               }
+           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
+           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
+           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           tier=1).save()
+
+    Player(name="Magic Johnson",
+           nickname="Magic",
+           height=81,
+           attributes={
+                'offense': {
+                    'layup': 93,
+                    'post_shot': 90,
+                    'mid_range': 87,
+                    'three': 79,
+                    'handles': 97,
+                    'passing': 99,
+                    'off_rebound': 74,
+                    'dunk': 75
+                },
+               'defense': {
+                    'def_rebound': 84,
+                    'inside_defense': 80,
+                    'outside_defense': 80,
+                    'steal': 69,
+                    'block': 62,
+                    'post_defense': 80
+                },
+               'physical': {
+                    'speed': 86,
+                    'vertical': 84,
+                    'strength': 76
+                }
+           }, tendencies={
+               'offense': {
+                   'shoot_mid': 67,
+                   'shoot_three': 57,
+                   'passing': 99,
+                   'attack_rim': 95,
+                   'post_up': 76
+               },
+               'defense': {
+                   'steal': 60,
+                   'block': 60,
+                   'intercept': 67
+               }
+           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
+           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
+           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           tier=1).save()
+
+    Player(name="Hakeem Olajuwon",
+           nickname="The Dream",
+           height=83,
+           attributes={
+                'offense': {
+                    'layup': 78,
+                    'post_shot': 98,
+                    'mid_range': 77,
+                    'three': 63,
+                    'handles': 61,
+                    'passing': 60,
+                    'off_rebound': 92,
+                    'dunk': 95
+                },
+               'defense': {
+                    'def_rebound': 95,
+                    'inside_defense': 99,
+                    'outside_defense': 49,
+                    'steal': 65,
+                    'block': 88,
+                    'post_defense': 99
+                },
+               'physical': {
+                    'speed': 53,
+                    'vertical': 60,
+                    'strength': 88
+                }
+           }, tendencies={
+               'offense': {
+                   'shoot_mid': 57,
+                   'shoot_three': 37,
+                   'passing': 60,
+                   'attack_rim': 99,
+                   'post_up': 99
+               },
+               'defense': {
+                   'steal': 60,
+                   'block': 80,
+                   'intercept': 59
+               }
+           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
+           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
+           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           tier=1).save()
+    Player(name="Kobe Bryant",
+           nickname="Mamba",
+           height=78,
+           attributes={
+                'offense': {
+                    'layup': 98,
+                    'post_shot': 74,
+                    'mid_range': 94,
+                    'three': 79,
+                    'handles': 89,
+                    'passing': 78,
+                    'off_rebound': 55,
+                    'dunk': 95
+                },
+               'defense': {
+                    'def_rebound': 59,
+                    'inside_defense': 68,
+                    'outside_defense': 95,
+                    'steal': 77,
+                    'post_defense': 68,
+                    'block': 51
+                },
+               'physical': {
+                    'speed': 88,
+                    'vertical': 88,
+                    'strength': 75
+                }
+           }, tendencies={
+               'offense': {
+                   'shoot_mid': 90,
+                   'shoot_three': 70,
+                   'passing': 40,
+                   'attack_rim': 90,
+                   'post_up': 86
+               },
+               'defense': {
+                   'steal': 75,
+                   'block': 60,
+                   'intercept': 80
+               }
+           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
+           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
+           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           tier=1).save()
+
+    Player(name="Shaquille O'Neal",
+           nickname="Diesel",
+           height=84,
+           attributes={
+                'offense': {
+                    'layup': 89,
+                    'post_shot': 97,
+                    'mid_range': 35,
+                    'three': 26,
+                    'handles': 64,
+                    'passing': 77,
+                    'off_rebound': 98,
+                    'dunk': 99
+                },
+               'defense': {
+                    'def_rebound': 97,
+                    'inside_defense': 95,
+                    'outside_defense': 49,
+                    'steal': 74,
+                    'post_defense': 49,
+                    'block': 95
+                },
+               'physical': {
+                    'speed': 76,
+                    'vertical': 80,
+                    'strength': 99
+                }
+           }, tendencies={
+               'offense': {
+                   'shoot_mid': 30,
+                   'shoot_three': 10,
+                   'passing': 50,
+                   'attack_rim': 99,
+                   'post_up': 99
+               },
+               'defense': {
+                   'steal': 40,
+                   'block': 70,
+                   'intercept': 45
+               }
+           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
+           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
+           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           tier=1).save()
+
+    Player(name="Kevin Garnett",
+           nickname="Big Ticket",
+           height=83,
+           attributes={
+                'offense': {
+                    'layup': 82,
+                    'post_shot': 89,
+                    'mid_range': 94,
+                    'three': 69,
+                    'handles': 70,
+                    'passing': 68,
+                    'off_rebound': 93,
+                    'dunk': 88
+                },
+               'defense': {
+                    'def_rebound': 94,
+                    'inside_defense': 97,
+                    'post_defense': 97,
+                    'outside_defense': 61,
+                    'block': 80,
+                    'steal': 65
+                },
+               'physical': {
+                    'speed': 87,
+                    'vertical': 87,
+                    'strength': 88
+                }
+           }, tendencies={
+               'offense': {
+                   'shoot_mid': 70,
+                   'shoot_three': 30,
+                   'passing': 40,
+                   'attack_rim': 80,
+                   'post_up': 85
+               },
+               'defense': {
+                   'steal': 60,
+                   'block': 75,
+                   'intercept': 65
+               }
+           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
+           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
+           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           tier=1).save()
+
+    Player(name="Steph Curry",
+           nickname="Chef Curry",
+           height=74,
+           attributes={
+                'offense': {
+                    'layup': 97,
+                    'post_shot': 52,
+                    'mid_range': 93,
+                    'three': 99,
+                    'handles': 97,
+                    'passing': 96,
+                    'off_rebound': 93,
+                    'dunk': 36
+                },
+               'defense': {
+                    'def_rebound': 53,
+                    'inside_defense': 30,
+                    'post_defense': 30,
+                    'outside_defense': 82,
+                    'block': 37,
+                    'steal': 77
+                },
+               'physical': {
+                    'speed': 85,
+                    'vertical': 78,
+                    'strength': 48
+                }
+           }, tendencies={
+               'offense': {
+                   'shoot_mid': 70,
+                   'shoot_three': 99,
+                   'passing': 75,
+                   'attack_rim': 80,
+                   'post_up': 20
+               },
+               'defense': {
+                   'steal': 70,
+                   'block': 30,
+                   'intercept': 40
+               }
+           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
+           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
+           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           tier=1).save()
+
+    Player(name="Kevin Durant",
+           nickname="KD",
+           height=83,
+           attributes={
+                'offense': {
+                    'layup': 94,
+                    'post_shot': 88,
+                    'mid_range': 98,
+                    'three': 88,
+                    'handles': 86,
+                    'passing': 79,
+                    'off_rebound': 32,
+                    'dunk': 85
+                },
+               'defense': {
+                    'def_rebound': 69,
+                    'inside_defense': 70,
+                    'post_defense': 70,
+                    'outside_defense': 86,
+                    'block': 66,
+                    'steal': 58
+                },
+               'physical': {
+                    'speed': 80,
+                    'vertical': 77,
+                    'strength': 63
+                }
+           }, tendencies={
+               'offense': {
+                   'shoot_mid': 70,
+                   'shoot_three': 80,
+                   'passing': 40,
+                   'attack_rim': 80,
+                   'post_up': 50
+               },
+               'defense': {
+                   'steal': 60,
+                   'block': 50,
+                   'intercept': 45
+               }
+           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
+           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
+           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           tier=1).save()
+
+    Player(name="Joel Embid",
+           nickname="The Process",
+           height=84,
+           attributes={
+                'offense': {
+                    'layup': 87,
+                    'post_shot': 92,
+                    'mid_range': 80,
+                    'three': 82,
+                    'handles': 57,
+                    'passing': 55,
+                    'off_rebound': 75,
+                    'dunk': 90
+                },
+               'defense': {
+                    'def_rebound': 90,
+                    'inside_defense': 96,
+                    'post_defense': 96,
+                    'outside_defense': 64,
+                    'block': 78,
+                    'steal': 49
+                },
+               'physical': {
+                    'speed': 69,
+                    'vertical': 68,
+                    'strength': 95
+                }
+           }, tendencies={
+               'offense': {
+                   'shoot_mid': 70,
+                   'shoot_three': 50,
+                   'passing': 35,
+                   'attack_rim': 80,
+                   'post_up': 95
+               },
+               'defense': {
+                   'steal': 50,
+                   'block': 90,
+                   'intercept': 36
+               }
+           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
+           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
+           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           tier=1).save()
+    Player(name="Kawhi Leonard",
+           nickname="The Claw",
+           height=81,
+           attributes={
+                'offense': {
+                    'layup': 93,
+                    'post_shot': 88,
+                    'mid_range': 87,
+                    'three': 83,
+                    'handles': 86,
+                    'passing': 82,
+                    'off_rebound': 70,
+                    'dunk': 86
+                },
+               'defense': {
+                    'def_rebound': 72,
+                    'inside_defense': 83,
+                    'post_defense': 83,
+                    'outside_defense': 97,
+                    'block': 50,
+                    'steal': 92
+                },
+               'physical': {
+                    'speed': 81,
+                    'vertical': 79,
+                    'strength': 79
+                }
+           }, tendencies={
+               'offense': {
+                   'shoot_mid': 78,
+                   'shoot_three': 60,
+                   'passing': 50,
+                   'attack_rim': 87,
+                   'post_up': 67
+               },
+               'defense': {
+                   'steal': 90,
+                   'block': 76,
+                   'intercept': 78
+               }
+           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
+           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
+           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           tier=1).save()
+
+    Player(name="Scottie Pippen",
+           nickname="Pip",
+           height=80,
+           attributes={
+                'offense': {
+                    'layup': 88,
+                    'post_shot': 80,
+                    'mid_range': 84,
+                    'three': 87,
+                    'handles': 80,
+                    'passing': 89,
+                    'off_rebound': 66,
+                    'dunk': 91
+                },
+               'defense': {
+                    'def_rebound': 69,
+                    'inside_defense': 79,
+                    'post_defense': 79,
+                    'outside_defense': 98,
+                    'block': 70,
+                    'steal': 79
+                },
+               'physical': {
+                    'speed': 87,
+                    'vertical': 84,
+                    'strength': 80
+                }
+           }, tendencies={
+               'offense': {
+                   'shoot_mid': 60,
+                   'shoot_three': 50,
+                   'passing': 50,
+                   'attack_rim': 89,
+                   'post_up': 60
+               },
+               'defense': {
+                   'steal': 90,
+                   'block': 76,
+                   'intercept': 78
+               }
+           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
+           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
+           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           tier=1).save()
+
+    Player(name="Dwyane Wade",
+           nickname="Flash",
+           height=76,
+           attributes={
+                'offense': {
+                    'layup': 95,
+                    'post_shot': 79,
+                    'mid_range': 89,
+                    'three': 79,
+                    'handles': 89,
+                    'passing': 95,
+                    'off_rebound': 59,
+                    'dunk': 95
+                },
+               'defense': {
+                    'def_rebound': 61,
+                    'inside_defense': 67,
+                    'post_defense': 67,
+                    'outside_defense': 94,
+                    'block': 59,
+                    'steal': 79
+                },
+               'physical': {
+                    'speed': 97,
+                    'vertical': 85,
+                    'strength': 79
+                }
+           }, tendencies={
+               'offense': {
+                   'shoot_mid': 70,
+                   'shoot_three': 50,
+                   'passing': 60,
+                   'attack_rim': 99,
+                   'post_up': 45
+               },
+               'defense': {
+                   'steal': 75,
+                   'block': 50,
+                   'intercept': 69
+               }
+           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
+           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
+           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           tier=1).save()
+
+    Player(name="Dirk Nowitzki",
+           nickname="Flying Dutchman",
+           height=84,
+           attributes={
+                'offense': {
+                    'layup': 78,
+                    'post_shot': 99,
+                    'mid_range': 89,
+                    'three': 90,
+                    'handles': 60,
+                    'passing': 69,
+                    'off_rebound': 83,
+                    'dunk': 75
+                },
+               'defense': {
+                    'def_rebound': 84,
+                    'inside_defense': 80,
+                    'post_defense': 80,
+                    'outside_defense': 43,
+                    'block': 69,
+                    'steal': 50
+                },
+               'physical': {
+                    'speed': 46,
+                    'vertical': 40,
+                    'strength': 80
+                }
+           }, tendencies={
+               'offense': {
+                   'shoot_mid': 80,
+                   'shoot_three': 80,
+                   'passing': 50,
+                   'attack_rim': 69,
+                   'post_up': 96
+               },
+               'defense': {
+                   'steal': 40,
+                   'block': 40,
+                   'intercept': 35
+               }
+           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
+           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
+           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           tier=1).save()
+
+    Player(name="Allen Iverson",
+           nickname="The Answer",
+           height=72,
+           attributes={
+                'offense': {
+                    'layup': 98,
+                    'post_shot': 60,
+                    'mid_range': 87,
+                    'three': 79,
+                    'handles': 97,
+                    'passing': 90,
+                    'off_rebound': 49,
+                    'dunk': 65
+                },
+               'defense': {
+                    'def_rebound': 55,
+                    'inside_defense': 35,
+                    'post_defense': 35,
+                    'outside_defense': 88,
+                    'block': 39,
+                    'steal': 95
+                },
+               'physical': {
+                    'speed': 97,
+                    'vertical': 97,
+                    'strength': 69
+                }
+           }, tendencies={
+               'offense': {
+                   'shoot_mid': 70,
+                   'shoot_three': 50,
+                   'passing': 65,
+                   'attack_rim': 90,
+                   'post_up': 45
+               },
+               'defense': {
+                   'steal': 90,
+                   'block': 40,
+                   'intercept': 84
+               }
+           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
+           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
+           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           tier=1).save()
+
+    Player(name="Chris Paul",
+           nickname="CP3",
+           height=72,
+           attributes={
+                'offense': {
+                    'layup': 92,
+                    'post_shot': 55,
+                    'mid_range': 86,
+                    'three': 82,
+                    'handles': 94,
+                    'passing': 95,
+                    'off_rebound': 37,
+                    'dunk': 27
+                },
+               'defense': {
+                    'def_rebound': 63,
+                    'inside_defense': 65,
+                    'post_defense': 65,
+                    'outside_defense': 93,
+                    'block': 32,
+                    'steal': 85
+                },
+               'physical': {
+                    'speed': 84,
+                    'vertical': 78,
+                    'strength': 58
+                }
+           }, tendencies={
+               'offense': {
+                   'shoot_mid': 90,
+                   'shoot_three': 70,
+                   'passing': 80,
+                   'attack_rim': 69,
+                   'post_up': 30
+               },
+               'defense': {
+                   'steal': 90,
+                   'block': 40,
+                   'intercept': 99
+               }
+           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
+           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
+           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           tier=1).save()
+
+    Player(name="Kyrie Irving",
+           nickname="Uncle Drew",
+           height=74,
+           attributes={
+                'offense': {
+                    'layup': 96,
+                    'post_shot': 64,
+                    'mid_range': 97,
+                    'three': 90,
+                    'handles': 99,
+                    'passing': 84,
+                    'off_rebound': 36,
+                    'dunk': 30
+                },
+               'defense': {
+                    'def_rebound': 43,
+                    'inside_defense': 32,
+                    'post_defense': 32,
+                    'outside_defense': 62,
+                    'block': 45,
+                    'steal': 66
+                },
+               'physical': {
+                    'speed': 86,
+                    'vertical': 81,
+                    'strength': 37
+                }
+           }, tendencies={
+               'offense': {
+                   'shoot_mid': 80,
+                   'shoot_three': 80,
+                   'passing': 50,
+                   'attack_rim': 94,
+                   'post_up': 45
+               },
+               'defense': {
+                   'steal': 65,
+                   'block': 30,
+                   'intercept': 45
+               }
+           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
+           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
+           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           tier=1).save()
+
+    Player(name="Kareem Abdul-Jabbar",
+           nickname="Cap",
+           height=86,
+           attributes={
+                'offense': {
+                    'layup': 84,
+                    'post_shot': 94,
+                    'mid_range': 88,
+                    'three': 30,
+                    'handles': 48,
+                    'passing': 58,
+                    'off_rebound': 95,
+                    'dunk': 95
+                },
+               'defense': {
+                    'def_rebound': 96,
+                    'inside_defense': 96,
+                    'post_defense': 96,
+                    'outside_defense': 37,
+                    'block': 88,
+                    'steal': 56
+                },
+               'physical': {
+                    'speed': 78,
+                    'vertical': 68,
+                    'strength': 83
+                }
+           }, tendencies={
+               'offense': {
+                   'shoot_mid': 50,
+                   'shoot_three': 20,
+                   'passing': 40,
+                   'attack_rim': 99,
+                   'post_up': 99
+               },
+               'defense': {
+                   'steal': 50,
+                   'block': 95,
+                   'intercept': 65
+               }
+           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
+           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
+           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           tier=1).save()
+
+    Player(name="Carmelo Anthony",
+           nickname="Melo",
+           height=80,
+           attributes={
+                'offense': {
+                    'layup': 89,
+                    'post_shot': 95,
+                    'mid_range': 97,
+                    'three': 80,
+                    'handles': 94,
+                    'passing': 84,
+                    'off_rebound': 45,
+                    'dunk': 85
+                },
+               'defense': {
+                    'def_rebound': 78,
+                    'inside_defense': 73,
+                    'post_defense': 73,
+                    'outside_defense': 72,
+                    'block': 68,
+                    'steal': 78
+                },
+               'physical': {
+                    'speed': 92,
+                    'vertical': 85,
+                    'strength': 82
+                }
+           }, tendencies={
+               'offense': {
+                   'shoot_mid': 75,
+                   'shoot_three': 60,
+                   'passing': 30,
+                   'attack_rim': 80,
+                   'post_up': 95
+               },
+               'defense': {
+                   'steal': 40,
+                   'block': 60,
+                   'intercept': 39
+               }
+           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
+           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
+           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           tier=1).save()
+
+    Player(name="Klay Thompson",
+           nickname="Splash Brother",
+           height=78,
+           attributes={
+                'offense': {
+                    'layup': 88,
+                    'post_shot': 78,
+                    'mid_range': 94,
+                    'three': 97,
+                    'handles': 76,
+                    'passing': 77,
+                    'off_rebound': 36,
+                    'dunk': 65
+                },
+               'defense': {
+                    'def_rebound': 47,
+                    'inside_defense': 64,
+                    'post_defense': 64,
+                    'outside_defense': 91,
+                    'block': 51,
+                    'steal': 59
+                },
+               'physical': {
+                    'speed': 69,
+                    'vertical': 67,
+                    'strength': 55
+                }
+           }, tendencies={
+               'offense': {
+                   'shoot_mid': 80,
+                   'shoot_three': 90,
+                   'passing': 30,
+                   'attack_rim': 70,
+                   'post_up': 40
+               },
+               'defense': {
+                   'steal': 80,
+                   'block': 50,
+                   'intercept': 76
+               }
+           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
+           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
+           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           tier=1).save()
+
+    Player(name="Chris Bosh",
+           nickname="CB4",
+           height=83,
+           attributes={
+                'offense': {
+                    'layup': 88,
+                    'post_shot': 80,
+                    'mid_range': 84,
+                    'three': 79,
+                    'handles': 65,
+                    'passing': 69,
+                    'off_rebound': 87,
+                    'dunk': 85
+                },
+               'defense': {
+                    'def_rebound': 87,
+                    'inside_defense': 85,
+                    'post_defense': 85,
+                    'outside_defense': 60,
+                    'block': 78,
+                    'steal': 59
+                },
+               'physical': {
+                    'speed': 48,
+                    'vertical': 65,
+                    'strength': 85
+                }
+           }, tendencies={
+               'offense': {
+                   'shoot_mid': 70,
+                   'shoot_three': 50,
+                   'passing': 55,
+                   'attack_rim': 88,
+                   'post_up': 80
+               },
+               'defense': {
+                   'steal': 60,
+                   'block': 85,
+                   'intercept': 45
+               }
+           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
+           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
+           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           tier=1).save()
+
+    Player(name="Bill Russell",
+           nickname="Russ",
+           height=82,
+           attributes={
+                'offense': {
+                    'layup': 76,
+                    'post_shot': 65,
+                    'mid_range': 45,
+                    'three': 29,
+                    'handles': 45,
+                    'passing': 78,
+                    'off_rebound': 97,
+                    'dunk': 95
+                },
+               'defense': {
+                    'def_rebound': 98,
+                    'inside_defense': 98,
+                    'post_defense': 98,
+                    'outside_defense': 55,
+                    'block': 99,
+                    'steal': 72
+                },
+               'physical': {
+                    'speed': 84,
+                    'vertical': 88,
+                    'strength': 94
+                }
+           }, tendencies={
+               'offense': {
+                   'shoot_mid': 30,
+                   'shoot_three': 10,
+                   'passing': 60,
+                   'attack_rim': 80,
+                   'post_up': 75
+               },
+               'defense': {
+                   'steal': 70,
+                   'block': 99,
+                   'intercept': 87
+               }
+           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
+           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
+           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           tier=1).save()
+
+    Player(name="Dennis Rodman",
+           nickname="The Worm",
+           height=79,
+           attributes={
+                'offense': {
+                    'layup': 55,
+                    'post_shot': 48,
+                    'mid_range': 65,
+                    'three': 62,
+                    'handles': 45,
+                    'passing': 61,
+                    'off_rebound': 99,
+                    'dunk': 90
+                },
+               'defense': {
+                    'def_rebound': 98,
+                    'inside_defense': 98,
+                    'post_defense': 98,
+                    'outside_defense': 77,
+                    'block': 50,
+                    'steal': 57
+                },
+               'physical': {
+                    'speed': 78,
+                    'vertical': 88,
+                    'strength': 86
+                }
+           }, tendencies={
+               'offense': {
+                   'shoot_mid': 30,
+                   'shoot_three': 10,
+                   'passing': 30,
+                   'attack_rim': 40,
+                   'post_up': 60
+               },
+               'defense': {
+                   'steal': 70,
+                   'block': 99,
+                   'intercept': 87
+               }
+           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
+           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
+           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           tier=1).save()
+
+    Player(name="Isiah Thomas",
+           nickname="Zeke",
+           height=73,
+           attributes={
+                'offense': {
+                    'layup': 97,
+                    'post_shot': 29,
+                    'mid_range': 84,
+                    'three': 72,
+                    'handles': 97,
+                    'passing': 94,
+                    'off_rebound': 35,
+                    'dunk': 65
+                },
+               'defense': {
+                    'def_rebound': 45,
+                    'inside_defense': 40,
+                    'post_defense': 40,
+                    'outside_defense': 81,
+                    'block': 35,
+                    'steal': 71
+                },
+               'physical': {
+                    'speed': 92,
+                    'vertical': 74,
+                    'strength': 60
+                }
+           }, tendencies={
+               'offense': {
+                   'shoot_mid': 80,
+                   'shoot_three': 65,
+                   'passing': 79,
+                   'attack_rim': 90,
+                   'post_up': 40
+               },
+               'defense': {
+                   'steal': 85,
+                   'block': 30,
+                   'intercept': 74
+               }
+           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
+           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
+           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           tier=1).save()
+
+    Player(name="Patrick Ewing",
+           nickname="Big Pat",
+           height=84,
+           attributes={
+                'offense': {
+                    'layup': 69,
+                    'post_shot': 98,
+                    'mid_range': 83,
+                    'three': 35,
+                    'handles': 40,
+                    'passing': 64,
+                    'off_rebound': 67,
+                    'dunk': 95
+                },
+               'defense': {
+                    'def_rebound': 92,
+                    'inside_defense': 94,
+                    'post_defense': 94,
+                    'outside_defense': 35,
+                    'block': 90,
+                    'steal': 59
+                },
+               'physical': {
+                    'speed': 45,
+                    'vertical': 46,
+                    'strength': 92
+                }
+           }, tendencies={
+               'offense': {
+                   'shoot_mid': 40,
+                   'shoot_three': 10,
+                   'passing': 50,
+                   'attack_rim': 78,
+                   'post_up': 99
+               },
+               'defense': {
+                   'steal': 55,
+                   'block': 89,
+                   'intercept': 59
+               }
+           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
+           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
+           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           tier=1).save()
+
+    Player(name="Tony Parker",
+           nickname="T.P",
+           height=74,
+           attributes={
+                'offense': {
+                    'layup': 97,
+                    'post_shot': 58,
+                    'mid_range': 87,
+                    'three': 73,
+                    'handles': 95,
+                    'passing': 94,
+                    'off_rebound': 30,
+                    'dunk': 30
+                },
+               'defense': {
+                    'def_rebound': 47,
+                    'inside_defense': 54,
+                    'post_defense': 54,
+                    'outside_defense': 80,
+                    'block': 35,
+                    'steal': 85
+                },
+               'physical': {
+                    'speed': 99,
+                    'vertical': 85,
+                    'strength': 50
+                }
+           }, tendencies={
+               'offense': {
+                   'shoot_mid': 80,
+                   'shoot_three': 70,
+                   'passing': 60,
+                   'attack_rim': 75,
+                   'post_up': 20
+               },
+               'defense': {
+                   'steal': 75,
+                   'block': 20,
+                   'intercept': 67
+               }
+           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
+           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
+           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           tier=1).save()
+
+    Player(name="Manu Ginobili",
+           nickname="Gino",
+           height=78,
+           attributes={
+                'offense': {
+                    'layup': 92,
+                    'post_shot': 65,
+                    'mid_range': 80,
+                    'three': 84,
+                    'handles': 86,
+                    'passing': 82,
+                    'off_rebound': 52,
+                    'dunk': 50
+                },
+               'defense': {
+                    'def_rebound': 62,
+                    'inside_defense': 45,
+                    'post_defense': 45,
+                    'outside_defense': 75,
+                    'block': 51,
+                    'steal': 70
+                },
+               'physical': {
+                    'speed': 80,
+                    'vertical': 67,
+                    'strength': 43
+                }
+           }, tendencies={
+               'offense': {
+                   'shoot_mid': 80,
+                   'shoot_three': 60,
+                   'passing': 40,
+                   'attack_rim': 80,
+                   'post_up': 30
+               },
+               'defense': {
+                   'steal': 65,
+                   'block': 40,
+                   'intercept': 67
+               }
+           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
+           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
+           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           tier=1).save()
+
+
+def fallow(apps, schema_editor):
+    Player = apps.get_model('blacktop', 'Player')
+    Player.objects.all().delete()
+
+
+class Migration(migrations.Migration):
     dependencies = [
         ('blacktop', '0001_initial'),
     ]
 
     operations = [
+        migrations.RunPython(seed, fallow)
     ]

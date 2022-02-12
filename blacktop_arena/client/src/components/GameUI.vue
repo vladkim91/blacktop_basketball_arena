@@ -330,6 +330,7 @@ export default {
                 `${this.gameScore.teamOne}:${this.gameScore.teamTwo}`
             );
           }
+          
         } else {
           // TEAM 1
           if (this.possession === 0) {

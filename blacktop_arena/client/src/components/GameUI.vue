@@ -2,15 +2,23 @@
   <div class="game-ui">
     <h1>GAME UI</h1>
     <h2>Team One</h2>
-    <div v-for="player in teams.teamOne" :key="player.id">
-      {{ player.name }}
+    <div
+      class="team-2-players"
+      v-for="player in teams.teamOne"
+      :key="player.id"
+    >
+      <div class="p1-container">{{ player.name }}</div>
     </div>
     <h2>Team Two</h2>
-    <div v-for="player in teams.teamTwo" :key="player.id">
-      {{ player.name }}
+    <div
+      class="team-2-players"
+      v-for="player in teams.teamTwo"
+      :key="player.id"
+    >
+      <div class="p2-container">{{ player.name }}</div>
     </div>
     <div class="log">
-      <div class="line" v-for="line in gameLog.reverse()" :key="line.id">
+      <div class="line" v-for="line in gameLog" :key="line.id">
         {{ line }}
       </div>
     </div>
@@ -86,50 +94,7 @@ export default {
     getPlayerOverall() {},
     startGame() {
       this.gameInProgress = true;
-      while (this.gameScore.teamOne < 21 && this.gameScore.teamTwo < 21) {
-        if (this.possession === null) {
-          this.jumpBall();
-        }
-
-        let currentPlayer;
-        let shotType;
-        let matchup;
-        let steal;
-        if (this.possession === 1) {
-          const currentPlayerIndex = this.checkShootPass(this.teams.teamTwo);
-          shotType = this.pickTypeOfShot(
-            this.teams.teamTwo[currentPlayerIndex]
-          );
-          currentPlayer = this.teams.teamTwo[currentPlayerIndex];
-          matchup = this.teams.teamOne[currentPlayerIndex];
-          steal = this.calcSteal(this.teams.teamTwo, this.teams.teamOne);
-          if (steal === true) {
-            this.logSteal(currentPlayer, matchup);
-            this.playerStatTemplate.teamTwo[`${currentPlayer.name}`].steals++;
-            this.teamStats.teamTwo.steals++;
-            this.playerStatTemplate.teamOne[`${matchup.name}`].turnovers++;
-            this.teamStats.teamOne.turnovers++;
-          }
-        } else {
-          const currentPlayerIndex = this.checkShootPass(this.teams.teamOne);
-          shotType = this.pickTypeOfShot(
-            this.teams.teamOne[currentPlayerIndex]
-          );
-          currentPlayer = this.teams.teamOne[currentPlayerIndex];
-          matchup = this.teams.teamTwo[currentPlayerIndex];
-          steal = this.calcSteal(this.teams.teamOne, this.teams.teamTwo);
-          if (steal === true) {
-            this.logSteal(currentPlayer, matchup);
-            this.playerStatTemplate.teamOne[`${currentPlayer.name}`].steals++;
-            this.teamStats.teamOne.steals++;
-            this.playerStatTemplate.teamTwo[`${matchup.name}`].turnovers++;
-            this.teamStats.teamTwo.turnovers++;
-          }
-        }
-
-        this.shootBall(currentPlayer, shotType, matchup);
-      }
-      this.gameInProgress = false;
+      this.gameCycle();
     },
     jumpBall() {
       const [playerOne, playerTwo] = this.getTallest();
@@ -141,13 +106,13 @@ export default {
       ];
       if (parseFloat(Math.random().toFixed(2)) < percentage[0]) {
         this.possession = 0;
-        this.gameLog.push(`${playerOne.name} won the tip! `);
+        this.gameLog.unshift(`${playerOne.name} won the tip! `);
       } else {
         this.possession = 1;
-        this.gameLog.push(`${playerTwo.name} won the tip! `);
+        this.gameLog.unshift(`${playerTwo.name} won the tip! `);
       }
     },
-
+  
     getTallest() {
       const tallestOne = this.teams.teamOne.sort((a, b) => {
         return b.height - a.height;
@@ -338,7 +303,7 @@ export default {
             this.playerStatTemplate.teamOne[`${player.name}`].points += 2;
             this.gameScore.teamOne += 2;
             this.possession++;
-            this.gameLog.push(
+            this.gameLog.unshift(
               string[Math.floor(Math.random() * string.length)] +
                 `${message}` +
                 `${this.gameScore.teamOne}:${this.gameScore.teamTwo}`
@@ -359,7 +324,7 @@ export default {
             this.playerStatTemplate.teamTwo[`${player.name}`].points += 2;
             this.gameScore.teamTwo += 2;
             this.possession--;
-            this.gameLog.push(
+            this.gameLog.unshift(
               string[Math.floor(Math.random() * string.length)] +
                 `${message}` +
                 `${this.gameScore.teamOne}:${this.gameScore.teamTwo}`
@@ -387,7 +352,7 @@ export default {
 
             this.gameScore.teamOne += 3;
             this.possession++;
-            this.gameLog.push(
+            this.gameLog.unshift(
               string[Math.floor(Math.random() * string.length)] +
                 `${message}` +
                 `${this.gameScore.teamOne}:${this.gameScore.teamTwo}`
@@ -412,7 +377,7 @@ export default {
             this.playerStatTemplate.teamTwo[`${player.name}`].threeM++;
             this.gameScore.teamTwo += 3;
             this.possession--;
-            this.gameLog.push(
+            this.gameLog.unshift(
               string[Math.floor(Math.random() * string.length)] +
                 `${message}` +
                 `${this.gameScore.teamOne}:${this.gameScore.teamTwo}`
@@ -432,7 +397,7 @@ export default {
             this.playerStatTemplate.teamOne[`${player.name}`].fga++;
             this.teamStats.teamOne.fga++;
           }
-          this.gameLog.push(
+          this.gameLog.unshift(
             string[Math.floor(Math.random() * string.length)] +
               `${this.gameScore.teamOne}:${this.gameScore.teamTwo}`
           );
@@ -446,7 +411,7 @@ export default {
             this.playerStatTemplate.teamTwo[`${player.name}`].fga++;
             this.teamStats.teamTwo.fga++;
           }
-          this.gameLog.push(
+          this.gameLog.unshift(
             string[Math.floor(Math.random() * string.length)] +
               `${this.gameScore.teamOne}:${this.gameScore.teamTwo}`
           );
@@ -501,7 +466,7 @@ export default {
           const chance = Math.random().toFixed(2);
           if (layupDunk === 'layup') {
             if (chance > 0.3) {
-              messageVariation.push(
+              messageVariation.unshift(
                 ...[
                   `${player.name} missed an acrobatic layup. `,
                   `${player.name}'s finger roll layup is short. `,
@@ -518,7 +483,7 @@ export default {
                 this.teamStats.teamOne.blocks++;
               }
 
-              messageVariation.push(
+              messageVariation.unshift(
                 ...[
                   `${player.name}'s layup attempted was sent to the bleachers by ${matchup.name} `,
                   `${player.name} was blocked by ${matchup.name} `
@@ -528,7 +493,7 @@ export default {
             }
           } else if (layupDunk === 'dunk') {
             if (chance > 0.15) {
-              messageVariation.push(
+              messageVariation.unshift(
                 ...[
                   `${player.name}'s dunk attempt was unsuccessful. `,
                   `${player.name} attempts a dunk in traffic. ${matchup.name}'s contest is too perfect. `,
@@ -545,7 +510,7 @@ export default {
                 this.teamStats.teamOne.blocks++;
               }
 
-              messageVariation.push(
+              messageVariation.unshift(
                 ...[
                   `${player.name} get's stuffed at the rim by ${matchup.name}. `,
                   `${player.name} is blocked at the rim by ${matchup.name}. `
@@ -573,7 +538,7 @@ export default {
           const chance = Math.random().toFixed(2);
           const messageVariation = [];
           if (chance > 0.2) {
-            messageVariation.push(
+            messageVariation.unshift(
               ...[
                 `${player.name} misses a jump hook. `,
                 `${player.name} attempts a skyhook and misses. `,
@@ -590,7 +555,7 @@ export default {
               this.teamStats.teamOne.blocks++;
             }
             //
-            messageVariation.push(
+            messageVariation.unshift(
               ...[
                 `${matchup.name} stuffs ${player.name}'s jump hook. `,
                 `${matchup.name} sends ${player.name}'s weak layup under the rim the stands. `,
@@ -745,7 +710,7 @@ export default {
       return rebounder;
     },
     logRebounds(string) {
-      this.gameLog.push(
+      this.gameLog.unshift(
         string[Math.floor(Math.random() * string.length)] +
           `${this.gameScore.teamOne}:${this.gameScore.teamTwo}`
       );
@@ -794,7 +759,7 @@ export default {
         `${stealPlayer.name} intercepts a sloppy entry pass by ${turnoverPlayer.name}. `,
         `${turnoverPlayer.name} with a turnover. ${stealPlayer.name} with a steal. `
       ];
-      this.gameLog.push(
+      this.gameLog.unshift(
         messageVariation[Math.floor(Math.random() * messageVariation.length)] +
           `${this.gameScore.teamOne}:${this.gameScore.teamTwo}`
       );
@@ -862,6 +827,50 @@ export default {
         };
       });
       return { teamOne, teamTwo };
+    },
+    gameCycle() {
+      if (this.possession === null) {
+        this.jumpBall();
+      }
+
+      let currentPlayer;
+      let shotType;
+      let matchup;
+      let steal;
+      if (this.possession === 1) {
+        const currentPlayerIndex = this.checkShootPass(this.teams.teamTwo);
+        shotType = this.pickTypeOfShot(this.teams.teamTwo[currentPlayerIndex]);
+        currentPlayer = this.teams.teamTwo[currentPlayerIndex];
+        matchup = this.teams.teamOne[currentPlayerIndex];
+        steal = this.calcSteal(this.teams.teamTwo, this.teams.teamOne);
+        if (steal === true) {
+          this.logSteal(currentPlayer, matchup);
+          this.playerStatTemplate.teamTwo[`${currentPlayer.name}`].steals++;
+          this.teamStats.teamTwo.steals++;
+          this.playerStatTemplate.teamOne[`${matchup.name}`].turnovers++;
+          this.teamStats.teamOne.turnovers++;
+        }
+      } else {
+        const currentPlayerIndex = this.checkShootPass(this.teams.teamOne);
+        shotType = this.pickTypeOfShot(this.teams.teamOne[currentPlayerIndex]);
+        currentPlayer = this.teams.teamOne[currentPlayerIndex];
+        matchup = this.teams.teamTwo[currentPlayerIndex];
+        steal = this.calcSteal(this.teams.teamOne, this.teams.teamTwo);
+        if (steal === true) {
+          this.logSteal(currentPlayer, matchup);
+          this.playerStatTemplate.teamOne[`${currentPlayer.name}`].steals++;
+          this.teamStats.teamOne.steals++;
+          this.playerStatTemplate.teamTwo[`${matchup.name}`].turnovers++;
+          this.teamStats.teamTwo.turnovers++;
+        }
+      }
+
+      this.shootBall(currentPlayer, shotType, matchup);
+      if (this.gameScore.teamOne < 21 && this.gameScore.teamTwo < 21) {
+        setTimeout(this.gameCycle, 1000);
+        return;
+      }
+      this.gameInProgress = false;
     }
   }
 };

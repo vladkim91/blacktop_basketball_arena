@@ -5,7 +5,8 @@ export default createStore({
   state: {
     team: {},
     players: [],
-    teams: []
+    teams: [],
+    isLoggedIn: false
   },
   mutations: {
     setTeams(state, teams) {
@@ -16,6 +17,9 @@ export default createStore({
     },
     setTeam(state, team) {
       state.team = team;
+    },
+    setLoggedIn(state, bool) {
+      state.isLoggedIn = bool;
     }
   },
   actions: {},

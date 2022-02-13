@@ -34,6 +34,7 @@ export default {
         'setTeam',
         JSON.parse(localStorage.getItem('team_name'))
       );
+      this.$store.commit('setLoggedIn', true)
       this.$router.push('/home');
     }
   }

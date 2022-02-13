@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div class="app">
     <router-view />
   </div>
 </template>
@@ -14,30 +14,31 @@ export default {
     this.checkTeam();
   },
   computed: {
-    team_id() {
-      return this.$store.state.id;
+    team() {
+      return this.$store.state.team;
     }
   },
-  data() {
-    return {
-      signedIn: false
-    };
-  },
-
   methods: {
     async getAllPlayers() {
       const res = await GetPlayers();
       this.$store.commit('setPlayers', res);
     },
     checkTeam() {
-      console.log('checking');
-      if (this.team_id) {
-        console.log('has id');
-        this.signedIn = true;
-      } else {
-        this.$router.push('/login');
+        if (JSON.parse(localStorage.getItem('team_name')) === null) {
+        this.$router.push('/login')
       }
     }
   }
 };
 </script>
+
+<style>
+.app {
+  margin: 0;
+  background-image: url('./assets/background.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  color: white;
+}
+</style>

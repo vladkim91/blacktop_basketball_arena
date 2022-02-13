@@ -1,11 +1,18 @@
 <template>
   <div class="nav">
-    <router-link to="/game">Game</router-link>
+
+    <button @click="logout">log out</button>
   </div> 
 </template>
 
 <script>
 export default {
-  name: 'Nav'
+  name: 'Nav',
+  methods: {
+    logout() {
+      localStorage.removeItem('team_name')
+      this.$router.push('/login')
+    }
+  }
 };
 </script>

@@ -3,7 +3,7 @@ import { createStore } from 'vuex';
 
 export default createStore({
   state: {
-    id: '',
+    team: {},
     players: [],
     teams: []
   },
@@ -14,8 +14,8 @@ export default createStore({
     setPlayers(state, players) {
       state.players = players;
     },
-    setId(state, id) {
-      state.id = id;
+    setTeam(state, team) {
+      state.team = team;
     }
   },
   actions: {},

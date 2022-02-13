@@ -7,8 +7,7 @@
       <input type="password" name="password" v-model="password" />
       <button @click="submitForm" type="submit">Login</button>
     </form>
-    <p>Don't have a team? <router-link to="/signup">Sign Up</router-link> </p>
-
+    <p>Don't have a team? <router-link to="/signup">Sign Up</router-link></p>
   </div>
 </template>
 
@@ -32,11 +31,10 @@ export default {
       const res = await GetTeamByNameAndPassword(formData);
       localStorage.setItem('team_name', JSON.stringify(res));
       this.$store.commit(
-        'setId',
-        JSON.parse(localStorage.getItem('team_name')).id
+        'setTeam',
+        JSON.parse(localStorage.getItem('team_name'))
       );
-      this.$router.push('/home')
-
+      this.$router.push('/home');
     }
   }
 };

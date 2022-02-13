@@ -4,6 +4,7 @@ import Login from '../views/Login.vue';
 import Game from '../views/Game.vue';
 import Home from '../views/Home.vue';
 import GameUi from '../components/GameUI.vue';
+import TeamDetails from '../views/TeamDetails.vue';
 
 const routes = [
   {
@@ -30,6 +31,11 @@ const routes = [
     path: '/home',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/team-details',
+    name: 'TeamDetails',
+    component: TeamDetails
   }
 ];
 

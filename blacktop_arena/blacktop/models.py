@@ -44,9 +44,9 @@ class Player(models.Model):
     height = models.IntegerField()
     attributes = models.JSONField(default=dict)
     tendencies = models.JSONField(default=dict)
-    avatar = models.CharField(max_length=200)
-    description = models.CharField(max_length=300)
-    image = models.CharField(max_length=300)
+    avatar = models.CharField(max_length=500)
+    description = models.CharField(max_length=1000)
+    image = models.CharField(max_length=500)
     tier = models.IntegerField()
     def __str__(self):
         return self.name

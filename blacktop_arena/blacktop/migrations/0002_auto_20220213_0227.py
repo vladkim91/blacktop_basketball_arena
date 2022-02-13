@@ -134,7 +134,7 @@ def seed(apps, schema_editor):
                    'block': 80,
                    'intercept': 75
                }
-           }, avatar="https://cdn.vox-cdn.com/thumbor/sJnHvKP-S_10qHcFrZSdS-s6Zao=/0x125:3160x2232/1400x1400/filters:focal(0x125:3160x2232):format(jpeg)/cdn.vox-cdn.com/uploads/chorus_image/image/15104101/20130618_ajl_ah6_209.0.jpg",
+           }, avatar="https://www.nydailynews.com/resizer/IT80S2462HG71fa8Gn-dW82rrGI=/415x276/top/arc-anglerfish-arc2-prod-tronc.s3.amazonaws.com/public/CEZW2RCG7LMRM2QXPE2OQL3F5Y.jpg",
            description="Timothy Theodore Duncan (born April 25, 1976) is an American former professional basketball player and coach. Nicknamed ' the Big Fundamental ', he is widely regarded as the greatest power forward of all time and one of the greatest players in NBA history.",
            image="https://media.newyorker.com/photos/590978241c7a8e33fb38fb1d/master/w_2560%2Cc_limit/Crouch-Duncan.jpg",
            tier=1).save()
@@ -672,7 +672,7 @@ def seed(apps, schema_editor):
                    'block': 76,
                    'intercept': 78
                }
-           }, avatar="https://cdn.vox-cdn.com/thumbor/WPYTc55lvg1IQ6dOKsA5F2pNTWc=/0x61:2044x1424/1400x1400/filters:focal(0x61:2044x1424):format(jpeg)/cdn.vox-cdn.com/uploads/chorus_image/image/47244358/GettyImages-2912742.0.jpg",
+           }, avatar="https://heavy.com/wp-content/uploads/2020/04/gettyimages-288433-e1587404676462.jpg?quality=65&strip=all&w=780",
            description="Considered one of the greatest small forwards of all time, Pippen was named to the NBA All-Defensive First Team eight consecutive times and the All-NBA First Team three times. He was a seven-time NBA All-Star and was the NBA All-Star Game MVP in 1994. He was named one of the 50 Greatest Players in NBA History during the 1996–97 season, and is one of four players to have his jersey retired by the Chicago Bulls",
            image="https://www.nba.com/bulls/sites/bulls/files/200511_pippen_cp.jpg",
            tier=1).save()
@@ -764,7 +764,7 @@ def seed(apps, schema_editor):
                }
            }, avatar="https://dsf-img-storage.s3.us-east-2.amazonaws.com/wp-content/uploads/2017/01/05130731/Mavs-Fanatic-10-of-52-e1510873435146.jpg",
            description="Nowitzki is the only player ever to play for a single NBA franchise for 21 seasons. He is a 14-time All-Star, a 12-time All-NBA Team member,[10] the first European player to start in an All-Star Game, and the first European player to receive the NBA Most Valuable Player Award. Nowitzki is the highest-scoring foreign-born player in NBA history.",
-           image="https://cdn.vox-cdn.com/thumbor/nxlEiW5hKYiqmHU_wzwgmXU3XDw=/0x0:3000x4500/1200x800/filters:focal(1324x1101:1804x1581)/cdn.vox-cdn.com/uploads/chorus_image/image/69775268/110267039.0.jpg",
+           image="https://th.bing.com/th/id/R.40ef4aa877f401f06511757a4992b69e?rik=1lgAORZN%2fgXNLA&riu=http%3a%2f%2fimg.bleacherreport.net%2fimg%2fimages%2fphotos%2f002%2f821%2f208%2fhi-res-94543bac4bf7dee10e5ffecbf8d2037a_crop_exact.jpg%3fw%3d1200%26h%3d1200%26q%3d75&ehk=uec%2bDuybaNxpmG%2fMcDFq8J8LTy77z2xaN2Z6k4oWC%2bM%3d&risl=&pid=ImgRaw&r=0",
            tier=1).save()
 
     Player(name="Allen Iverson",
@@ -809,7 +809,7 @@ def seed(apps, schema_editor):
                }
            }, avatar="http://assets.rappler.com/612F469A6EA84F6BAE882D2B94A4B421/img/FCDA36695F0C4003803EC177E3F4269F/allen-iverson-sixers-epa-file-20140801_FCDA36695F0C4003803EC177E3F4269F.jpg",
            description="Allen Iverson is an American former professional basketball player. Nicknamed 'the Answer' and 'AI', he played 14 seasons in the National Basketball Association (NBA) at both the shooting guard and point guard positions. Iverson won NBA Rookie of the Year Award in 1997 and was an 11-time NBA All-Star, won the All-Star game MVP award in 2001 and 2005, and was the NBA's Most Valuable Player (MVP) in 2001. He was inducted into the Naismith Memorial Basketball Hall of Fame in 2016. In October 2021, Iverson was honored as one of the league's greatest players of all time by being named to the NBA 75th Anniversary Team.",
-           image="https://images2.minutemediacdn.com/image/fetch/w_2000,h_2000,c_fit/https%3A%2F%2Fsection215.com%2Fwp-content%2Fuploads%2Fgetty-images%2F2017%2F07%2F1939608.jpeg",
+           image="https://buysidesports.com/wp-content/uploads/2020/06/allen-iverson-surprising-facts-1-e1596251286150.jpeg",
            tier=1).save()
 
     Player(name="Chris Paul",
@@ -1079,7 +1079,7 @@ def seed(apps, schema_editor):
                }
            }, avatar="http://images.thepostgame.com/assets/public/styles/slideshow_image/public/GettyImages-150590242-compressor.jpg",
            description="While at Toronto, Bosh became a five-time NBA All-Star, was named to the All-NBA Second Team once, played for the U.S. national team (with whom he won a gold medal at the 2008 Summer Olympics), and supplanted former fan favorite Vince Carter as the face and leader of the Raptors franchise. In the 2006–07 season, Bosh led the Raptors to their first playoff appearance in five years and their first-ever division title. He left Toronto in 2010 as the franchise's all-time leader in points, rebounds, blocks, and minutes played.",
-           image="https://dmn-dallas-news-prod.cdn.arcpublishing.com/resizer/tGS2dLdSAsgfT_6L6rqL1Ptu-jc=/1660x0/smart/filters:no_upscale()/cloudfront-us-east-1.images.arcpublishing.com/dmn/YA23A6QBX5DUFPTYT3W6PE6LQU.JPG",
+           image="https://www.cleveland.com/resizer/MH_H8zEUC6FWyOtbQDo1bzWCuaY=/1280x0/smart/advancelocal-adapter-image-uploads.s3.amazonaws.com/image.cleveland.com/home/cleve-media/width2048/img/cavs_impact/photo/chris-bosh-2f5fc84c60ad8d8f.jpg",
            tier=1).save()
 
     Player(name="Bill Russell",
@@ -1124,7 +1124,7 @@ def seed(apps, schema_editor):
                }
            }, avatar="https://www.giantbomb.com/a/uploads/square_medium/14/141373/2681643-0711686871-dna06.jpg",
            description="A five-time NBA Most Valuable Player and a 12-time All-Star, he was the centerpiece of the Celtics dynasty that won eleven NBA championships during his 13-year career. Russell and Henri Richard of the National Hockey League are tied for the record of the most championships won by an athlete in a North American sports league. Russell led the San Francisco Dons to two consecutive NCAA championships in 1955 and 1956, and he captained the gold-medal winning U.S. national basketball team at the 1956 Summer Olympics.",
-           image="https://media.gq.com/photos/5ec5937a5050fbe76451bd7e/4:3/w_2399,h_1799,c_limit/Bill%20Russell%20biography%20gq%20may%202020.jpg",
+           image="https://s-i.huffpost.com/gadgets/slideshows/304026/slide_304026_2589444_free.jpg",
            tier=1).save()
 
     Player(name="Dennis Rodman",
@@ -1212,9 +1212,9 @@ def seed(apps, schema_editor):
                    'block': 30,
                    'intercept': 74
                }
-           }, avatar="https://images2.minutemediacdn.com/image/upload/c_fill,w_720,ar_16:9,f_auto,q_auto,g_auto/shape/cover/sport/Detroit-Pistons-v-Washington-Bullets-cecd0d5559f7f8af7055e5023542b143.jpg",
+           }, avatar="https://th.bing.com/th/id/OIP.xkNKvPjHyXt-whUQbzK6bwHaEK?pid=ImgDet&rs=1",
            description="A point guard, the 12-time NBA All-Star was named one of the 50 Greatest Players in NBA History as well as the 75 Greatest Players, and inducted into the Naismith Memorial Basketball Hall of Fame. He played his entire professional career for the Detroit Pistons of the National Basketball Association (NBA).",
-           image="https://cdn.vox-cdn.com/thumbor/Qouvr0XNNkGYEH0a_T4fJNxQimU=/0x0:768x432/1200x800/filters:focal(323x155:445x277)/cdn.vox-cdn.com/uploads/chorus_image/image/63572839/121227120144_isiah_thomas.video_player.0.jpg",
+           image="https://th.bing.com/th/id/R.57c9dbd49ba36969e21aef35228a4467?rik=7lGk1xMz0OFqGA&riu=http%3a%2f%2fimages.complex.com%2fcomplex%2fimage%2fupload%2fc_limit%2cw_680%2ff_auto%2cfl_lossy%2cpg_1%2cq_auto%2fp7pkha6ef63hoq2vyjhr.jpg&ehk=wkCsEHX%2foJ4yXQ3PyY%2bzbeufl26SuWgU%2ffeSJL0bsnQ%3d&risl=&pid=ImgRaw&r=0",
            tier=1).save()
 
     Player(name="Patrick Ewing",
@@ -1259,7 +1259,7 @@ def seed(apps, schema_editor):
                }
            }, avatar="https://comicvine.gamespot.com/a/uploads/square_medium/11/114183/5167058-20150805-1-ewing.jpg",
            description="He had a seventeen-year NBA career, predominantly playing for the New York Knicks, where he was an eleven-time all-star and named to seven All-NBA teams. The Knicks appeared in the NBA Finals twice (1994 and 1999) during his tenure. He won Olympic gold medals as a member of the 1984 and 1992 United States men's Olympic basketball teams. Ewing was selected as one of the 50 Greatest Players in NBA History in 1996 and as one of the 75 Greatest Players in NBA History in 2021.",
-           image="https://cdn.vox-cdn.com/thumbor/cukL2Xx2Lskmf6xLN9_E_7Itgrk=/0x0:2398x3600/1200x800/filters:focal(1176x1135:1558x1517)/cdn.vox-cdn.com/uploads/chorus_image/image/66764602/81188601.jpg.0.jpg",
+           image="https://images.pristineauction.com/129/1290754/main_1566511888-Patrick-Ewing-Signed-New-York-Knicks-16x20-Photo-Steiner-COA-PristineAuction.com.jpg",
            tier=1).save()
 
     Player(name="Tony Parker",
@@ -1304,7 +1304,7 @@ def seed(apps, schema_editor):
                }
            }, avatar="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQK-dEHtfzaUKXkUxDBemnOR80cl7UmRDB-SA&usqp=CAU",
            description="Parker was named to six NBA All-Star games, three All-NBA Second Teams, an All-NBA Third Team and was named MVP of the 2007 NBA Finals. He was also a member of the All-Rookie Second Team and had his No. 9 retired by the Spurs. He is widely regarded as one of the greatest European players of all time.",
-           image="https://cdn.vox-cdn.com/thumbor/9376c3-b7PsZcOPIXRwJRS-hBsI=/0x0:2568x2062/1200x800/filters:focal(1274x222:1684x632)/cdn.vox-cdn.com/uploads/chorus_image/image/66757224/84588392.jpg.0.jpg",
+           image="https://s.hdnux.com/photos/01/11/36/32/19261106/14/rawImage.jpg",
            tier=1).save()
 
     Player(name="Manu Ginobili",

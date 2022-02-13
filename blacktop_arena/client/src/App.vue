@@ -1,24 +1,42 @@
 <template>
-  <div id="nav">
-    <router-link to="/signup">Sign Up</router-link> |
-    <router-link to="/login">Log In</router-link> |
-    <router-link to="/game">Game</router-link>
+  <div id="app">
+    <router-view />
   </div>
-  <router-view />
 </template>
 
 <script>
 import { GetPlayers } from './services/routes';
+
 export default {
   name: 'App',
   mounted: function () {
     this.getAllPlayers();
+    this.checkTeam();
   },
+  computed: {
+    team_id() {
+      return this.$store.state.id;
+    }
+  },
+  data() {
+    return {
+      signedIn: false
+    };
+  },
+
   methods: {
     async getAllPlayers() {
       const res = await GetPlayers();
-      console.log(res)
       this.$store.commit('setPlayers', res);
+    },
+    checkTeam() {
+      console.log('checking');
+      if (this.team_id) {
+        console.log('has id');
+        this.signedIn = true;
+      } else {
+        this.$router.push('/login');
+      }
     }
   }
 };

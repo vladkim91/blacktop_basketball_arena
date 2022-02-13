@@ -3,8 +3,7 @@ import { createStore } from 'vuex';
 
 export default createStore({
   state: {
-    token: '',
-    isAuthenticated: false,
+    id: '',
     players: [],
     teams: []
   },
@@ -14,6 +13,9 @@ export default createStore({
     },
     setPlayers(state, players) {
       state.players = players;
+    },
+    setId(state, id) {
+      state.id = id;
     }
   },
   actions: {},

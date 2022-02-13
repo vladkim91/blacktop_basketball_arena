@@ -4,22 +4,21 @@
     <router-link to="/login">Log In</router-link> |
     <router-link to="/game">Game</router-link>
   </div>
-  <router-view/>
+  <router-view />
 </template>
 
 <script>
-
-import axios from 'axios';
+import { GetPlayers } from './services/routes';
 export default {
   name: 'App',
-
-  beforeCreate() {
-    this.$store.commit('initializeStore');
-    const token = this.$store.state.token;
-    if (token) {
-      axios.defaults.headers.common['Authorization'] = 'Token ' + token;
-    } else {
-      axios.defaults.headers.common['Authorization'] = '';
+  mounted: function () {
+    this.getAllPlayers();
+  },
+  methods: {
+    async getAllPlayers() {
+      const res = await GetPlayers();
+      console.log(res)
+      this.$store.commit('setPlayers', res);
     }
   }
 };

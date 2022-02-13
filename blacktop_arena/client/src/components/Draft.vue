@@ -47,6 +47,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'Draft',
   data() {

@@ -19,27 +19,37 @@ ___________
 * Run 5 v 5 simulations
 * Participate in tournaments and seasons
 * Added complexity with a richer attribute system
-
-
-## ERD
-
-![](./blacktop_arena/client/src/assets/erd.jpeg)
+* Deploy on Heroku and Surge
+* Create auto generated players using external NBA API
 
 
 ## Component Hierarchy Diagram
 
-![](./blacktop_arena/client/src/assets/chd.jpeg)
+![]('./readme_images/erd.png')
 
 
-## Concept Design in Figma
-![](./blacktop_arena/client/src/assets/Game_ui.png)
-![](./blacktop_arena/client/src/assets/profile.png)
+# Screenshots
+### Main Page
+![](./readme_images/main.png)
+### Player Tribute and attribute page
+![](./readme_images/player.png)
+### Game history and team record page
+![](./readme_images/history.png)
+### Draft screen
+![](./readme_images/draft.png)
+### In game 3 v 3 simulation
+![](./readme_images/simulation.png)
+
 
 
 ## Inspiration
 
 In my project 1 I was able to create a mini fantasy RPG game and I always looked back with hopes of having time to polish it up using new learned skills and frameworks.
 Blacktop Capstone project is an upgraded versions of OOP oriented sandbox game with elements of basketball and usage of PSQL database.
+
+## Post Development
+
+...
 
 
 ## Links

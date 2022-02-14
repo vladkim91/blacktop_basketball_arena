@@ -1,21 +1,18 @@
 from django.db import models
-# from django.contrib.auth.models import AbstractUser
 
-# class User(AbstractUser):
-#     pass
 
 class Team(models.Model):
     team_name = models.CharField(max_length=100)
     password = models.CharField(max_length=100)
     wins = models.IntegerField(default=0)
     losses = models.IntegerField(default=0)
+
     def __str__(self):
         return self.team_name
 
 
-
 class Game(models.Model):
-    name = models.CharField(max_length=10,default="game_name")
+    name = models.CharField(max_length=10, default="game_name")
     game_stats = models.JSONField(default=dict)
     winner = models.ForeignKey(
         Team, related_name='winner', null=True, default=None, on_delete=models.SET_DEFAULT, blank=True
@@ -24,8 +21,10 @@ class Game(models.Model):
     team_two_stats = models.JSONField(default=dict)
     team_one_score = models.IntegerField(default=0)
     team_two_score = models.IntegerField(default=0)
-    team_one = models.ForeignKey(Team, related_name='team_one', null=True, default=None, on_delete=models.SET_DEFAULT, blank=True)
-    team_two = models.ForeignKey(Team, related_name='team_two', null=True, default=None, on_delete=models.SET_DEFAULT, blank=True)
+    team_one = models.ForeignKey(Team, related_name='team_one', null=True,
+                                 default=None, on_delete=models.SET_DEFAULT, blank=True)
+    team_two = models.ForeignKey(Team, related_name='team_two', null=True,
+                                 default=None, on_delete=models.SET_DEFAULT, blank=True)
     team_one_squad = models.JSONField(default=dict)
     team_two_squad = models.JSONField(default=dict)
     date = models.DateField(
@@ -35,7 +34,6 @@ class Game(models.Model):
 
     def __str__(self):
         return self.name
-
 
 
 class Player(models.Model):
@@ -48,6 +46,16 @@ class Player(models.Model):
     description = models.CharField(max_length=1000)
     image = models.CharField(max_length=500)
     tier = models.IntegerField()
+
     def __str__(self):
         return self.name
 
+
+class Squad(models.Model):
+    team_name = models.CharField(max_length=100)
+    players = models.JSONField(default=dict)
+    wins = models.IntegerField(default=0)
+    losses = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.team_name

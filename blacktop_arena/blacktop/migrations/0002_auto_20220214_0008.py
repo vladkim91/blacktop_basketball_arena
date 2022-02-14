@@ -359,7 +359,7 @@ def seed(apps, schema_editor):
                }
            }, avatar="https://live-production.wcms.abc-cdn.net.au/6a0e2b28bb4567afb28e6d1d8aed521d?impolicy=wcms_crop_resize&cropH=1688&cropW=3000&xPos=0&yPos=77&width=862&height=485",
            description="Widely regarded as one of the greatest basketball players of all time Bryant won five NBA championships, was an 18-time All-Star, a 15-time member of the All-NBA Team, a 12-time member of the All-Defensive Team, the 2008 NBA Most Valuable Player (MVP), and a two-time NBA Finals MVP.",
-           image="https://static.wikia.nocookie.net/modernfamily/images/d/d2/Kobe_bryant_con_competencia.jpg/revision/latest?cb=20140107103249",
+           image="https://cdn.bleacherreport.net/images_root/slides/photos/000/368/570/102184753_original.jpg?1283212258",
            tier=1).save()
 
     Player(name="Shaquille O'Neal",

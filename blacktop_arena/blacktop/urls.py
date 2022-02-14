@@ -12,7 +12,9 @@ urlpatterns = [
     path('games/<int:pk>', views.GetGameById.as_view()),
     path('games/', views.GetAllGames.as_view()),
     path('games/', views.CreateGame.as_view()),
-    path('team/<str:team_name>/<str:password>', views.GetTeamByNameAndPassword.as_view())
+    path('team/<str:team_name>/<str:password>', views.GetTeamByNameAndPassword.as_view()),
+    path('squad/<int:pk>', views.GetSquadById.as_view()),
+    path('squad/<int:pk>/update', views.UpdateSquadById.as_view())
 
 
 ]

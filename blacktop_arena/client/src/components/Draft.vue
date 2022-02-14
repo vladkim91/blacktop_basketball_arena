@@ -54,7 +54,7 @@
           class="player-button"
           @click="
             (e) => {
-              pickTeams(player);
+              pickTeams(player, turn);
               disableButton(e);
             }
           "
@@ -72,10 +72,7 @@ export default {
   name: 'Draft',
   data() {
     return {
-      teams: {
-        teamOne: [],
-        teamTwo: []
-      },
+      teams: this.$store.state.teams,
       last: {},
       lastStats: {
         offense: 0,
@@ -83,29 +80,33 @@ export default {
         overall: 0
       },
       turn: 0,
-      isActive: true
+      isActive: true,
+      ids: []
     };
   },
-
+  mounted() {
+    this.extractLegendId();
+  },
   computed: {
     players() {
       return this.$store.state.players;
     }
   },
   methods: {
-    pickTeams(player) {
-      if (this.teams.teamTwo.length === 3) {
-        this.teams.teamOne.push(player);
+    pickTeams(player, turn) {
+      this.checkId(this.ids, player.id);
+      if (this.$store.state.teams.teamTwo.length === 3) {
+        this.$store.commit('setTeams', [player, turn]);
         this.last = player;
         this.getOverall(player);
       } else {
-        if (this.turn === 0) {
-          this.teams.teamOne.push(player);
+        if (turn === 0) {
+          this.$store.commit('setTeams', [player, turn]);
           this.last = player;
           this.getOverall(player);
           this.turn++;
-        } else {
-          this.teams.teamTwo.push(player);
+        } else if (turn === 1) {
+          this.$store.commit('setTeams', [player, turn]);
           this.last = player;
           this.getOverall(player);
           this.turn--;
@@ -113,7 +114,7 @@ export default {
       }
     },
     startGame() {
-      this.$store.commit('setTeams', this.teams);
+      // this.$store.commit('setTeams', this.teams);
       this.$router.push('/gameui');
     },
     disableButton() {
@@ -148,6 +149,18 @@ export default {
       this.lastStats.overall = overall;
       this.lastStats.offense = offenseOv;
       this.lastStats.defense = defenseOv;
+    },
+    extractLegendId() {
+      const array = [];
+      if (this.$store.state.teams.teamTwo.length === 3) {
+        this.$store.state.teams.teamTwo.forEach((e) => {
+          array.push(e.id);
+        });
+        this.ids = array;
+      }
+    },
+    checkId(array, playerId) {
+      return array.includes(playerId);
     }
   }
 };

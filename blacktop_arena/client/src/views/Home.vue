@@ -28,15 +28,15 @@
 <script>
 import {
   GetAllSquads,
-  GetSquadByName,
-  // GetPlayerById
+  GetPlayerById,
+  GetSquadByName
 } from '../services/routes.js';
 export default {
   name: 'Home',
   components: {},
   data() {
     return {
-      legendIndex: [],
+      legends: [],
       array: [
         '../assets/lakers3.jpeg',
         '../assets/warriors3.jpeg',
@@ -52,7 +52,6 @@ export default {
       return this.$store.state.squads;
     }
   },
-
   mounted() {
     this.getSquads();
   },
@@ -61,17 +60,31 @@ export default {
       const res = await GetAllSquads();
       this.$store.commit('setSquads', res);
     },
-
     async clickHandler(e) {
-      const res = await GetSquadByName(e.target.innerHTML);
-      for (const key in res.players) {
-        console.log(res.players[key])
+      const array = [];
+      if (e.target.innerHTML.slice(0, 3) === '<h3') {
+        const res = await GetSquadByName(e.target.firstElementChild.innerHTML);
+        for (const key in res.players) {
+          array.push(res.players[key]);
+        }
+      } else {
+        const res = await GetSquadByName(e.target.innerHTML);
+        for (const key in res.players) {
+          array.push(res.players[key]);
+        }
       }
-
+      this.getLegendPlayers(array);
     },
-    // async getPlayers() {
-    //   // const res = await GetPlayerById();
-    // }
+    async getLegendPlayers(array) {
+      const legendArray = [];
+      for (let i = 0; i < array.length; i++) {
+        const res = await GetPlayerById(array[i]);
+        legendArray.push(res);
+      }
+      this.$store.commit('setLegends', legendArray);
+
+      this.$router.push('/game');
+    }
   }
 };
 </script>

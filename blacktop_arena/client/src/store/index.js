@@ -5,12 +5,21 @@ export default createStore({
   state: {
     team: {},
     players: [],
-    teams: [],
-    squads: []
+    squads: [],
+    legends: [],
+    teams: {
+      teamOne: [],
+      teamTwo: []
+    }
   },
   mutations: {
-    setTeams(state, teams) {
-      state.teams = teams;
+    setTeams(state, array) {
+      const [player, turn] = array;
+      if (turn === 0) {
+        state.teams.teamOne.push(player);
+      } else {
+        state.teams.teamTwo.push(player);
+      }
     },
     setPlayers(state, players) {
       state.players = players;
@@ -23,6 +32,10 @@ export default createStore({
     },
     setSquads(state, squads) {
       state.squads = squads;
+    },
+    setLegends(state, legends) {
+      state.legends = legends;
+      state.teams.teamTwo.push(...legends);
     }
   },
   actions: {},

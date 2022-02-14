@@ -1,6 +1,6 @@
 <template>
   <div class="nav">
-    <router-link class="logo" to="/home">Blacktop</router-link>
+    <router-link @click="clearTeamQuery" class="logo" to="/home">Blacktop</router-link>
     <button class="logout" @click="logout">Log out</button>
   </div>
 </template>
@@ -18,6 +18,9 @@ export default {
       localStorage.removeItem('team_name');
       this.$router.push('/login');
       this.$store.commit('setLoggedIn', false);
+    },
+    clearTeamQuery() {
+      this.$store.commit('reset')
     }
   },
   computed: {

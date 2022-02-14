@@ -64,7 +64,7 @@
       </div>
       <div class="center">
         <div class="score">
-          {{gameScore.teamOne}} : {{gameScore.teamTwo}}
+          {{ gameScore.teamOne }} : {{ gameScore.teamTwo }}
         </div>
         <div class="ball"><img src="../assets/ball.png" alt="" /></div>
       </div>
@@ -984,14 +984,13 @@ export default {
 
       this.shootBall(currentPlayer, shotType, matchup);
       if (this.gameScore.teamOne < 21 && this.gameScore.teamTwo < 21) {
-        setTimeout(this.gameCycle, 0);
+        setTimeout(this.gameCycle, 1000);
 
         return;
       }
       this.gameInProgress = false;
       this.getTeamById(JSON.parse(localStorage.getItem('team_name')).id);
       this.createGame(this.createGameObject());
-
     },
     async updateTeamById(id, body) {
       const res = await UpdateTeamById(id, body);
@@ -1106,7 +1105,7 @@ th {
 }
 
 .line {
-  margin: .5rem 24vw;
+  margin: 0.5rem 24vw;
 }
 
 .score {

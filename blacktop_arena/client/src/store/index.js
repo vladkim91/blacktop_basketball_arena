@@ -40,6 +40,13 @@ export default createStore({
       } else {
         state.teams.teamTwo.push(...legends);
       }
+    },
+    reset(state) {
+      state.teams = {
+        teamOne: [],
+        teamTwo: []
+      };
+      state.legends = [];
     }
   },
   actions: {},

@@ -20,7 +20,6 @@
             v-for="player in teams.teamOne"
             :key="player.id"
           >
-        
             <div class="p1name">
               {{ player['name'] }}
             </div>
@@ -50,7 +49,7 @@
     </div>
     <div class="player-grid">
       <div class="player-container" v-for="player in players" :key="player.id">
-        <!-- <div class="player-name">{{ player.name }}</div> -->
+        <div class="player-name">{{ player.name }}</div>
         <button
           class="player-button"
           @click="
@@ -95,16 +94,22 @@ export default {
   },
   methods: {
     pickTeams(player) {
-      if (this.turn === 0) {
+      if (this.teams.teamTwo.length === 3) {
         this.teams.teamOne.push(player);
         this.last = player;
         this.getOverall(player);
-        this.turn++;
       } else {
-        this.teams.teamTwo.push(player);
-        this.last = player;
-        this.getOverall(player);
-        this.turn--;
+        if (this.turn === 0) {
+          this.teams.teamOne.push(player);
+          this.last = player;
+          this.getOverall(player);
+          this.turn++;
+        } else {
+          this.teams.teamTwo.push(player);
+          this.last = player;
+          this.getOverall(player);
+          this.turn--;
+        }
       }
     },
     startGame() {

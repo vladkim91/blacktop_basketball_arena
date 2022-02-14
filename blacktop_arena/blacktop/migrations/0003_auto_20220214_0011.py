@@ -18,7 +18,7 @@ def seed(apps, schema_editor):
         team_name="Chicago Bulls 3", players={"p1": 1, "p2": 15, "p3": 26}, wins=0, losses=0
     ).save()
     Squad(
-        team_name="San Antonio Spurs", players={"p1": 29, "p2": 30, "p3": 30}, wins=0, losses=0
+        team_name="San Antonio Spurs", players={"p1": 29, "p2": 30, "p3": 3}, wins=0, losses=0
     ).save()
     Squad(
         team_name="Celtics Big 3", players={"p1": 5, "p2": 10, "p3": 25}, wins=0, losses=0

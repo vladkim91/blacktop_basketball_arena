@@ -61,11 +61,16 @@ class GetTeamByNameAndPassword(generics.RetrieveAPIView):
     lookup_field = 'team_name'
 
 
-class GetSquadById(generics.RetrieveAPIView):
+class GetSquadByName(generics.RetrieveAPIView):
     queryset = Squad.objects.all()
     serializer_class = SquadSerializer
+    lookup_field = 'team_name'
 
 
 class UpdateSquadById(generics.UpdateAPIView):
+    queryset = Squad.objects.all()
+    serializer_class = SquadSerializer
+
+class GetAllSquads(generics.ListCreateAPIView):
     queryset = Squad.objects.all()
     serializer_class = SquadSerializer

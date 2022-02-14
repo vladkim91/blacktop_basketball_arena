@@ -1,13 +1,18 @@
 <template>
   <div class="nav">
-    <router-link class="logo" to="/"> Blacktop</router-link>
-    <button v-if="isLoggedIn" class="logout" @click="logout">Log out</button>
+    <router-link class="logo" to="/home">Blacktop</router-link>
+    <button class="logout" @click="logout">Log out</button>
   </div>
 </template>
 
 <script>
 export default {
   name: 'Nav',
+  data() {
+    return {
+      
+    }
+  },
   methods: {
     logout() {
       localStorage.removeItem('team_name');
@@ -28,7 +33,7 @@ export default {
   font-family: 'Comforter Brush', cursive;
   color: black;
   text-decoration: none;
-  font-size: 3rem;
+  font-size: 1.6rem;
   padding: .4rem 4rem;
 }
 .nav {

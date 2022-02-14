@@ -35,7 +35,11 @@ export default createStore({
     },
     setLegends(state, legends) {
       state.legends = legends;
-      state.teams.teamTwo.push(...legends);
+      if (state.teams.teamTwo.length > 1) {
+        state.teams.teamTwo = legends;
+      } else {
+        state.teams.teamTwo.push(...legends);
+      }
     }
   },
   actions: {},

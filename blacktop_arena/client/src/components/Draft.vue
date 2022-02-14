@@ -94,18 +94,22 @@ export default {
   },
   methods: {
     pickTeams(player, turn) {
-      this.checkId(this.ids, player.id);
+      if (this.checkId(this.ids, player.id)) {
+        return null;
+      }
       if (this.$store.state.teams.teamTwo.length === 3) {
         this.$store.commit('setTeams', [player, turn]);
         this.last = player;
         this.getOverall(player);
       } else {
         if (turn === 0) {
+          this.ids.push(player.id);
           this.$store.commit('setTeams', [player, turn]);
           this.last = player;
           this.getOverall(player);
           this.turn++;
         } else if (turn === 1) {
+          this.ids.push(player.id);
           this.$store.commit('setTeams', [player, turn]);
           this.last = player;
           this.getOverall(player);
@@ -114,7 +118,8 @@ export default {
       }
     },
     startGame() {
-      // this.$store.commit('setTeams', this.teams);
+      this.ids = [];
+      
       this.$router.push('/gameui');
     },
     disableButton() {

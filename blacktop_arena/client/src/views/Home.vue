@@ -8,7 +8,7 @@
         v-for="squad in squads"
         :key="squad.id"
       >
-        <h3>{{ squad.team_name }}</h3>
+        <h3 class="team-name">{{ squad.team_name }}</h3>
       </div>
     </div>
     <div class="navigation">
@@ -159,6 +159,9 @@ export default {
   transition: 0.35s ease-out;
 }
 
+.team-name {
+  font-family: 'Share';
+}
 .draft:hover,
 .players:hover,
 .about:hover {

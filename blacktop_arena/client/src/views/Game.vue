@@ -1,26 +1,27 @@
 <template>
   <div class="game">
     <div class="draft">
-      DRAFT SCREEN
-      <Draft />
+      <Draft v-if="!gameReady"/>
+      <GameUI v-else/>
     </div>
   </div>
 </template>
 
 <script>
-import Draft from '../components/Draft.vue'
+import Draft from '../components/Draft.vue';
+import GameUI from '../components/GameUI.vue';
 export default {
-  name: "Game",
+  name: 'Game',
   components: {
-    Draft
-
-    
+    Draft,
+    GameUI
   },
 
   data() {
     return {
-      draftInProgress: true
-    }
+      gameReady: false,
+      legendTeam: {}
+    };
   }
-}
+};
 </script>

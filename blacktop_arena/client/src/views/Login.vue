@@ -2,45 +2,40 @@
   <div class="log-in">
     <h1>Log in</h1>
 
-    <form @submit.prevent="submitForm">
-      <input type="username" name="username" v-model="username" />
+    <form>
+      <input type="team_name" name="team_name" v-model="team_name" />
       <input type="password" name="password" v-model="password" />
-      <button type="submit">Login</button>
+      <button @click="submitForm" type="submit">Login</button>
     </form>
+    <p>Don't have a team? <router-link to="/signup">Sign Up</router-link></p>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
+import { GetTeamByNameAndPassword } from '../services/routes';
 export default {
   name: 'Login',
   data() {
     return {
-      username: '',
+      team_name: '',
       password: ''
     };
   },
   methods: {
-    submitForm() {
+    async submitForm(e) {
+      e.preventDefault();
       const formData = {
-        username: this.username,
+        team_name: this.team_name,
         password: this.password
       };
-
-      axios
-        .post('/api/v1/token/login', formData)
-        .then((response) => {
-          const token = response.data.auth_token;
-
-          this.$store.commit('setToken', token);
-
-          axios.defaults.headers.common['Authorization'] = 'Token ' + token;
-
-          localStorage.setItem('token', token);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      const res = await GetTeamByNameAndPassword(formData);
+      localStorage.setItem('team_name', JSON.stringify(res));
+      this.$store.commit(
+        'setTeam',
+        JSON.parse(localStorage.getItem('team_name'))
+      );
+      this.$store.commit('setLoggedIn', true)
+      this.$router.push('/home');
     }
   }
 };

@@ -15,7 +15,7 @@ def seed(apps, schema_editor):
                    'mid_range': 99,
                    'three': 78,
                    'handles': 88,
-                   'passing': 82,
+                   'pass': 82,
                    'off_rebound': 58,
                    'dunk': 97
                },
@@ -36,7 +36,7 @@ def seed(apps, schema_editor):
                'offense': {
                    'shoot_mid': 77,
                    'shoot_three': 47,
-                   'passing': 72,
+                   'pass': 72,
                    'attack_rim': 94,
                    'post_up': 95
                },
@@ -59,7 +59,7 @@ def seed(apps, schema_editor):
                     'mid_range': 81,
                     'three': 76,
                     'handles': 86,
-                    'passing': 87,
+                    'pass': 87,
                     'off_rebound': 75,
                     'dunk': 95
                 },
@@ -80,7 +80,7 @@ def seed(apps, schema_editor):
                'offense': {
                    'shoot_mid': 47,
                    'shoot_three': 57,
-                   'passing': 65,
+                   'pass': 65,
                    'attack_rim': 81,
                    'post_up': 55
                },
@@ -93,6 +93,7 @@ def seed(apps, schema_editor):
            description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
            image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
            tier=1).save()
+
     Player(name="Tim Duncan",
            nickname="Big Fundamental",
            height=83,
@@ -103,7 +104,7 @@ def seed(apps, schema_editor):
                     'mid_range': 95,
                     'three': 76,
                     'handles': 59,
-                    'passing': 82,
+                    'pass': 82,
                     'off_rebound': 94,
                     'dunk': 85
                 },
@@ -124,7 +125,7 @@ def seed(apps, schema_editor):
                'offense': {
                    'shoot_mid': 67,
                    'shoot_three': 37,
-                   'passing': 65,
+                   'pass': 65,
                    'attack_rim': 90,
                    'post_up': 99
                },
@@ -133,9 +134,9 @@ def seed(apps, schema_editor):
                    'block': 80,
                    'intercept': 75
                }
-           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
-           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
-           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           }, avatar="https://www.nydailynews.com/resizer/IT80S2462HG71fa8Gn-dW82rrGI=/415x276/top/arc-anglerfish-arc2-prod-tronc.s3.amazonaws.com/public/CEZW2RCG7LMRM2QXPE2OQL3F5Y.jpg",
+           description="Timothy Theodore Duncan (born April 25, 1976) is an American former professional basketball player and coach. Nicknamed ' the Big Fundamental ', he is widely regarded as the greatest power forward of all time and one of the greatest players in NBA history.",
+           image="https://media.newyorker.com/photos/590978241c7a8e33fb38fb1d/master/w_2560%2Cc_limit/Crouch-Duncan.jpg",
            tier=1).save()
     Player(name="Giannis Antetokounmpo",
            nickname="Greak Freak",
@@ -147,7 +148,7 @@ def seed(apps, schema_editor):
                     'mid_range': 79,
                     'three': 70,
                     'handles': 87,
-                    'passing': 84,
+                    'pass': 84,
                     'off_rebound': 58,
                     'dunk': 91
                 },
@@ -168,7 +169,7 @@ def seed(apps, schema_editor):
                'offense': {
                    'shoot_mid': 67,
                    'shoot_three': 47,
-                   'passing': 70,
+                   'pass': 70,
                    'attack_rim': 95,
                    'post_up': 84
                },
@@ -177,9 +178,9 @@ def seed(apps, schema_editor):
                    'block': 90,
                    'intercept': 69
                }
-           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
-           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
-           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           }, avatar="https://library.sportingnews.com/2021-12/giannis-antetokounmpo-milwaukee-bucks_yvv75rnfa24r105azbf093kjx.png",
+           description="Giannis Sina Ugo Antetokounmpo is a Greek professional basketball player for the Milwaukee Bucks of the National Basketball Association (NBA). Antetokounmpo's nationality, in addition to his size, speed and ball-handling skills have earned him the nickname 'Greek Freak'",
+           image="https://library.sportingnews.com/2021-11/giannis-antetokounmpo-11122021-ftr-getty_s33eyyrb2ogz1gf18h024rfp9.jpeg",
            tier=1).save()
 
     Player(name="Larry Bird",
@@ -192,7 +193,7 @@ def seed(apps, schema_editor):
                     'mid_range': 96,
                     'three': 96,
                     'handles': 79,
-                    'passing': 94,
+                    'pass': 94,
                     'off_rebound': 61,
                     'dunk': 45
                 },
@@ -213,7 +214,7 @@ def seed(apps, schema_editor):
                'offense': {
                    'shoot_mid': 84,
                    'shoot_three': 84,
-                   'passing': 75,
+                   'pass': 75,
                    'attack_rim': 70,
                    'post_up': 84
                },
@@ -222,9 +223,9 @@ def seed(apps, schema_editor):
                    'block': 40,
                    'intercept': 69
                }
-           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
-           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
-           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           }, avatar="https://m.media-amazon.com/images/M/MV5BMTY0NzUyNzkyOF5BMl5BanBnXkFtZTcwNzczNDk5Nw@@._V1_.jpg",
+           description="Larry Joe Bird (born December 7, 1956) is an American former professional basketball player, coach and executive in the National Basketball Association (NBA). Nicknamed 'the Hick from French Lick' and 'Larry Legend,' Bird is widely regarded as one of the greatest basketball players of all time",
+           image="https://fadeawayworld.net/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTgwMzI0NDk3MjAxNzAyNzY0/larry-bird-i-wasnt-real-quick-and-i-wasnt-real-strong-some-guys-will-just-take-off-and-its-like-whoa-so-i-beat-them-with-my-mind-and-my-fundamentals.jpg",
            tier=1).save()
 
     Player(name="Magic Johnson",
@@ -237,7 +238,7 @@ def seed(apps, schema_editor):
                     'mid_range': 87,
                     'three': 79,
                     'handles': 97,
-                    'passing': 99,
+                    'pass': 99,
                     'off_rebound': 74,
                     'dunk': 75
                 },
@@ -258,7 +259,7 @@ def seed(apps, schema_editor):
                'offense': {
                    'shoot_mid': 67,
                    'shoot_three': 57,
-                   'passing': 99,
+                   'pass': 99,
                    'attack_rim': 95,
                    'post_up': 76
                },
@@ -267,9 +268,9 @@ def seed(apps, schema_editor):
                    'block': 60,
                    'intercept': 67
                }
-           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
-           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
-           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           }, avatar="https://miro.medium.com/max/600/0*-1Xu3h__9dKnoAYK.jpg",
+           description="Johnson's career achievements include three NBA MVP Awards, nine NBA Finals appearances, twelve All-Star games, and ten All-NBA First and Second Team nominations. He led the league in regular season assists four times, and is the NBA's all-time leader in average assists per game, at 11.2.",
+           image="https://d.newsweek.com/en/full/1614084/newsweek-amplify-magic-johnson-nba-store.png",
            tier=1).save()
 
     Player(name="Hakeem Olajuwon",
@@ -282,7 +283,7 @@ def seed(apps, schema_editor):
                     'mid_range': 77,
                     'three': 63,
                     'handles': 61,
-                    'passing': 60,
+                    'pass': 60,
                     'off_rebound': 92,
                     'dunk': 95
                 },
@@ -303,7 +304,7 @@ def seed(apps, schema_editor):
                'offense': {
                    'shoot_mid': 57,
                    'shoot_three': 37,
-                   'passing': 60,
+                   'pass': 60,
                    'attack_rim': 99,
                    'post_up': 99
                },
@@ -312,9 +313,9 @@ def seed(apps, schema_editor):
                    'block': 80,
                    'intercept': 59
                }
-           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
-           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
-           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           }, avatar="https://i.guim.co.uk/img/media/58fcd5a6270acc3d7f72f150c476765bf39f924d/0_202_3589_2152/3589.jpg?width=700&quality=85&auto=format&fit=max&s=20dd508fa9848d088ffc4fbc6b81c58c",
+           description="Despite very nearly being traded during a bitter contract dispute before the 1992–93 season, he remained in Houston. He became the first non-American to be an All-Star and start in an All-Star Game, the first non-American to win NBA MVP, the first non-American to win NBA Defensive Player of the Year, and in the 1993–94 season, he became the only player in NBA history to win the NBA MVP, Defensive Player of the Year, and Finals MVP awards in the same season.",
+           image="https://cdn.britannica.com/19/200219-050-A33962F1/Hakeem-Olajuwon-1994.jpg",
            tier=1).save()
     Player(name="Kobe Bryant",
            nickname="Mamba",
@@ -326,7 +327,7 @@ def seed(apps, schema_editor):
                     'mid_range': 94,
                     'three': 79,
                     'handles': 89,
-                    'passing': 78,
+                    'pass': 78,
                     'off_rebound': 55,
                     'dunk': 95
                 },
@@ -347,7 +348,7 @@ def seed(apps, schema_editor):
                'offense': {
                    'shoot_mid': 90,
                    'shoot_three': 70,
-                   'passing': 40,
+                   'pass': 40,
                    'attack_rim': 90,
                    'post_up': 86
                },
@@ -356,9 +357,9 @@ def seed(apps, schema_editor):
                    'block': 60,
                    'intercept': 80
                }
-           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
-           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
-           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           }, avatar="https://live-production.wcms.abc-cdn.net.au/6a0e2b28bb4567afb28e6d1d8aed521d?impolicy=wcms_crop_resize&cropH=1688&cropW=3000&xPos=0&yPos=77&width=862&height=485",
+           description="Widely regarded as one of the greatest basketball players of all time Bryant won five NBA championships, was an 18-time All-Star, a 15-time member of the All-NBA Team, a 12-time member of the All-Defensive Team, the 2008 NBA Most Valuable Player (MVP), and a two-time NBA Finals MVP.",
+           image="https://cdn.bleacherreport.net/images_root/slides/photos/000/368/570/102184753_original.jpg?1283212258",
            tier=1).save()
 
     Player(name="Shaquille O'Neal",
@@ -371,7 +372,7 @@ def seed(apps, schema_editor):
                     'mid_range': 35,
                     'three': 26,
                     'handles': 64,
-                    'passing': 77,
+                    'pass': 77,
                     'off_rebound': 98,
                     'dunk': 99
                 },
@@ -392,7 +393,7 @@ def seed(apps, schema_editor):
                'offense': {
                    'shoot_mid': 30,
                    'shoot_three': 10,
-                   'passing': 50,
+                   'pass': 50,
                    'attack_rim': 99,
                    'post_up': 99
                },
@@ -401,9 +402,9 @@ def seed(apps, schema_editor):
                    'block': 70,
                    'intercept': 45
                }
-           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
-           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
-           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           }, avatar="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTZmBYy9bn0ot_UkgrlgYJANVBNbEmIUkLMQ&usqp=CAU",
+           description="O'Neal was drafted by the Orlando Magic with the first overall pick in the 1992 NBA draft. He quickly became one of the best centers in the league, winning Rookie of the Year in 1992–93 and leading his team to the 1995 NBA Finals. After four years with the Magic, O'Neal signed as a free agent with the Los Angeles Lakers. They won three consecutive championships in 2000, 2001, and 2002.",
+           image="https://www.basketballnetwork.net/app/uploads/2021/05/shaq-copy-4.jpg",
            tier=1).save()
 
     Player(name="Kevin Garnett",
@@ -416,7 +417,7 @@ def seed(apps, schema_editor):
                     'mid_range': 94,
                     'three': 69,
                     'handles': 70,
-                    'passing': 68,
+                    'pass': 68,
                     'off_rebound': 93,
                     'dunk': 88
                 },
@@ -437,7 +438,7 @@ def seed(apps, schema_editor):
                'offense': {
                    'shoot_mid': 70,
                    'shoot_three': 30,
-                   'passing': 40,
+                   'pass': 40,
                    'attack_rim': 80,
                    'post_up': 85
                },
@@ -446,9 +447,9 @@ def seed(apps, schema_editor):
                    'block': 75,
                    'intercept': 65
                }
-           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
-           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
-           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           }, avatar="https://cdn.bleacherreport.net/images_root/slides/photos/000/739/416/108623866_original.jpg?1298304188",
+           description="Kevin Garnett is an American former professional basketball player who played for 21 seasons in the National Basketball Association (NBA). Known for his intensity, defensive ability, and versatility, Garnett is considered one of the greatest power forwards of all time.",
+           image="https://sportshub.cbsistatic.com/i/r/2021/11/10/a6c845b1-9c30-415f-87af-d74d4169896f/thumbnail/1200x675/c522ef80fee9ee3cf13ecdfc0244d4eb/kevin-garnett.jpg",
            tier=1).save()
 
     Player(name="Steph Curry",
@@ -461,7 +462,7 @@ def seed(apps, schema_editor):
                     'mid_range': 93,
                     'three': 99,
                     'handles': 97,
-                    'passing': 96,
+                    'pass': 96,
                     'off_rebound': 93,
                     'dunk': 36
                 },
@@ -482,7 +483,7 @@ def seed(apps, schema_editor):
                'offense': {
                    'shoot_mid': 70,
                    'shoot_three': 99,
-                   'passing': 75,
+                   'pass': 75,
                    'attack_rim': 80,
                    'post_up': 20
                },
@@ -491,9 +492,9 @@ def seed(apps, schema_editor):
                    'block': 30,
                    'intercept': 40
                }
-           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
-           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
-           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           }, avatar="https://static01.nyt.com/images/2019/11/01/sports/01CURRYalert/01CURRYalert-mobileMasterAt3x.jpg",
+           description="In 2014–15, Curry won his first NBA Most Valuable Player award and led the Warriors to their first championship since 1975. The following season, he became the first player in NBA history to be elected MVP by a unanimous vote and to lead the league in scoring while shooting above 50–40–90. That same year, the Warriors broke the record for the most wins in an NBA season en route to reaching the 2016 NBA Finals, which they lost to the Cleveland Cavaliers in seven games.",
+           image="https://s.hdnux.com/photos/01/17/15/02/20762796/14/rawImage.jpg",
            tier=1).save()
 
     Player(name="Kevin Durant",
@@ -506,7 +507,7 @@ def seed(apps, schema_editor):
                     'mid_range': 98,
                     'three': 88,
                     'handles': 86,
-                    'passing': 79,
+                    'pass': 79,
                     'off_rebound': 32,
                     'dunk': 85
                 },
@@ -527,7 +528,7 @@ def seed(apps, schema_editor):
                'offense': {
                    'shoot_mid': 70,
                    'shoot_three': 80,
-                   'passing': 40,
+                   'pass': 40,
                    'attack_rim': 80,
                    'post_up': 50
                },
@@ -536,12 +537,12 @@ def seed(apps, schema_editor):
                    'block': 50,
                    'intercept': 45
                }
-           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
-           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
-           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           }, avatar="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHkkdj1b_U9TuTtAq4gRfxUTyokprM44yD9A&usqp=CAU",
+           description="As a professional, he has won two NBA championships, an NBA Most Valuable Player Award, two Finals MVP Awards, two NBA All-Star Game Most Valuable Player Awards, four NBA scoring titles, the NBA Rookie of the Year Award, been named to nine All-NBA teams (including six First Teams), and selected 12 times as an NBA All-Star.",
+           image="https://www.si.com/.image/ar_4:3%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTg1NTEzODAyMzE2MzkxNTg1/usatsi_16965380_168388303_lowres.jpg",
            tier=1).save()
 
-    Player(name="Joel Embid",
+    Player(name="Joel Embiid",
            nickname="The Process",
            height=84,
            attributes={
@@ -551,7 +552,7 @@ def seed(apps, schema_editor):
                     'mid_range': 80,
                     'three': 82,
                     'handles': 57,
-                    'passing': 55,
+                    'pass': 55,
                     'off_rebound': 75,
                     'dunk': 90
                 },
@@ -572,7 +573,7 @@ def seed(apps, schema_editor):
                'offense': {
                    'shoot_mid': 70,
                    'shoot_three': 50,
-                   'passing': 35,
+                   'pass': 35,
                    'attack_rim': 80,
                    'post_up': 95
                },
@@ -581,10 +582,11 @@ def seed(apps, schema_editor):
                    'block': 90,
                    'intercept': 36
                }
-           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
-           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
-           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           }, avatar="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSv0KliYvyfNXV3FZI_wLAzvjFM5eb1pwsGUQ&usqp=CAU",
+           description="Joel Embiid is a Cameroonian professional basketball player for the Philadelphia 76ers of the National Basketball Association (NBA). After one year of college basketball with the Kansas Jayhawks, he was drafted with the third overall pick in the 2014 NBA draft by the 76ers.",
+           image="https://www.si.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTg2ODIwOTk1NDc3MTUzMjYz/joel-embiid.jpg",
            tier=1).save()
+
     Player(name="Kawhi Leonard",
            nickname="The Claw",
            height=81,
@@ -595,7 +597,7 @@ def seed(apps, schema_editor):
                     'mid_range': 87,
                     'three': 83,
                     'handles': 86,
-                    'passing': 82,
+                    'pass': 82,
                     'off_rebound': 70,
                     'dunk': 86
                 },
@@ -616,7 +618,7 @@ def seed(apps, schema_editor):
                'offense': {
                    'shoot_mid': 78,
                    'shoot_three': 60,
-                   'passing': 50,
+                   'pass': 50,
                    'attack_rim': 87,
                    'post_up': 67
                },
@@ -625,9 +627,9 @@ def seed(apps, schema_editor):
                    'block': 76,
                    'intercept': 78
                }
-           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
-           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
-           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           }, avatar="https://www.si.com/.image/t_share/MTY4NDg4NzE5OTk1NjQzNzM1/kawhi-leonard.jpg",
+           description="With the Spurs, Leonard won an NBA championship in 2014, where he was named the Finals Most Valuable Player. After seven seasons with the Spurs, Leonard was traded to the Toronto Raptors in 2018. In 2019, he led the Raptors to their first NBA championship in franchise history and won his second Finals MVP award",
+           image="https://image.cnbcfm.com/api/v1/image/106797780-1605566208011-gettyimages-1272714063-_dd15420_20200915104212178.jpeg?v=1605566326",
            tier=1).save()
 
     Player(name="Scottie Pippen",
@@ -640,7 +642,7 @@ def seed(apps, schema_editor):
                     'mid_range': 84,
                     'three': 87,
                     'handles': 80,
-                    'passing': 89,
+                    'pass': 89,
                     'off_rebound': 66,
                     'dunk': 91
                 },
@@ -661,7 +663,7 @@ def seed(apps, schema_editor):
                'offense': {
                    'shoot_mid': 60,
                    'shoot_three': 50,
-                   'passing': 50,
+                   'pass': 50,
                    'attack_rim': 89,
                    'post_up': 60
                },
@@ -670,9 +672,9 @@ def seed(apps, schema_editor):
                    'block': 76,
                    'intercept': 78
                }
-           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
-           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
-           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           }, avatar="https://heavy.com/wp-content/uploads/2020/04/gettyimages-288433-e1587404676462.jpg?quality=65&strip=all&w=780",
+           description="Considered one of the greatest small forwards of all time, Pippen was named to the NBA All-Defensive First Team eight consecutive times and the All-NBA First Team three times. He was a seven-time NBA All-Star and was the NBA All-Star Game MVP in 1994. He was named one of the 50 Greatest Players in NBA History during the 1996–97 season, and is one of four players to have his jersey retired by the Chicago Bulls",
+           image="https://www.nba.com/bulls/sites/bulls/files/200511_pippen_cp.jpg",
            tier=1).save()
 
     Player(name="Dwyane Wade",
@@ -685,7 +687,7 @@ def seed(apps, schema_editor):
                     'mid_range': 89,
                     'three': 79,
                     'handles': 89,
-                    'passing': 95,
+                    'pass': 95,
                     'off_rebound': 59,
                     'dunk': 95
                 },
@@ -706,7 +708,7 @@ def seed(apps, schema_editor):
                'offense': {
                    'shoot_mid': 70,
                    'shoot_three': 50,
-                   'passing': 60,
+                   'pass': 60,
                    'attack_rim': 99,
                    'post_up': 45
                },
@@ -715,9 +717,9 @@ def seed(apps, schema_editor):
                    'block': 50,
                    'intercept': 69
                }
-           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
-           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
-           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           }, avatar="https://www.thefamouspeople.com/profiles/images/dwyane-wade-7.jpg",
+           description="Dwyane Wade is an American former professional basketball player. Wade spent the majority of his 16-year career playing for the Miami Heat of the National Basketball Association (NBA) and won three NBA championships, was a 13-time NBA All-Star, an 8-time member of the All-NBA Team, and a 3-time member of the All-Defensive Team.",
+           image="https://static01.nyt.com/images/2018/09/17/sports/17wade/merlin_136020240_d603bb45-5616-41df-9230-6cb59368b979-superJumbo.jpg",
            tier=1).save()
 
     Player(name="Dirk Nowitzki",
@@ -730,7 +732,7 @@ def seed(apps, schema_editor):
                     'mid_range': 89,
                     'three': 90,
                     'handles': 60,
-                    'passing': 69,
+                    'pass': 69,
                     'off_rebound': 83,
                     'dunk': 75
                 },
@@ -751,7 +753,7 @@ def seed(apps, schema_editor):
                'offense': {
                    'shoot_mid': 80,
                    'shoot_three': 80,
-                   'passing': 50,
+                   'pass': 50,
                    'attack_rim': 69,
                    'post_up': 96
                },
@@ -760,9 +762,9 @@ def seed(apps, schema_editor):
                    'block': 40,
                    'intercept': 35
                }
-           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
-           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
-           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           }, avatar="https://dsf-img-storage.s3.us-east-2.amazonaws.com/wp-content/uploads/2017/01/05130731/Mavs-Fanatic-10-of-52-e1510873435146.jpg",
+           description="Nowitzki is the only player ever to play for a single NBA franchise for 21 seasons. He is a 14-time All-Star, a 12-time All-NBA Team member,[10] the first European player to start in an All-Star Game, and the first European player to receive the NBA Most Valuable Player Award. Nowitzki is the highest-scoring foreign-born player in NBA history.",
+           image="https://th.bing.com/th/id/R.40ef4aa877f401f06511757a4992b69e?rik=1lgAORZN%2fgXNLA&riu=http%3a%2f%2fimg.bleacherreport.net%2fimg%2fimages%2fphotos%2f002%2f821%2f208%2fhi-res-94543bac4bf7dee10e5ffecbf8d2037a_crop_exact.jpg%3fw%3d1200%26h%3d1200%26q%3d75&ehk=uec%2bDuybaNxpmG%2fMcDFq8J8LTy77z2xaN2Z6k4oWC%2bM%3d&risl=&pid=ImgRaw&r=0",
            tier=1).save()
 
     Player(name="Allen Iverson",
@@ -775,7 +777,7 @@ def seed(apps, schema_editor):
                     'mid_range': 87,
                     'three': 79,
                     'handles': 97,
-                    'passing': 90,
+                    'pass': 90,
                     'off_rebound': 49,
                     'dunk': 65
                 },
@@ -796,7 +798,7 @@ def seed(apps, schema_editor):
                'offense': {
                    'shoot_mid': 70,
                    'shoot_three': 50,
-                   'passing': 65,
+                   'pass': 65,
                    'attack_rim': 90,
                    'post_up': 45
                },
@@ -805,9 +807,9 @@ def seed(apps, schema_editor):
                    'block': 40,
                    'intercept': 84
                }
-           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
-           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
-           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           }, avatar="http://assets.rappler.com/612F469A6EA84F6BAE882D2B94A4B421/img/FCDA36695F0C4003803EC177E3F4269F/allen-iverson-sixers-epa-file-20140801_FCDA36695F0C4003803EC177E3F4269F.jpg",
+           description="Allen Iverson is an American former professional basketball player. Nicknamed 'the Answer' and 'AI', he played 14 seasons in the National Basketball Association (NBA) at both the shooting guard and point guard positions. Iverson won NBA Rookie of the Year Award in 1997 and was an 11-time NBA All-Star, won the All-Star game MVP award in 2001 and 2005, and was the NBA's Most Valuable Player (MVP) in 2001. He was inducted into the Naismith Memorial Basketball Hall of Fame in 2016. In October 2021, Iverson was honored as one of the league's greatest players of all time by being named to the NBA 75th Anniversary Team.",
+           image="https://buysidesports.com/wp-content/uploads/2020/06/allen-iverson-surprising-facts-1-e1596251286150.jpeg",
            tier=1).save()
 
     Player(name="Chris Paul",
@@ -820,7 +822,7 @@ def seed(apps, schema_editor):
                     'mid_range': 86,
                     'three': 82,
                     'handles': 94,
-                    'passing': 95,
+                    'pass': 95,
                     'off_rebound': 37,
                     'dunk': 27
                 },
@@ -841,7 +843,7 @@ def seed(apps, schema_editor):
                'offense': {
                    'shoot_mid': 90,
                    'shoot_three': 70,
-                   'passing': 80,
+                   'pass': 80,
                    'attack_rim': 69,
                    'post_up': 30
                },
@@ -850,9 +852,9 @@ def seed(apps, schema_editor):
                    'block': 40,
                    'intercept': 99
                }
-           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
-           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
-           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           }, avatar="https://img.bleacherreport.net/img/slides/photos/003/499/468/459774635-chris-paul-of-the-los-angeles-clippers-looks-on-against_crop_exact.jpg?w=2975&h=2048&q=85",
+           description="Christopher Paul nicknamed 'CP3', is an American professional basketball player who plays for the Phoenix Suns of the National Basketball Association (NBA). Paul is a point guard who has won the NBA Rookie of the Year Award, an NBA All-Star Game Most Valuable Player Award, two Olympic gold medals, and led the NBA in assists four times and steals a record six times. He has also been selected to twelve NBA All-Star teams, ten All-NBA teams, and nine NBA All-Defensive teams. In 2021, he was named to the NBA 75th Anniversary Team.",
+           image="https://ewscripps.brightspotcdn.com/02/fd/2842c30f426e80a52e800548b7b7/ap21165821777548.jpg",
            tier=1).save()
 
     Player(name="Kyrie Irving",
@@ -865,7 +867,7 @@ def seed(apps, schema_editor):
                     'mid_range': 97,
                     'three': 90,
                     'handles': 99,
-                    'passing': 84,
+                    'pass': 84,
                     'off_rebound': 36,
                     'dunk': 30
                 },
@@ -886,7 +888,7 @@ def seed(apps, schema_editor):
                'offense': {
                    'shoot_mid': 80,
                    'shoot_three': 80,
-                   'passing': 50,
+                   'pass': 50,
                    'attack_rim': 94,
                    'post_up': 45
                },
@@ -895,9 +897,9 @@ def seed(apps, schema_editor):
                    'block': 30,
                    'intercept': 45
                }
-           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
-           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
-           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           }, avatar="https://nypost.com/wp-content/uploads/sites/2/2020/02/kyrie-irving-4.jpg?quality=80&strip=all",
+           description="Kyrie Irving is an American professional basketball player for the Brooklyn Nets of the National Basketball Association (NBA). He was named the Rookie of the Year after being selected by the Cleveland Cavaliers with the first overall pick in the 2011 NBA draft. A seven-time All-Star and three-time member of the All-NBA Team, he won an NBA championship with the Cavaliers in 2016.",
+           image="https://static01.nyt.com/images/2021/10/08/lens/08nba-kyrie-01/merlin_195444735_cfee78bc-ed13-4a08-9267-501cc59d7a9c-superJumbo.jpg",
            tier=1).save()
 
     Player(name="Kareem Abdul-Jabbar",
@@ -910,7 +912,7 @@ def seed(apps, schema_editor):
                     'mid_range': 88,
                     'three': 30,
                     'handles': 48,
-                    'passing': 58,
+                    'pass': 58,
                     'off_rebound': 95,
                     'dunk': 95
                 },
@@ -931,7 +933,7 @@ def seed(apps, schema_editor):
                'offense': {
                    'shoot_mid': 50,
                    'shoot_three': 20,
-                   'passing': 40,
+                   'pass': 40,
                    'attack_rim': 99,
                    'post_up': 99
                },
@@ -940,9 +942,9 @@ def seed(apps, schema_editor):
                    'block': 95,
                    'intercept': 65
                }
-           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
-           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
-           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           }, avatar="https://fadeawayworld.net/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTg0NDg1MzE4NzEwMjczMTQ0/kareem-abdul-jabbar-iso-1981.jpg",
+           description="Kareem Abdul-Jabbar is an American former professional basketball player for the Milwaukee Bucks and the Los Angeles Lakers. During his career as a center, Abdul-Jabbar was a record six-time NBA Most Valuable Player (MVP), a record 19-time NBA All-Star, a 15-time All-NBA selection, and an 11-time NBA All-Defensive Team member. A member of six NBA championship teams as a player and two more as an assistant coach, Abdul-Jabbar twice was voted NBA Finals MVP.",
+           image="https://www.doubleclutch.uk/wp-content/uploads/2020/04/Kareem_Abdul_Jabbar-e1587670066296.jpg",
            tier=1).save()
 
     Player(name="Carmelo Anthony",
@@ -955,7 +957,7 @@ def seed(apps, schema_editor):
                     'mid_range': 97,
                     'three': 80,
                     'handles': 94,
-                    'passing': 84,
+                    'pass': 84,
                     'off_rebound': 45,
                     'dunk': 85
                 },
@@ -976,7 +978,7 @@ def seed(apps, schema_editor):
                'offense': {
                    'shoot_mid': 75,
                    'shoot_three': 60,
-                   'passing': 30,
+                   'pass': 30,
                    'attack_rim': 80,
                    'post_up': 95
                },
@@ -985,9 +987,9 @@ def seed(apps, schema_editor):
                    'block': 60,
                    'intercept': 39
                }
-           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
-           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
-           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           }, avatar="https://a.espncdn.com/combiner/i?img=%2Fphoto%2F2021%2F0224%2Fr818864_1296x729_16%2D9.jpg",
+           description="Carmelo Anthony is an American professional basketball player for the Los Angeles Lakers of the National Basketball Association (NBA). He has been named an NBA All-Star ten times and an All-NBA Team member six times. He played college basketball for the Syracuse Orange, winning a national championship as a freshman in 2003 while being named the NCAA Tournament's Most Outstanding Player. During the NBA's 75th anniversary, he was named one of the 75 Greatest Players in NBA History.[2]",
+           image="https://vip.nypost.com/wp-content/uploads/sites/2/2020/03/carmelo-anthony.jpg?quality=90&strip=all",
            tier=1).save()
 
     Player(name="Klay Thompson",
@@ -1000,7 +1002,7 @@ def seed(apps, schema_editor):
                     'mid_range': 94,
                     'three': 97,
                     'handles': 76,
-                    'passing': 77,
+                    'pass': 77,
                     'off_rebound': 36,
                     'dunk': 65
                 },
@@ -1021,7 +1023,7 @@ def seed(apps, schema_editor):
                'offense': {
                    'shoot_mid': 80,
                    'shoot_three': 90,
-                   'passing': 30,
+                   'pass': 30,
                    'attack_rim': 70,
                    'post_up': 40
                },
@@ -1030,9 +1032,9 @@ def seed(apps, schema_editor):
                    'block': 50,
                    'intercept': 76
                }
-           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
-           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
-           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           }, avatar="https://cdn.nba.com/manage/2020/11/klay-thompson-iso-1568x1045.jpg",
+           description="Klay Thompson is an American professional basketball player for the Golden State Warriors of the National Basketball Association (NBA). He is credited as one of the greatest shooters in NBA history.[2][3] A three-time NBA champion with the Warriors, he is a five-time NBA All-Star and a two-time All-NBA Third Team honoree. He has also been named to the NBA All-Defensive Second Team.",
+           image="https://www.nbcsports.com/sites/rsnunited/files/article/hero/Klay-Thompson-Shooting-USATSI-17087442.jpg",
            tier=1).save()
 
     Player(name="Chris Bosh",
@@ -1045,7 +1047,7 @@ def seed(apps, schema_editor):
                     'mid_range': 84,
                     'three': 79,
                     'handles': 65,
-                    'passing': 69,
+                    'pass': 69,
                     'off_rebound': 87,
                     'dunk': 85
                 },
@@ -1066,7 +1068,7 @@ def seed(apps, schema_editor):
                'offense': {
                    'shoot_mid': 70,
                    'shoot_three': 50,
-                   'passing': 55,
+                   'pass': 55,
                    'attack_rim': 88,
                    'post_up': 80
                },
@@ -1075,9 +1077,9 @@ def seed(apps, schema_editor):
                    'block': 85,
                    'intercept': 45
                }
-           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
-           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
-           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           }, avatar="http://images.thepostgame.com/assets/public/styles/slideshow_image/public/GettyImages-150590242-compressor.jpg",
+           description="While at Toronto, Bosh became a five-time NBA All-Star, was named to the All-NBA Second Team once, played for the U.S. national team (with whom he won a gold medal at the 2008 Summer Olympics), and supplanted former fan favorite Vince Carter as the face and leader of the Raptors franchise. In the 2006–07 season, Bosh led the Raptors to their first playoff appearance in five years and their first-ever division title. He left Toronto in 2010 as the franchise's all-time leader in points, rebounds, blocks, and minutes played.",
+           image="https://www.cleveland.com/resizer/MH_H8zEUC6FWyOtbQDo1bzWCuaY=/1280x0/smart/advancelocal-adapter-image-uploads.s3.amazonaws.com/image.cleveland.com/home/cleve-media/width2048/img/cavs_impact/photo/chris-bosh-2f5fc84c60ad8d8f.jpg",
            tier=1).save()
 
     Player(name="Bill Russell",
@@ -1090,7 +1092,7 @@ def seed(apps, schema_editor):
                     'mid_range': 45,
                     'three': 29,
                     'handles': 45,
-                    'passing': 78,
+                    'pass': 78,
                     'off_rebound': 97,
                     'dunk': 95
                 },
@@ -1111,7 +1113,7 @@ def seed(apps, schema_editor):
                'offense': {
                    'shoot_mid': 30,
                    'shoot_three': 10,
-                   'passing': 60,
+                   'pass': 60,
                    'attack_rim': 80,
                    'post_up': 75
                },
@@ -1120,9 +1122,9 @@ def seed(apps, schema_editor):
                    'block': 99,
                    'intercept': 87
                }
-           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
-           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
-           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           }, avatar="https://www.giantbomb.com/a/uploads/square_medium/14/141373/2681643-0711686871-dna06.jpg",
+           description="A five-time NBA Most Valuable Player and a 12-time All-Star, he was the centerpiece of the Celtics dynasty that won eleven NBA championships during his 13-year career. Russell and Henri Richard of the National Hockey League are tied for the record of the most championships won by an athlete in a North American sports league. Russell led the San Francisco Dons to two consecutive NCAA championships in 1955 and 1956, and he captained the gold-medal winning U.S. national basketball team at the 1956 Summer Olympics.",
+           image="https://s-i.huffpost.com/gadgets/slideshows/304026/slide_304026_2589444_free.jpg",
            tier=1).save()
 
     Player(name="Dennis Rodman",
@@ -1135,7 +1137,7 @@ def seed(apps, schema_editor):
                     'mid_range': 65,
                     'three': 62,
                     'handles': 45,
-                    'passing': 61,
+                    'pass': 61,
                     'off_rebound': 99,
                     'dunk': 90
                 },
@@ -1156,7 +1158,7 @@ def seed(apps, schema_editor):
                'offense': {
                    'shoot_mid': 30,
                    'shoot_three': 10,
-                   'passing': 30,
+                   'pass': 30,
                    'attack_rim': 40,
                    'post_up': 60
                },
@@ -1165,9 +1167,9 @@ def seed(apps, schema_editor):
                    'block': 99,
                    'intercept': 87
                }
-           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
-           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
-           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           }, avatar="https://images.7news.com.au/publication/C-1046789/59774a3762246f68c2bceca98719361c6a8d46cc.jpg?imwidth=650&impolicy=sevennews_v2",
+           description="Rodman played at the small forward position in his early years before becoming a power forward. He earned NBA All-Defensive First Team honors seven times and won the NBA Defensive Player of the Year Award twice. He also led the NBA in rebounds per game for a record seven consecutive years and won five NBA championships.",
+           image="https://www.rollingstone.com/wp-content/uploads/2020/04/dennis-rodman-tattoo-t-shirt.jpg",
            tier=1).save()
 
     Player(name="Isiah Thomas",
@@ -1180,7 +1182,7 @@ def seed(apps, schema_editor):
                     'mid_range': 84,
                     'three': 72,
                     'handles': 97,
-                    'passing': 94,
+                    'pass': 94,
                     'off_rebound': 35,
                     'dunk': 65
                 },
@@ -1201,7 +1203,7 @@ def seed(apps, schema_editor):
                'offense': {
                    'shoot_mid': 80,
                    'shoot_three': 65,
-                   'passing': 79,
+                   'pass': 79,
                    'attack_rim': 90,
                    'post_up': 40
                },
@@ -1210,9 +1212,9 @@ def seed(apps, schema_editor):
                    'block': 30,
                    'intercept': 74
                }
-           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
-           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
-           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           }, avatar="https://th.bing.com/th/id/OIP.xkNKvPjHyXt-whUQbzK6bwHaEK?pid=ImgDet&rs=1",
+           description="A point guard, the 12-time NBA All-Star was named one of the 50 Greatest Players in NBA History as well as the 75 Greatest Players, and inducted into the Naismith Memorial Basketball Hall of Fame. He played his entire professional career for the Detroit Pistons of the National Basketball Association (NBA).",
+           image="https://th.bing.com/th/id/R.57c9dbd49ba36969e21aef35228a4467?rik=7lGk1xMz0OFqGA&riu=http%3a%2f%2fimages.complex.com%2fcomplex%2fimage%2fupload%2fc_limit%2cw_680%2ff_auto%2cfl_lossy%2cpg_1%2cq_auto%2fp7pkha6ef63hoq2vyjhr.jpg&ehk=wkCsEHX%2foJ4yXQ3PyY%2bzbeufl26SuWgU%2ffeSJL0bsnQ%3d&risl=&pid=ImgRaw&r=0",
            tier=1).save()
 
     Player(name="Patrick Ewing",
@@ -1225,7 +1227,7 @@ def seed(apps, schema_editor):
                     'mid_range': 83,
                     'three': 35,
                     'handles': 40,
-                    'passing': 64,
+                    'pass': 64,
                     'off_rebound': 67,
                     'dunk': 95
                 },
@@ -1246,7 +1248,7 @@ def seed(apps, schema_editor):
                'offense': {
                    'shoot_mid': 40,
                    'shoot_three': 10,
-                   'passing': 50,
+                   'pass': 50,
                    'attack_rim': 78,
                    'post_up': 99
                },
@@ -1255,9 +1257,9 @@ def seed(apps, schema_editor):
                    'block': 89,
                    'intercept': 59
                }
-           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
-           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
-           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           }, avatar="https://comicvine.gamespot.com/a/uploads/square_medium/11/114183/5167058-20150805-1-ewing.jpg",
+           description="He had a seventeen-year NBA career, predominantly playing for the New York Knicks, where he was an eleven-time all-star and named to seven All-NBA teams. The Knicks appeared in the NBA Finals twice (1994 and 1999) during his tenure. He won Olympic gold medals as a member of the 1984 and 1992 United States men's Olympic basketball teams. Ewing was selected as one of the 50 Greatest Players in NBA History in 1996 and as one of the 75 Greatest Players in NBA History in 2021.",
+           image="https://images.pristineauction.com/129/1290754/main_1566511888-Patrick-Ewing-Signed-New-York-Knicks-16x20-Photo-Steiner-COA-PristineAuction.com.jpg",
            tier=1).save()
 
     Player(name="Tony Parker",
@@ -1270,7 +1272,7 @@ def seed(apps, schema_editor):
                     'mid_range': 87,
                     'three': 73,
                     'handles': 95,
-                    'passing': 94,
+                    'pass': 94,
                     'off_rebound': 30,
                     'dunk': 30
                 },
@@ -1291,7 +1293,7 @@ def seed(apps, schema_editor):
                'offense': {
                    'shoot_mid': 80,
                    'shoot_three': 70,
-                   'passing': 60,
+                   'pass': 60,
                    'attack_rim': 75,
                    'post_up': 20
                },
@@ -1300,9 +1302,9 @@ def seed(apps, schema_editor):
                    'block': 20,
                    'intercept': 67
                }
-           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
-           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
-           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           }, avatar="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQK-dEHtfzaUKXkUxDBemnOR80cl7UmRDB-SA&usqp=CAU",
+           description="Parker was named to six NBA All-Star games, three All-NBA Second Teams, an All-NBA Third Team and was named MVP of the 2007 NBA Finals. He was also a member of the All-Rookie Second Team and had his No. 9 retired by the Spurs. He is widely regarded as one of the greatest European players of all time.",
+           image="https://s.hdnux.com/photos/01/11/36/32/19261106/14/rawImage.jpg",
            tier=1).save()
 
     Player(name="Manu Ginobili",
@@ -1315,7 +1317,7 @@ def seed(apps, schema_editor):
                     'mid_range': 80,
                     'three': 84,
                     'handles': 86,
-                    'passing': 82,
+                    'pass': 82,
                     'off_rebound': 52,
                     'dunk': 50
                 },
@@ -1336,7 +1338,7 @@ def seed(apps, schema_editor):
                'offense': {
                    'shoot_mid': 80,
                    'shoot_three': 60,
-                   'passing': 40,
+                   'pass': 40,
                    'attack_rim': 80,
                    'post_up': 30
                },
@@ -1345,9 +1347,9 @@ def seed(apps, schema_editor):
                    'block': 40,
                    'intercept': 67
                }
-           }, avatar="https://sportshub.cbsistatic.com/i/r/2020/03/25/5a9bf93f-1688-4251-af07-6caace3ef679/thumbnail/1200x675/8016dc48407290c004104a97fef5cb1b/lebron.jpg",
-           description="LeBron James is an American basketball player with the Los Angeles Lakers. James first garnered national attention as the top high school basketball player in the country. With his unique combination of size, athleticism and court vision, he became a four-time NBA MVP.",
-           image="https://static01.nyt.com/images/2020/06/10/us/politics/10lebron-voters/10lebron-voters-mediumSquareAt3X.jpg",
+           }, avatar="https://img.bleacherreport.net/img/images/photos/003/100/456/hi-res-86e2d4eeda744238fcdd7b0fe590af27_crop_north.jpg?1412881622&w=3072&h=2048",
+           description="Selected as the 57th overall pick in the 1999 NBA draft, Ginóbili joined the Spurs in 2002 and soon became a key player for the team. In addition to his four NBA championships, Ginóbili was named an All-Star in 2005 and 2011 and was selected twice for the All-NBA Third Team. In 2007–08, he was named the NBA Sixth Man of the Year. Ginóbili announced his retirement from the NBA on 27 August 2018.",
+           image="https://media.newyorker.com/photos/5b845a96244246652b65882f/4:3/w_2559,h_1919,c_limit/Cunningham-Manu-Ginobili.jpg",
            tier=1).save()
 
 

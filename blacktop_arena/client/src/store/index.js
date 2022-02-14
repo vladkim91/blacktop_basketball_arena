@@ -1,32 +1,56 @@
 import { createStore } from 'vuex';
-import players from '../players';
+// import players from '../players';
 
 export default createStore({
   state: {
-    token: '',
-    isAuthenticated: false,
-    players: players,
-    teams: []
+    team: {},
+    players: [],
+    squads: [],
+    legends: [],
+    teams: {
+      teamOne: [],
+      teamTwo: []
+    },
+    history: []
   },
   mutations: {
-    initializeStore(state) {
-      if (localStorage.getItem('token')) {
-        state.token = localStorage.getItem('token');
-        state.isAuthenticated = true;
+    setTeams(state, array) {
+      const [player, turn] = array;
+      if (turn === 0) {
+        state.teams.teamOne.push(player);
       } else {
-        (state.token = ''), (state.isAuthenticated = false);
+        state.teams.teamTwo.push(player);
       }
     },
-    setToken(state, token) {
-      state.token = token;
-      state.isAuthenticated = true;
+    setPlayers(state, players) {
+      state.players = players;
     },
-    removeToken(state) {
-      state.token = '';
-      state.isAuthenticated = false;
+    setTeam(state, team) {
+      state.team = team;
     },
-    setTeams(state, teams) {
-      state.teams = teams;
+    setLoggedIn(state, bool) {
+      state.isLoggedIn = bool;
+    },
+    setSquads(state, squads) {
+      state.squads = squads;
+    },
+    setLegends(state, legends) {
+      state.legends = legends;
+      if (state.teams.teamTwo.length > 1) {
+        state.teams.teamTwo = legends;
+      } else {
+        state.teams.teamTwo.push(...legends);
+      }
+    },
+    reset(state) {
+      state.teams = {
+        teamOne: [],
+        teamTwo: []
+      };
+      state.legends = [];
+    },
+    getHistory(state, history) {
+      state.history = history;
     }
   },
   actions: {},

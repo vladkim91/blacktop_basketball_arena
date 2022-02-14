@@ -13,18 +13,12 @@ class Team(models.Model):
 
 class Game(models.Model):
     name = models.CharField(max_length=10, default="game_name")
-    game_stats = models.JSONField(default=dict)
-    winner = models.ForeignKey(
-        Team, related_name='winner', null=True, default=None, on_delete=models.SET_DEFAULT, blank=True
-    )
     team_one_stats = models.JSONField(default=dict)
     team_two_stats = models.JSONField(default=dict)
+    team_one_player_stats = models.JSONField(default=dict)
+    team_two_player_stats = models.JSONField(default=dict)
     team_one_score = models.IntegerField(default=0)
     team_two_score = models.IntegerField(default=0)
-    team_one = models.ForeignKey(Team, related_name='team_one', null=True,
-                                 default=None, on_delete=models.SET_DEFAULT, blank=True)
-    team_two = models.ForeignKey(Team, related_name='team_two', null=True,
-                                 default=None, on_delete=models.SET_DEFAULT, blank=True)
     team_one_squad = models.JSONField(default=dict)
     team_two_squad = models.JSONField(default=dict)
     date = models.DateField(

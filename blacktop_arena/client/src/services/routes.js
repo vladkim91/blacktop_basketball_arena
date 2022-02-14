@@ -37,3 +37,8 @@ export const GetTeamById = async (id) => {
   const res = await Client.get(`/api/team/${id}`);
   return res.data;
 };
+
+export const CreateGame = async (obj) => {
+  const res = await Client.post(`/api/games/`, obj);
+  return res.data;
+};

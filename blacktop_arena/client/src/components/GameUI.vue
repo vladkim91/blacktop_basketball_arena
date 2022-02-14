@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { GetTeamById, UpdateTeamById } from '../services/routes.js';
+import { GetTeamById, UpdateTeamById, CreateGame } from '../services/routes.js';
 export default {
   mounted() {
     this.countdown();
@@ -35,6 +35,7 @@ export default {
   components: {},
   data() {
     return {
+      gameObject: {},
       gameLog: [],
       record: {},
       possession: null,
@@ -873,8 +874,9 @@ export default {
         return;
       }
       this.gameInProgress = false;
-
       this.getTeamById(JSON.parse(localStorage.getItem('team_name')).id);
+      this.createGame(this.createGameObject());
+      // console.log()
     },
     async updateTeamById(id, body) {
       const res = await UpdateTeamById(id, body);
@@ -894,6 +896,25 @@ export default {
         this.record.losses++;
         this.updateTeamById(id, this.record);
       }
+    },
+    async createGame(obj) {
+      const res = await CreateGame(obj);
+      return res;
+    },
+    createGameObject() {
+      const obj = {
+        name: 'game_name',
+        team_one_stats: this.teamStats.teamOne,
+        team_two_stats: this.teamStats.teamTwo,
+        team_one_player_stats: this.playerStatTemplate.teamOne,
+        team_two_player_stats: this.playerStatTemplate.teamTwo,
+        team_one_score: this.gameScore.teamOne,
+        team_two_score: this.gameScore.teamTwo,
+        team_one_squad: this.teams.teamOne,
+        team_two_squad: this.teams.teamTwo,
+        date: new Date().toLocaleDateString('en-CA')
+      };
+      return obj;
     }
   }
 };

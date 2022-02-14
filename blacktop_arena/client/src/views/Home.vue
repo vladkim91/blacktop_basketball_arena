@@ -16,10 +16,10 @@
         <button @click="goToDraft" class="btn-link">Draft</button>
       </div>
       <div class="n-container about">
-        <button class="btn-link">About</button>
+        <button @click="goToTeamDetails" class="btn-link">About</button>
       </div>
       <div class="n-container players">
-        <button class="btn-link">Players</button>
+        <button @click="goToPlayers" class="btn-link">Players</button>
       </div>
     </div>
   </div>
@@ -87,6 +87,12 @@ export default {
     },
     goToDraft() {
       this.$router.push('/game')
+    },
+    goToTeamDetails() {
+      this.$router.push('/views')
+    },
+    goToPlayers() {
+      this.$router.push('/players')
     }
   }
 };
@@ -102,7 +108,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 30rem;
+  width: 60rem;
   margin: 0.2rem auto;
 }
 
@@ -111,31 +117,31 @@ export default {
   margin: 1rem auto;
   background: linear-gradient(135deg, rgb(0, 0, 0) 60%, rgb(39, 39, 39));
   width: 100vw;
-  height: 12rem;
+  height: 19rem;
   justify-content: center;
   align-items: center;
 }
 
 .n-container {
-  margin: 1rem 2rem;
-  width: 5rem;
-  height: 7rem;
+  margin: 2rem 4rem;
+  width: 10rem;
+  height: 14rem;
   background-color: grey;
   border-radius: 5px;
   border: grey 0.2px solid;
 }
 
 .btn-link {
-  margin-top: 6.4rem;
+  margin-top: 12.9rem;
   background-color: rgb(133, 0, 0);
   color: white;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-  border-radius: 5px;
-  width: 4rem;
+  border-radius: 1rem;
+  width: 8rem;
   border: none;
   font-family: 'Share', cursive;
   text-shadow: 2px 2px 4px #000000;
-  font-size: 0.8rem;
+  font-size: 1.6rem;
   cursor: pointer;
   transition: ease-in-out;
 }
@@ -176,7 +182,7 @@ export default {
 
 .title {
   font-family: 'Share', cursive;
-  margin: 0.3rem;
+  margin: 0.5rem;
 }
 .cShowTimeLakers,
 .c2018Warriors,
@@ -184,11 +190,13 @@ export default {
 .cSanAntonioSpurs,
 .cCelticsBig3,
 .cMiamiHeatBig3 {
-  width: 8rem;
+  width: 18rem;
+  height: 10rem;
   background-size: cover;
-  margin: 0.2rem;
+  margin: 0.5rem;
   transition: 0.6s ease-out;
   cursor: pointer;
+  font-size: 1.7rem;
 }
 .cShowTimeLakers:hover,
 .c2018Warriors:hover,

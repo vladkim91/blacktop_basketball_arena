@@ -107,7 +107,8 @@ export default {
         return null;
       }
       if (this.$store.state.teams.teamTwo.length === 3) {
-        this.$store.commit('setTeams', [player, turn]);
+        this.$store.commit('setTeams', [player, 0]);
+        this.ids.push(player.id);
         this.last = player;
         this.getOverall(player);
       } else {
@@ -360,9 +361,4 @@ font-family: 'Share', cursive;
   min-height: 26rem;
 }
 
-.ball > img{
-  width: 10rem;
-
-
-}
 </style>

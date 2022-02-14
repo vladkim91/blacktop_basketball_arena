@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { GetPlayers } from './services/routes';
+import { GetPlayers, GetHistory } from './services/routes';
 import Nav from './components/Nav.vue';
 
 export default {
@@ -15,6 +15,7 @@ export default {
   mounted: function () {
     this.getAllPlayers();
     this.checkTeam();
+    this.getHistory();
   },
 
   components: {
@@ -40,6 +41,11 @@ export default {
       if (JSON.parse(localStorage.getItem('team_name')) === null) {
         this.$router.push('/login');
       }
+    },
+    async getHistory() {
+      const res = await GetHistory();
+
+      this.$store.commit('getHistory', res);
     }
   }
 };
@@ -47,7 +53,7 @@ export default {
 
 <style>
 body {
-  margin: 0
+  margin: 0;
 }
 @import url('https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Roboto+Mono:wght@200&family=Share&display=swap');
 .app {

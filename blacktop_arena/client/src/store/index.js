@@ -10,7 +10,8 @@ export default createStore({
     teams: {
       teamOne: [],
       teamTwo: []
-    }
+    },
+    history: []
   },
   mutations: {
     setTeams(state, array) {
@@ -47,6 +48,9 @@ export default createStore({
         teamTwo: []
       };
       state.legends = [];
+    },
+    getHistory(state, history) {
+      state.history = history;
     }
   },
   actions: {},

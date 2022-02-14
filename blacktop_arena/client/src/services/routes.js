@@ -42,3 +42,8 @@ export const CreateGame = async (obj) => {
   const res = await Client.post(`/api/games/`, obj);
   return res.data;
 };
+
+export const GetHistory = async () => {
+  const res = await Client.get(`/api/games/`);
+  return res.data;
+};

@@ -141,7 +141,12 @@
 </template>
 
 <script>
-import { GetTeamById, UpdateTeamById, CreateGame } from '../services/routes.js';
+import {
+  GetTeamById,
+  UpdateTeamById,
+  CreateGame,
+  GetTeamByNameAndPassword
+} from '../services/routes.js';
 export default {
   mounted() {
     this.countdown();
@@ -985,16 +990,16 @@ export default {
       this.shootBall(currentPlayer, shotType, matchup);
       if (this.gameScore.teamOne < 21 && this.gameScore.teamTwo < 21) {
         setTimeout(this.gameCycle, 1000);
-
         return;
       }
       this.gameInProgress = false;
       this.getTeamById(JSON.parse(localStorage.getItem('team_name')).id);
       this.createGame(this.createGameObject());
+      const team = JSON.parse(localStorage.getItem('team_name'));
+      this.getUpdatedTeam(team.team_name, team.password);
     },
     async updateTeamById(id, body) {
       const res = await UpdateTeamById(id, body);
-
       return res;
     },
     async getTeamById(id) {
@@ -1029,6 +1034,10 @@ export default {
         date: new Date().toLocaleDateString('en-CA')
       };
       return obj;
+    },
+    async getUpdatedTeam(team, pw) {
+      const res = await GetTeamByNameAndPassword(team, pw);
+      this.$store.commit('setTeam', res);
     }
   }
 };

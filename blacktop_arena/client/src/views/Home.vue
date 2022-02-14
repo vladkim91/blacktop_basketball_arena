@@ -13,7 +13,7 @@
     </div>
     <div class="navigation">
       <div class="n-container draft">
-        <button class="btn-link">Draft</button>
+        <button @click="goToDraft" class="btn-link">Draft</button>
       </div>
       <div class="n-container about">
         <button class="btn-link">About</button>
@@ -84,6 +84,9 @@ export default {
       this.$store.commit('setLegends', legendArray);
 
       this.$router.push('/game');
+    },
+    goToDraft() {
+      this.$router.push('/game')
     }
   }
 };

@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import { GetTeamById, UpdateTeamById } from '../services/routes.js';
 export default {
   mounted() {
     this.countdown();
@@ -35,9 +36,9 @@ export default {
   data() {
     return {
       gameLog: [],
+      record: {},
       possession: null,
       gameInProgress: false,
-
       teamStats: {
         teamOne: {
           points: 0,
@@ -112,7 +113,7 @@ export default {
         this.gameLog.unshift(`${playerTwo.name} won the tip! `);
       }
     },
-  
+
     getTallest() {
       const tallestOne = this.teams.teamOne.sort((a, b) => {
         return b.height - a.height;
@@ -330,7 +331,6 @@ export default {
                 `${this.gameScore.teamOne}:${this.gameScore.teamTwo}`
             );
           }
-          
         } else {
           // TEAM 1
           if (this.possession === 0) {
@@ -868,10 +868,32 @@ export default {
 
       this.shootBall(currentPlayer, shotType, matchup);
       if (this.gameScore.teamOne < 21 && this.gameScore.teamTwo < 21) {
-        setTimeout(this.gameCycle, 1000);
+        setTimeout(this.gameCycle, 0);
+
         return;
       }
       this.gameInProgress = false;
+
+      this.getTeamById(JSON.parse(localStorage.getItem('team_name')).id);
+    },
+    async updateTeamById(id, body) {
+      const res = await UpdateTeamById(id, body);
+
+      return res;
+    },
+    async getTeamById(id) {
+      const res = await GetTeamById(id);
+      this.record = {
+        wins: res.wins,
+        losses: res.losses
+      };
+      if (this.gameScore.teamOne >= 21) {
+        this.record.wins++;
+        this.updateTeamById(id, this.record);
+      } else {
+        this.record.losses++;
+        this.updateTeamById(id, this.record);
+      }
     }
   }
 };

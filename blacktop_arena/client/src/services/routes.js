@@ -27,3 +27,13 @@ export const GetAllSquads = async () => {
   const res = await Client.get(`/api/squad`);
   return res.data;
 };
+
+export const UpdateTeamById = async (id, body) => {
+  const res = await Client.patch(`/api/team/update/${id}`, body);
+  return res.data;
+};
+
+export const GetTeamById = async (id) => {
+  const res = await Client.get(`/api/team/${id}`);
+  return res.data;
+};

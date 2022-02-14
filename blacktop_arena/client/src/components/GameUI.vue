@@ -1,22 +1,137 @@
 <template>
   <div class="game-ui">
-    <h1>GAME UI</h1>
-    <h2>Team One</h2>
-    <div
-      class="team-2-players"
-      v-for="player in teams.teamOne"
-      :key="player.id"
-    >
-      <div class="p1-container">{{ player.name }}</div>
+    <div class="middle-container">
+      <div class="team1">
+        <h2>Home</h2>
+        <div
+          class="team-2-players"
+          v-for="player in teams.teamOne"
+          :key="player.id"
+        >
+          <div class="mid-section">
+            <div class="p1-container">{{ player.name }}</div>
+            <div class="stat-box">
+              <table>
+                <tr>
+                  <th>Points</th>
+                  <th>Reb</th>
+                  <th>Assists</th>
+                  <th>Steals</th>
+                  <th>Blocks</th>
+                  <th>TO</th>
+                  <th>FG%</th>
+                  <th>3P%</th>
+                </tr>
+                <tr>
+                  <td>{{ playerStatTemplate.teamOne[player.name].points }}</td>
+                  <td>
+                    {{ playerStatTemplate.teamOne[player.name].rebounds }}
+                  </td>
+                  <td>{{ playerStatTemplate.teamOne[player.name].assists }}</td>
+                  <td>{{ playerStatTemplate.teamOne[player.name].steals }}</td>
+                  <td>{{ playerStatTemplate.teamOne[player.name].blocks }}</td>
+                  <td>
+                    {{ playerStatTemplate.teamOne[player.name].turnovers }}
+                  </td>
+                  <td>
+                    <span>%</span
+                    >{{
+                      Math.ceil(
+                        (playerStatTemplate.teamOne[player.name].fgm /
+                          playerStatTemplate.teamOne[player.name].fga) *
+                          100
+                      )
+                    }}
+                  </td>
+                  <td
+                    v-if="playerStatTemplate.teamOne[player.name].threeA !== 0"
+                  >
+                    <span>%</span
+                    >{{
+                      Math.ceil(
+                        (playerStatTemplate.teamOne[player.name].threeM /
+                          playerStatTemplate.teamOne[player.name].threeA) *
+                          100
+                      )
+                    }}
+                  </td>
+                  <td v-else>%0</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="center">
+        <div class="score">
+          {{gameScore.teamOne}} : {{gameScore.teamTwo}}
+        </div>
+        <div class="ball"><img src="../assets/ball.png" alt="" /></div>
+      </div>
+
+      <div class="team2">
+        <h2>Away</h2>
+        <div
+          class="team-2-players"
+          v-for="player in teams.teamTwo"
+          :key="player.id"
+        >
+          <div class="mid-section">
+            <div class="p2-container">{{ player.name }}</div>
+            <div class="stat-box">
+              <table>
+                <tr>
+                  <th>Points</th>
+                  <th>Reb</th>
+                  <th>Assists</th>
+                  <th>Steals</th>
+                  <th>Blocks</th>
+                  <th>TO</th>
+                  <th>FG%</th>
+                  <th>3P%</th>
+                </tr>
+                <tr>
+                  <td>{{ playerStatTemplate.teamTwo[player.name].points }}</td>
+                  <td>
+                    {{ playerStatTemplate.teamTwo[player.name].rebounds }}
+                  </td>
+                  <td>{{ playerStatTemplate.teamTwo[player.name].assists }}</td>
+                  <td>{{ playerStatTemplate.teamTwo[player.name].steals }}</td>
+                  <td>{{ playerStatTemplate.teamTwo[player.name].blocks }}</td>
+                  <td>
+                    {{ playerStatTemplate.teamTwo[player.name].turnovers }}
+                  </td>
+                  <td>
+                    <span>%</span
+                    >{{
+                      Math.ceil(
+                        (playerStatTemplate.teamTwo[player.name].fgm /
+                          playerStatTemplate.teamTwo[player.name].fga) *
+                          100
+                      )
+                    }}
+                  </td>
+                  <td
+                    v-if="playerStatTemplate.teamTwo[player.name].threeA !== 0"
+                  >
+                    <span>%</span
+                    >{{
+                      Math.ceil(
+                        (playerStatTemplate.teamTwo[player.name].threeM /
+                          playerStatTemplate.teamTwo[player.name].threeA) *
+                          100
+                      )
+                    }}
+                  </td>
+                  <td v-else>%0</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <h2>Team Two</h2>
-    <div
-      class="team-2-players"
-      v-for="player in teams.teamTwo"
-      :key="player.id"
-    >
-      <div class="p2-container">{{ player.name }}</div>
-    </div>
+
     <div class="log">
       <div class="line" v-for="line in gameLog" :key="line.id">
         {{ line }}
@@ -876,7 +991,7 @@ export default {
       this.gameInProgress = false;
       this.getTeamById(JSON.parse(localStorage.getItem('team_name')).id);
       this.createGame(this.createGameObject());
-      // console.log()
+
     },
     async updateTeamById(id, body) {
       const res = await UpdateTeamById(id, body);
@@ -919,3 +1034,83 @@ export default {
   }
 };
 </script>
+
+
+<style scoped>
+.game-ui {
+  font-family: 'Share', cursive;
+}
+.middle-container {
+  display: flex;
+  justify-content: space-around;
+  text-shadow: 2px 2px 2px black;
+  align-items: center;
+}
+
+.team1,
+.team2 {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid white;
+  border-radius: 1rem;
+  text-shadow: 2px 2px 2px black;
+  background-color: rgb(71, 71, 71);
+  min-width: 32rem;
+  min-height: 18rem;
+  border-radius: 0.7rem;
+  font-size: 1.4rem;
+  margin: 1rem;
+}
+.mid-section {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.3rem;
+}
+h2 {
+  text-align: center;
+}
+
+table {
+  font-size: 0.8rem;
+  text-align: center;
+}
+th {
+  width: 2.2rem;
+  border-bottom: 2px solid black;
+}
+.ball > img {
+  width: 10rem;
+  animation-name: spin;
+  animation-duration: 5000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.log {
+  width: 90%;
+  overflow: auto;
+  height: 40vh;
+  background-color: rgb(80, 80, 80);
+  margin: 2.5rem auto;
+  border-radius: 2rem;
+  border: 2px solid white;
+}
+
+.line {
+  margin: .5rem 24vw;
+}
+
+.score {
+  font-size: 2.7rem;
+  text-align: center;
+}
+</style>

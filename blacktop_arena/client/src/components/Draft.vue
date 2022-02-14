@@ -359,4 +359,10 @@ font-family: 'Share', cursive;
   align-items: center;
   min-height: 26rem;
 }
+
+.ball > img{
+  width: 10rem;
+
+
+}
 </style>

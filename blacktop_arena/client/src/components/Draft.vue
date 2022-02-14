@@ -1,8 +1,5 @@
 <template>
   <div class="draft">
-    <h1 class="title">DRAFT</h1>
-    <h3 v-if="!turn">Team 1 Turn</h3>
-    <h3 v-else>Team 2 Turn</h3>
     <button
       class="start-game"
       @click="startGame"
@@ -10,7 +7,13 @@
     >
       Start
     </button>
-    <button v-else :disabled="isActive">Start</button>
+    <button class="start-game-disabled" v-else :disabled="isActive">
+      Start
+    </button>
+    <h1 class="title">DRAFT</h1>
+    <h3 v-if="!turn">Team 1 Turn</h3>
+    <h3 v-else>Team 2 Turn</h3>
+
     <div class="teams">
       <div class="team-one-container">
         <h4>Team One</h4>
@@ -20,17 +23,23 @@
             v-for="player in teams.teamOne"
             :key="player.id"
           >
-            <div class="p1name">
+            <div class="p1-name">
               {{ player['name'] }}
             </div>
           </div>
         </div>
       </div>
       <div class="last-player">
-        {{ last.name }}
-        <img class="last" :src="last.image" alt="" />
-        Rating Offense: {{ lastStats.offense }} Defense:
-        {{ lastStats.defense }} Overall: {{ lastStats.overall }}
+        <h2 class="l-name">{{ last.name }}</h2>
+        <img v-if="lastStats.defense" class="last" :src="last.image" alt="" />
+        <div class="last" v-else></div>
+        <div class="stats" v-if="lastStats.defense">
+          <span class="stat">Rating Offense: {{ lastStats.offense }}</span>
+          <span class="stat">Defense: {{ lastStats.defense }}</span>
+          <span class="stat">Overall: {{ lastStats.overall }}</span>
+        </div>
+        <div v-else class='stats'></div>
+        
       </div>
       <div class="team-two-container">
         <h4>Team Two</h4>
@@ -49,7 +58,7 @@
     </div>
     <div class="player-grid">
       <div class="player-container" v-for="player in players" :key="player.id">
-        <div class="player-name">{{ player.name }}</div>
+        <div class="player-name">{{ player.nickname }}</div>
         <button
           class="player-button"
           @click="
@@ -119,7 +128,7 @@ export default {
     },
     startGame() {
       this.ids = [];
-      
+
       this.$router.push('/gameui');
     },
     disableButton() {
@@ -173,6 +182,41 @@ export default {
 
 
 <style scoped>
+h1 {
+  font-family: 'Share', cursive;
+}
+.start-game {
+  position: absolute;
+  top: 5rem;
+  right: 4rem;
+  border: none;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 1rem;
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  font-family: 'Share', cursive;
+  color: black;
+  font-weight: black;
+  font-size: 1.4rem;
+}
+
+.start-game-disabled {
+  position: absolute;
+  top: 5rem;
+  right: 4rem;
+  border: none;
+  background-color: rgb(156, 156, 156);
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 1rem;
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  font-family: 'Share', cursive;
+  color: rgb(78, 78, 78);
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
 .draft {
   background-image: url('../assets/background.jpeg');
   background-repeat: no-repeat;
@@ -182,31 +226,56 @@ export default {
 
 .teams {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
 .team-one-container,
 .team-two-container {
   min-width: 9rem;
+  padding: 1rem 5rem;
 }
 
 .team-one,
 .team-two {
-  background-color: blue;
-  min-width: 9rem;
-  min-height: 12rem;
+  background-color: rgb(71, 71, 71);
+  min-width: 14rem;
+  min-height: 14rem;
   border-radius: 0.7rem;
+  font-family: 'Share', cursive;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 10rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 2px black;
+}
+
+.team-one {
+  align-items: flex-start;
+}
+
+.team-two {
+  align-items: flex-end;
+}
+
+.p1-name,
+.p2-name {
+  padding: 1rem;
 }
 h4 {
   text-align: center;
   margin-bottom: 0.5rem;
   color: white;
+  font-family: 'Share', cursive;
+  font-size: 1.3rem;
 }
 
 .title,
 h3 {
   margin: 1.2rem auto;
   text-align: center;
+  font-family: 'Share', cursive;
 }
 
 .disabled {
@@ -216,7 +285,7 @@ h3 {
 .player-grid {
   display: flex;
   flex-wrap: wrap;
-  margin: 4rem 12rem;
+  margin: 0rem 12rem;
   justify-content: center;
 }
 .player-container {
@@ -225,6 +294,22 @@ h3 {
   border: goldenrod 2px solid;
   border-radius: 0.5rem;
   margin: 0.2rem;
+  align-items: center;
+  background-color: black;
+  width: 7rem;
+  cursor: pointer;
+  filter: grayscale(40%);
+  transition: ease-in .5s;
+}
+
+.player-container:hover {
+  filter: grayscale(0);
+  transform: scale(1.1)
+}
+.player-name {
+  font-family: 'Share', cursive;
+  padding: .1rem;
+
 }
 
 .player-container:hover {
@@ -244,14 +329,34 @@ h3 {
   padding: 0;
 }
 
+.l-name {
+  position: absolute;
+  top: 9rem;
+font-family: 'Share', cursive;
+}
+
 .last {
+  margin-top: 2rem;
   width: 20rem;
-  height: 20rem;
-  object-fit: contain;
+  height: 18rem;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 1rem;
+}
+
+.stats {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-family: 'Share', cursive;
+  margin: 1rem auto;
+  height: 2rem;
 }
 
 .last-player {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  min-height: 26rem;
 }
 </style>

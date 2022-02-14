@@ -1167,7 +1167,7 @@ def seed(apps, schema_editor):
                    'block': 99,
                    'intercept': 87
                }
-           }, avatar="https://townsquare.media/site/11/files/2018/03/Screen-Shot-2018-03-13-at-10.59.59-PM.png",
+           }, avatar="https://images.7news.com.au/publication/C-1046789/59774a3762246f68c2bceca98719361c6a8d46cc.jpg?imwidth=650&impolicy=sevennews_v2",
            description="Rodman played at the small forward position in his early years before becoming a power forward. He earned NBA All-Defensive First Team honors seven times and won the NBA Defensive Player of the Year Award twice. He also led the NBA in rebounds per game for a record seven consecutive years and won five NBA championships.",
            image="https://www.rollingstone.com/wp-content/uploads/2020/04/dennis-rodman-tattoo-t-shirt.jpg",
            tier=1).save()
